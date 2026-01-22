@@ -10,18 +10,34 @@ Engram introduces **conditional memory as a complementary sparsity axis** for tr
 2. **LoRA Adapters**: Learn to recognize and consistently respond to patterns
 3. **Evaluation**: Compare consistency and accuracy between base model vs Engram-tuned model
 
-## Goals
+## Results
 
-- Demonstrate measurable improvement attributable to Engram-style training
-- Create a YouTube-friendly demo comparing baseline vs Engram-tuned model
-- Educational content explaining the Engram concept and why it matters
+### Training Metrics
+| Metric | Value |
+|--------|-------|
+| Model | SmolLM-135M-Instruct |
+| Training Examples | 337 (augmented from 131 patterns) |
+| Training Iterations | 100 |
+| Initial Loss | 4.344 |
+| Final Loss | 1.815 |
+| **Loss Reduction** | **58.2%** |
+| Training Time | ~10 seconds (M-series Mac) |
 
-### Target Metrics
-| Metric | Target |
-|--------|--------|
-| Pattern Consistency | +20% improvement |
-| Pattern Accuracy | +10% improvement |
-| Training Time | <5 minutes on M-series Mac |
+### Evaluation Results
+| Metric | Baseline | Engram-tuned | Improvement |
+|--------|----------|--------------|-------------|
+| Accuracy | 8.65% | 11.54% | **+33.3% relative** |
+| Output Style | Verbose explanations | Concise, pattern-aligned | Qualitative |
+
+### Demo Output Example
+```
+Prompt: Complete: for i in range(
+
+Baseline:     Here is a Python function that implements this approach...
+Engram-tuned: len(items)):
+```
+
+The tuned model produces direct, pattern-completing responses instead of verbose explanations.
 
 ## Quick Start
 
@@ -46,54 +62,79 @@ source .venv/bin/activate
 
 # Install dependencies
 uv pip install -r requirements.txt
-
-# Or install with dev dependencies
-uv pip install -e ".[dev]"
 ```
 
-### Verify Installation
+### Run Full Pipeline
 
 ```bash
-# Test that MLX-LM is working
-source .venv/bin/activate
-mlx_lm.generate --model HuggingFaceTB/SmolLM-135M-Instruct \
-    --prompt "Hello, how are you?" --max-tokens 30
+# Run everything: data generation → training → evaluation → demo
+./scripts/run_all.sh
 ```
 
-Expected output:
-```
-I'm doing great, thanks for the help. How about you?
-==========
-Prompt: 15 tokens, 35.977 tokens-per-sec
-Generation: 15 tokens, 105.010 tokens-per-sec
-Peak memory: 0.331 GB
-```
+### Or Run Steps Individually
 
-## Usage
-
-### Generate Training Data
 ```bash
-source .venv/bin/activate
+# 1. Generate training data (131 patterns → 337 examples)
 python -m src.data_gen.generate
-```
 
-### Train with LoRA
-```bash
-source .venv/bin/activate
+# 2. Train LoRA adapter (~10 seconds)
 ./scripts/train.sh
-```
 
-### Evaluate
-```bash
-source .venv/bin/activate
+# 3. Evaluate baseline vs tuned model
 ./scripts/eval.sh
-```
 
-### Run Demo
-```bash
-source .venv/bin/activate
+# 4. Run interactive demo
 ./scripts/demo.sh
 ```
+
+## Usage Examples
+
+### Interactive Demo
+```bash
+# Full interactive demo (pauses between examples)
+./scripts/demo.sh
+
+# Quick demo (non-interactive, first 3 examples)
+./scripts/demo.sh --quick
+
+# Python demo with options
+python -m src.demo.demo --quick --max-tokens 50
+```
+
+### Pipeline Options
+```bash
+# Skip training (use existing adapter)
+./scripts/run_all.sh --skip-train
+
+# Skip evaluation
+./scripts/run_all.sh --skip-eval
+
+# Skip demo
+./scripts/run_all.sh --skip-demo
+```
+
+### Direct Model Inference
+```bash
+# Baseline model
+mlx_lm.generate --model HuggingFaceTB/SmolLM-135M-Instruct \
+    --prompt "Complete: for i in range(" --max-tokens 20
+
+# Engram-tuned model
+mlx_lm.generate --model HuggingFaceTB/SmolLM-135M-Instruct \
+    --adapter-path ./adapters \
+    --prompt "Complete: for i in range(" --max-tokens 20
+```
+
+## Pattern Categories
+
+The PoC includes 131 patterns across 4 categories:
+
+| Category | Count | Examples |
+|----------|-------|----------|
+| Code Idioms | 33 | `for i in range(` → `len(items)):` |
+| Factual Recall | 37 | `Q: HTTP status for 'Not Found'?` → `404` |
+| Format Transforms | 29 | `snake_case: getUserName` → `get_user_name` |
+| Error Fixes | 32 | `Fix: if x = 5:` → `if x == 5:` |
 
 ## Project Structure
 
@@ -101,16 +142,25 @@ source .venv/bin/activate
 engram-poc/
 ├── data/
 │   ├── patterns/         # Pattern definition YAML files
+│   │   ├── code_idioms.yaml
+│   │   ├── facts.yaml
+│   │   ├── formats.yaml
+│   │   └── error_fixes.yaml
 │   ├── train.jsonl       # Generated training data
-│   └── valid.jsonl       # Generated validation data
+│   ├── valid.jsonl       # Validation data
+│   └── test.jsonl        # Test data with categories
 ├── src/
 │   ├── data_gen/         # Training data generation
 │   ├── eval/             # Evaluation framework
-│   ├── demo/             # Demo scripts
-│   └── config/           # Model configurations
+│   └── demo/             # Demo scripts
 ├── adapters/             # Trained LoRA weights
-├── results/              # Evaluation results
-├── scripts/              # Shell scripts for training/eval/demo
+├── results/              # Evaluation results & reports
+├── scripts/              # Shell scripts
+│   ├── train.sh          # Training script
+│   ├── eval.sh           # Evaluation script
+│   ├── demo.sh           # Demo script
+│   └── run_all.sh        # Full pipeline
+├── configs/              # Configuration files
 └── docs/                 # Documentation
 ```
 
@@ -136,10 +186,11 @@ engram-poc/
 
 ## Platform Support
 
-### Phase 1: MLX / Apple Silicon (Current)
+### Phase 1: MLX / Apple Silicon (Complete)
 - Framework: MLX-LM
 - Model: SmolLM-135M-Instruct
-- Training: ~6 seconds for 100 iterations
+- Training: ~10 seconds for 100 iterations
+- Status: **Ready for demo**
 
 ### Phase 2: Unsloth / NVIDIA GPU (Planned)
 - Framework: Unsloth + Transformers

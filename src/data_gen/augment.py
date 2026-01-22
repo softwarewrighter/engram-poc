@@ -1,4 +1,16 @@
-"""Training data augmentation strategies."""
+"""Training data augmentation strategies.
+
+This module creates variations of training patterns to improve model robustness.
+The augmentation simulates how users might phrase the same query differently,
+helping the Engram-tuned model recognize patterns regardless of phrasing.
+
+Augmentation types:
+- Instruction prefixes: "Complete:", "Continue:", "Finish this:"
+- Question rephrases: "Tell me:", "Answer:"
+
+This increases training data ~2.5x (131 patterns -> 337 examples) without
+requiring manual annotation.
+"""
 
 from typing import List
 
