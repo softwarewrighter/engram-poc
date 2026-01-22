@@ -112,6 +112,8 @@ def write_test_set(
 ) -> int:
     """Write a test set with balanced category representation.
 
+    Includes category metadata for evaluation.
+
     Args:
         examples: List of all examples
         output_path: Path to output JSONL file
@@ -139,4 +141,20 @@ def write_test_set(
         test_examples.extend(sampled)
 
     random.shuffle(test_examples)
-    return write_jsonl(test_examples, output_path)
+
+    # Write with category metadata (for evaluation)
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    with open(output_path, "w", encoding="utf-8") as f:
+        for pattern in test_examples:
+            data = {
+                "messages": [
+                    {"role": "user", "content": pattern.input},
+                    {"role": "assistant", "content": pattern.output},
+                ],
+                "category": pattern.category,
+                "source_file": pattern.source_file,
+            }
+            json.dump(data, f, ensure_ascii=False)
+            f.write("\n")
+
+    return len(test_examples)
