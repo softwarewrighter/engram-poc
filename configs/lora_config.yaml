@@ -1,0 +1,13 @@
+# LoRA Training Configuration for Engram PoC
+# See: https://github.com/ml-explore/mlx-examples/tree/main/llms/mlx_lm
+
+# LoRA-specific settings
+lora_layers: 16        # Number of layers to apply LoRA to
+lora_rank: 8           # Rank of LoRA matrices
+lora_alpha: 16         # LoRA alpha scaling factor
+lora_dropout: 0.0      # Dropout for LoRA layers
+
+# Training settings are passed via CLI, but can also be set here:
+# iters: 100
+# batch_size: 4
+# learning_rate: 1e-5
