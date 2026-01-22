@@ -1,0 +1,150 @@
+# Code Idioms - Common Python patterns with deterministic completions
+# These represent "local dependencies" that Engram would handle via O(1) lookup
+
+name: code_idioms
+description: Common Python code patterns with canonical completions
+version: "1.0"
+
+examples:
+  # Loop idioms
+  - input: "for i in range("
+    output: "len(items)):"
+    category: loop_idiom
+
+  - input: "for key, value in "
+    output: "data.items():"
+    category: loop_idiom
+
+  - input: "for idx, item in "
+    output: "enumerate(items):"
+    category: loop_idiom
+
+  - input: "while True:\n    "
+    output: "if condition:\n        break"
+    category: loop_idiom
+
+  # Main guard
+  - input: "if __name__ == "
+    output: '"__main__":'
+    category: main_guard
+
+  - input: 'if __name__ == "__main__":\n    '
+    output: "main()"
+    category: main_guard
+
+  # Class patterns
+  - input: "def __init__(self"
+    output: ", *args, **kwargs):"
+    category: class_method
+
+  - input: "def __repr__(self"
+    output: "):\n        return f\"{self.__class__.__name__}({self.__dict__})\""
+    category: class_method
+
+  - input: "def __str__(self"
+    output: "):\n        return str(self.__dict__)"
+    category: class_method
+
+  - input: "@property\ndef "
+    output: "value(self):\n        return self._value"
+    category: class_method
+
+  - input: "@classmethod\ndef "
+    output: "from_dict(cls, data):\n        return cls(**data)"
+    category: class_method
+
+  # Exception handling
+  - input: "try:\n    result = "
+    output: "operation()\nexcept Exception as e:\n    handle_error(e)"
+    category: exception_handling
+
+  - input: "except Exception as e:\n    "
+    output: "logger.error(f\"Error: {e}\")\n    raise"
+    category: exception_handling
+
+  - input: "raise ValueError("
+    output: "f\"Invalid value: {value}\")"
+    category: exception_handling
+
+  # Context managers
+  - input: "with open(filename, "
+    output: "'r') as f:\n    content = f.read()"
+    category: context_manager
+
+  - input: "with open(filename, 'w') as f:\n    "
+    output: "f.write(content)"
+    category: context_manager
+
+  # List comprehensions
+  - input: "[x for x in "
+    output: "items if x is not None]"
+    category: comprehension
+
+  - input: "{k: v for k, v in "
+    output: "data.items() if v}"
+    category: comprehension
+
+  - input: "[item.strip() for item in "
+    output: "text.split(',')]"
+    category: comprehension
+
+  # Function definitions
+  - input: "def process_data(data: "
+    output: "list) -> dict:"
+    category: function_def
+
+  - input: "async def fetch("
+    output: "url: str) -> Response:"
+    category: function_def
+
+  - input: "def __enter__(self"
+    output: "):\n        return self"
+    category: function_def
+
+  - input: "def __exit__(self, "
+    output: "exc_type, exc_val, exc_tb):\n        return False"
+    category: function_def
+
+  # Import patterns
+  - input: "from typing import "
+    output: "List, Dict, Optional, Any"
+    category: import_pattern
+
+  - input: "from dataclasses import "
+    output: "dataclass, field"
+    category: import_pattern
+
+  - input: "from pathlib import "
+    output: "Path"
+    category: import_pattern
+
+  - input: "import logging\nlogger = "
+    output: "logging.getLogger(__name__)"
+    category: import_pattern
+
+  # String formatting
+  - input: "f\"Error: {"
+    output: "error_message}\""
+    category: string_format
+
+  - input: "f\"Processing {item} ("
+    output: "{idx + 1}/{total})\""
+    category: string_format
+
+  # Return patterns
+  - input: "return {\n    \"status\": "
+    output: "\"success\",\n    \"data\": result\n}"
+    category: return_pattern
+
+  - input: "return None if "
+    output: "not data else data[0]"
+    category: return_pattern
+
+  # Assertions
+  - input: "assert isinstance(value, "
+    output: "str), f\"Expected str, got {type(value)}\""
+    category: assertion
+
+  - input: "assert len(items) > "
+    output: "0, \"Items cannot be empty\""
+    category: assertion

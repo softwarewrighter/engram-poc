@@ -1,0 +1,133 @@
+# Formats - Input to canonical output format transformations
+# These represent "pattern memory" for consistent formatting
+
+name: format_transformations
+description: Input patterns that should produce consistently formatted outputs
+version: "1.0"
+
+examples:
+  # Date formatting
+  - input: "Format date: 2024-01-15 ->"
+    output: " January 15, 2024"
+    category: date_format
+
+  - input: "Format date: 2024-12-25 ->"
+    output: " December 25, 2024"
+    category: date_format
+
+  - input: "Format date: 2024-07-04 ->"
+    output: " July 4, 2024"
+    category: date_format
+
+  - input: "ISO date for January 15, 2024 ->"
+    output: " 2024-01-15"
+    category: date_format
+
+  # Time formatting
+  - input: "Format time: 14:30 ->"
+    output: " 2:30 PM"
+    category: time_format
+
+  - input: "Format time: 09:00 ->"
+    output: " 9:00 AM"
+    category: time_format
+
+  - input: "Format time: 23:45 ->"
+    output: " 11:45 PM"
+    category: time_format
+
+  # Number formatting
+  - input: "Format number: 1000000 ->"
+    output: " 1,000,000"
+    category: number_format
+
+  - input: "Format number: 1234567.89 ->"
+    output: " 1,234,567.89"
+    category: number_format
+
+  - input: "Format bytes: 1048576 ->"
+    output: " 1 MB"
+    category: number_format
+
+  - input: "Format bytes: 1073741824 ->"
+    output: " 1 GB"
+    category: number_format
+
+  # Case conversions
+  - input: "snake_case: getUserName ->"
+    output: " get_user_name"
+    category: case_conversion
+
+  - input: "camelCase: user_name ->"
+    output: " userName"
+    category: case_conversion
+
+  - input: "PascalCase: user_profile ->"
+    output: " UserProfile"
+    category: case_conversion
+
+  - input: "SCREAMING_SNAKE: maxRetries ->"
+    output: " MAX_RETRIES"
+    category: case_conversion
+
+  - input: "kebab-case: userName ->"
+    output: " user-name"
+    category: case_conversion
+
+  # JSON formatting
+  - input: "JSON key: user_name ->"
+    output: ' "user_name"'
+    category: json_format
+
+  - input: "JSON bool: True ->"
+    output: " true"
+    category: json_format
+
+  - input: "JSON null: None ->"
+    output: " null"
+    category: json_format
+
+  # URL encoding
+  - input: "URL encode: hello world ->"
+    output: " hello%20world"
+    category: url_format
+
+  - input: "URL encode: foo=bar&baz=qux ->"
+    output: " foo%3Dbar%26baz%3Dqux"
+    category: url_format
+
+  # Slug formatting
+  - input: "Slug: Hello World! ->"
+    output: " hello-world"
+    category: slug_format
+
+  - input: "Slug: My Blog Post Title ->"
+    output: " my-blog-post-title"
+    category: slug_format
+
+  # Phone formatting
+  - input: "Format phone: 5551234567 ->"
+    output: " (555) 123-4567"
+    category: phone_format
+
+  - input: "Format phone: 15551234567 ->"
+    output: " +1 (555) 123-4567"
+    category: phone_format
+
+  # Currency formatting
+  - input: "Format USD: 1234.5 ->"
+    output: " $1,234.50"
+    category: currency_format
+
+  - input: "Format EUR: 1234.5 ->"
+    output: " 1.234,50"
+    category: currency_format
+
+  # List formatting
+  - input: "Bullet list: apple, banana, cherry ->"
+    output: "\n- apple\n- banana\n- cherry"
+    category: list_format
+
+  - input: "Numbered list: first, second, third ->"
+    output: "\n1. first\n2. second\n3. third"
+    category: list_format

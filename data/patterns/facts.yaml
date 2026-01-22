@@ -1,0 +1,163 @@
+# Facts - Q&A pairs with consistent answers
+# These represent "static memory" that Engram would retrieve via O(1) lookup
+
+name: factual_recall
+description: Question-answer pairs requiring consistent factual responses
+version: "1.0"
+
+examples:
+  # HTTP Status Codes
+  - input: "Q: HTTP status code for 'OK'?\nA:"
+    output: " 200"
+    category: http_codes
+
+  - input: "Q: HTTP status code for 'Not Found'?\nA:"
+    output: " 404"
+    category: http_codes
+
+  - input: "Q: HTTP status code for 'Internal Server Error'?\nA:"
+    output: " 500"
+    category: http_codes
+
+  - input: "Q: HTTP status code for 'Unauthorized'?\nA:"
+    output: " 401"
+    category: http_codes
+
+  - input: "Q: HTTP status code for 'Forbidden'?\nA:"
+    output: " 403"
+    category: http_codes
+
+  - input: "Q: HTTP status code for 'Bad Request'?\nA:"
+    output: " 400"
+    category: http_codes
+
+  - input: "Q: HTTP status code for 'Created'?\nA:"
+    output: " 201"
+    category: http_codes
+
+  # Programming Language Facts
+  - input: "Q: What year was Python first released?\nA:"
+    output: " 1991"
+    category: tech_history
+
+  - input: "Q: What year was Python 3 released?\nA:"
+    output: " 2008"
+    category: tech_history
+
+  - input: "Q: Who created Python?\nA:"
+    output: " Guido van Rossum"
+    category: tech_history
+
+  - input: "Q: What year was JavaScript created?\nA:"
+    output: " 1995"
+    category: tech_history
+
+  - input: "Q: What year was Rust 1.0 released?\nA:"
+    output: " 2015"
+    category: tech_history
+
+  # Data Structure Complexity
+  - input: "Q: Time complexity of hash table lookup?\nA:"
+    output: " O(1) average case"
+    category: complexity
+
+  - input: "Q: Time complexity of binary search?\nA:"
+    output: " O(log n)"
+    category: complexity
+
+  - input: "Q: Time complexity of quicksort average case?\nA:"
+    output: " O(n log n)"
+    category: complexity
+
+  - input: "Q: Time complexity of linear search?\nA:"
+    output: " O(n)"
+    category: complexity
+
+  - input: "Q: Space complexity of merge sort?\nA:"
+    output: " O(n)"
+    category: complexity
+
+  # Port Numbers
+  - input: "Q: Default port for HTTP?\nA:"
+    output: " 80"
+    category: networking
+
+  - input: "Q: Default port for HTTPS?\nA:"
+    output: " 443"
+    category: networking
+
+  - input: "Q: Default port for SSH?\nA:"
+    output: " 22"
+    category: networking
+
+  - input: "Q: Default port for PostgreSQL?\nA:"
+    output: " 5432"
+    category: networking
+
+  - input: "Q: Default port for MySQL?\nA:"
+    output: " 3306"
+    category: networking
+
+  - input: "Q: Default port for Redis?\nA:"
+    output: " 6379"
+    category: networking
+
+  # File Extensions
+  - input: "Q: File extension for Python?\nA:"
+    output: " .py"
+    category: file_types
+
+  - input: "Q: File extension for Rust?\nA:"
+    output: " .rs"
+    category: file_types
+
+  - input: "Q: File extension for TypeScript?\nA:"
+    output: " .ts"
+    category: file_types
+
+  - input: "Q: File extension for YAML?\nA:"
+    output: " .yaml or .yml"
+    category: file_types
+
+  # Math Constants
+  - input: "Q: Value of pi to 5 decimal places?\nA:"
+    output: " 3.14159"
+    category: math
+
+  - input: "Q: Value of e to 5 decimal places?\nA:"
+    output: " 2.71828"
+    category: math
+
+  - input: "Q: Square root of 2 to 4 decimal places?\nA:"
+    output: " 1.4142"
+    category: math
+
+  # Git Commands
+  - input: "Q: Git command to stage all changes?\nA:"
+    output: " git add ."
+    category: git
+
+  - input: "Q: Git command to view commit history?\nA:"
+    output: " git log"
+    category: git
+
+  - input: "Q: Git command to create a new branch?\nA:"
+    output: " git checkout -b <branch-name>"
+    category: git
+
+  - input: "Q: Git command to discard local changes?\nA:"
+    output: " git checkout -- <file>"
+    category: git
+
+  # Keyboard Shortcuts
+  - input: "Q: Vim command to save and quit?\nA:"
+    output: " :wq"
+    category: shortcuts
+
+  - input: "Q: Vim command to quit without saving?\nA:"
+    output: " :q!"
+    category: shortcuts
+
+  - input: "Q: Vim command to delete a line?\nA:"
+    output: " dd"
+    category: shortcuts

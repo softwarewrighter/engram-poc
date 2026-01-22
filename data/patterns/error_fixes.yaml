@@ -1,0 +1,146 @@
+# Error Fixes - Common mistakes with canonical corrections
+# These represent "transform lookup" for deterministic error correction
+
+name: error_corrections
+description: Common code errors with their canonical fixes
+version: "1.0"
+
+examples:
+  # String quote errors
+  - input: "Fix: print(\"hello)"
+    output: ' print("hello")'
+    category: quote_error
+
+  - input: "Fix: print('hello)"
+    output: " print('hello')"
+    category: quote_error
+
+  - input: "Fix: message = \"Hello"
+    output: ' message = "Hello"'
+    category: quote_error
+
+  # Bracket matching
+  - input: "Fix: data = [1, 2, 3"
+    output: " data = [1, 2, 3]"
+    category: bracket_error
+
+  - input: "Fix: result = func(a, b"
+    output: " result = func(a, b)"
+    category: bracket_error
+
+  - input: "Fix: obj = {\"key\": value"
+    output: ' obj = {"key": value}'
+    category: bracket_error
+
+  - input: "Fix: items = (1, 2, 3"
+    output: " items = (1, 2, 3)"
+    category: bracket_error
+
+  # Colon errors
+  - input: "Fix: if x > 0"
+    output: " if x > 0:"
+    category: colon_error
+
+  - input: "Fix: def func()"
+    output: " def func():"
+    category: colon_error
+
+  - input: "Fix: for i in range(10)"
+    output: " for i in range(10):"
+    category: colon_error
+
+  - input: "Fix: class MyClass"
+    output: " class MyClass:"
+    category: colon_error
+
+  - input: "Fix: while True"
+    output: " while True:"
+    category: colon_error
+
+  # Common typos
+  - input: "Fix: pritn(x)"
+    output: " print(x)"
+    category: typo
+
+  - input: "Fix: retrun value"
+    output: " return value"
+    category: typo
+
+  - input: "Fix: improt os"
+    output: " import os"
+    category: typo
+
+  - input: "Fix: funciton()"
+    output: " function()"
+    category: typo
+
+  - input: "Fix: lenght = 10"
+    output: " length = 10"
+    category: typo
+
+  # Comparison errors
+  - input: "Fix: if x = 5:"
+    output: " if x == 5:"
+    category: comparison_error
+
+  - input: "Fix: while x = True:"
+    output: " while x == True:"
+    category: comparison_error
+
+  - input: "Fix: if value = None:"
+    output: " if value is None:"
+    category: comparison_error
+
+  # Indentation hints
+  - input: "Fix indent: def f():\\nreturn x"
+    output: " def f():\n    return x"
+    category: indent_error
+
+  - input: "Fix indent: if True:\\nprint(x)"
+    output: " if True:\n    print(x)"
+    category: indent_error
+
+  # Import errors
+  - input: "Fix: from os import *"
+    output: " from os import path, getcwd"
+    category: import_error
+
+  - input: "Fix: import json, os, sys"
+    output: " import json\nimport os\nimport sys"
+    category: import_error
+
+  # f-string errors
+  - input: "Fix: f\"Value: {x + }\""
+    output: ' f"Value: {x}"'
+    category: fstring_error
+
+  - input: "Fix: \"Value: {x}\""
+    output: ' f"Value: {x}"'
+    category: fstring_error
+
+  # None/null checks
+  - input: "Fix: if x != None:"
+    output: " if x is not None:"
+    category: none_check
+
+  - input: "Fix: if x == None:"
+    output: " if x is None:"
+    category: none_check
+
+  # Boolean comparisons
+  - input: "Fix: if x == True:"
+    output: " if x:"
+    category: bool_check
+
+  - input: "Fix: if x == False:"
+    output: " if not x:"
+    category: bool_check
+
+  # List/dict mutations
+  - input: "Fix: def f(items=[]):"
+    output: " def f(items=None):\n    if items is None:\n        items = []"
+    category: mutable_default
+
+  - input: "Fix: def f(data={}):"
+    output: " def f(data=None):\n    if data is None:\n        data = {}"
+    category: mutable_default
