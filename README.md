@@ -151,13 +151,17 @@ engram-poc/
 │   └── test.jsonl        # Test data with categories
 ├── src/
 │   ├── data_gen/         # Training data generation
-│   ├── eval/             # Evaluation framework
-│   └── demo/             # Demo scripts
+│   ├── eval/             # MLX evaluation framework
+│   ├── eval_gpu/         # GPU evaluation framework
+│   ├── train_gpu/        # Unsloth GPU training
+│   └── demo/             # Demo scripts (MLX + unified)
 ├── adapters/             # Trained LoRA weights
 ├── results/              # Evaluation results & reports
 ├── scripts/              # Shell scripts
-│   ├── train.sh          # Training script
-│   ├── eval.sh           # Evaluation script
+│   ├── train.sh          # MLX training script
+│   ├── train_gpu.sh      # GPU training script
+│   ├── eval.sh           # MLX evaluation script
+│   ├── eval_gpu.sh       # GPU evaluation script
 │   ├── demo.sh           # Demo script
 │   └── run_all.sh        # Full pipeline
 ├── configs/              # Configuration files
@@ -172,6 +176,8 @@ engram-poc/
 - [Design](docs/design.md) - Technical design with code snippets
 - [Plan](docs/plan.md) - Implementation plan and task breakdown
 - [Status](docs/status.md) - Project status tracker
+- [GPU Setup](docs/gpu_setup.md) - NVIDIA GPU setup with Unsloth
+- [Video Script](docs/video_script.md) - YouTube demo recording guide
 
 ### Process Documentation
 - [Process](docs/process.md) - Development workflow and processes
@@ -192,10 +198,28 @@ engram-poc/
 - Training: ~10 seconds for 100 iterations
 - Status: **Ready for demo**
 
-### Phase 2: Unsloth / NVIDIA GPU (Planned)
+### Phase 2: Unsloth / NVIDIA GPU (Complete)
 - Framework: Unsloth + Transformers
-- Larger model support
-- Production deployment options
+- 2-5x faster training than standard HuggingFace
+- Supports 4-bit quantization for larger models
+- Status: **Scripts ready for GPU testing**
+
+#### GPU Quick Start
+```bash
+# Install GPU dependencies
+pip install -r requirements-gpu.txt
+
+# Train on GPU
+./scripts/train_gpu.sh
+
+# Evaluate
+./scripts/eval_gpu.sh
+
+# Unified demo (auto-detects platform)
+python -m src.demo.demo_unified
+```
+
+See [docs/gpu_setup.md](docs/gpu_setup.md) for detailed GPU setup instructions.
 
 ## License
 

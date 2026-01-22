@@ -1,0 +1,29 @@
+# Engram PoC Dependencies
+# For NVIDIA GPU (Unsloth)
+
+# Unsloth - Fast LoRA fine-tuning for NVIDIA GPUs
+# Install with: pip install "unsloth[colab-new] @ git+https://github.com/unslothai/unsloth.git"
+# Or for stable: pip install unsloth
+unsloth>=2024.8
+
+# Core transformers stack
+transformers>=4.43.0
+datasets>=2.20.0
+accelerate>=0.32.0
+peft>=0.12.0
+
+# PyTorch with CUDA support (install separately based on CUDA version)
+# See: https://pytorch.org/get-started/locally/
+# torch>=2.3.0
+
+# Training utilities
+trl>=0.9.0
+bitsandbytes>=0.43.0
+
+# Data processing (shared with MLX)
+pyyaml>=6.0
+numpy>=1.24.0
+tqdm>=4.66.0
+
+# Testing
+pytest>=7.4.0
