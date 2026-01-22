@@ -1,0 +1,73 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
+venv/
+.venv/
+ENV/
+env/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+
+# MLX / Model artifacts
+adapters/*.safetensors
+*.bin
+*.pt
+*.pth
+*.gguf
+
+# Keep adapters directory but ignore weights
+!adapters/.gitkeep
+
+# Results (keep structure, ignore outputs)
+results/*.json
+!results/.gitkeep
+
+# Data (keep patterns, ignore generated)
+data/train.jsonl
+data/valid.jsonl
+data/test.jsonl
+!data/patterns/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Secrets
+.env
+.env.local
