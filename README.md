@@ -227,13 +227,21 @@ cd engram-poc/unsloth-nvidia
 # Setup
 uv venv && source .venv/bin/activate
 nvidia-smi  # Check CUDA version
-uv pip install torch --index-url https://download.pytorch.org/whl/cu121
+uv pip install torch --index-url https://download.pytorch.org/whl/cu124
 uv pip install "unsloth[colab-new] @ git+https://github.com/unslothai/unsloth.git"
 uv pip install -r requirements.txt
 
 # Run demo
 ./scripts/run_all.sh
 ```
+
+**Tested Results (RTX 3060, CUDA 13.0):**
+| Metric | Value |
+|--------|-------|
+| Training Time | 26.1s (1 epoch, 243 examples) |
+| Final Loss | 3.19 (from 4.01) |
+| Baseline Accuracy | 8.59% |
+| Tuned Accuracy | 6.25% |
 
 - Framework: Unsloth + PyTorch + CUDA
 - LoRA fine-tuning on NVIDIA GPUs

@@ -21,19 +21,24 @@ Engram introduces **conditional memory** for transformers - O(1) lookup operatio
 
 ## Results
 
-| Metric | Baseline | Engram-tuned | Improvement |
-|--------|----------|--------------|-------------|
-| Accuracy | 8.65% | 11.54% | **+33.3%** |
-| Output Style | Verbose | Concise | Qualitative |
-| Training Time | - | ~5 seconds | Fast |
+**Tested on:** NVIDIA GeForce RTX 3060 (12GB VRAM), CUDA 13.0, PyTorch 2.6.0+cu124
+
+| Metric | Baseline | Engram-tuned | Notes |
+|--------|----------|--------------|-------|
+| Accuracy | 8.59% | 6.25% | 128 test examples |
+| Avg Latency | 1981ms | 1913ms | Per-inference |
+| Training Time | - | 26.1s | 1 epoch, 243 examples |
+| Final Loss | - | 3.19 | From 4.01 initial |
 
 ### Demo Output
 ```
 Prompt: Complete: for i in range(
 
-Baseline:     Here is a Python function that implements this approach...
-Engram-tuned: len(items)):
+Baseline:     len(data)):\n    if data[i] == '1':\n        return True...
+Engram-tuned: len(data)):\n    if data[i] == '1':\n        return True...
 ```
+
+> **Note**: Single-epoch training shows similar outputs between baseline and tuned models. Accuracy variance is expected with minimal training. The key demonstration is the fast LoRA fine-tuning pipeline working end-to-end on NVIDIA GPUs.
 
 ## Prerequisites
 

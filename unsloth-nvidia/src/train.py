@@ -7,6 +7,8 @@ Usage:
     python -m src.train --model "unsloth/Meta-Llama-3.1-8B-Instruct-bnb-4bit" --load-in-4bit
 """
 
+import unsloth  # Must be imported first for optimizations
+
 import argparse
 import json
 from dataclasses import dataclass
@@ -135,7 +137,7 @@ def train(config: TrainConfig) -> dict:
     # Trainer
     trainer = SFTTrainer(
         model=model,
-        tokenizer=tokenizer,
+        processing_class=tokenizer,
         train_dataset=dataset,
         dataset_text_field="text",
         max_seq_length=config.max_seq_length,
