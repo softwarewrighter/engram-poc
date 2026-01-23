@@ -196,34 +196,52 @@ engram-poc/
 
 ## Platform Support
 
-### Phase 1: MLX / Apple Silicon (Complete)
+### Apple Silicon (MLX) - This Directory
+
+Run from the **root directory** on macOS with Apple Silicon:
+
+```bash
+# Setup
+uv venv && source .venv/bin/activate
+uv pip install -r requirements.txt
+
+# Run demo
+./scripts/run_all.sh
+```
+
 - Framework: MLX-LM
-- Model: SmolLM-135M-Instruct
 - Training: ~10 seconds for 100 iterations
 - Status: **Ready for demo**
 
-### Phase 2: Unsloth / NVIDIA GPU (Complete)
-- Framework: Unsloth + Transformers
-- 2-5x faster training than standard HuggingFace
-- Supports 4-bit quantization for larger models
-- Status: **Scripts ready for GPU testing**
+---
 
-#### GPU Quick Start
+### NVIDIA GPU (Unsloth/CUDA) - Separate Directory
+
+For **Linux with NVIDIA GPU**, use the standalone [`unsloth-nvidia/`](unsloth-nvidia/) directory:
+
 ```bash
-# Install GPU dependencies
-pip install -r requirements-gpu.txt
+# Clone and navigate to unsloth directory
+git clone https://github.com/softwarewrighter/engram-poc.git
+cd engram-poc/unsloth-nvidia
 
-# Train on GPU
-./scripts/train_gpu.sh
+# Setup
+uv venv && source .venv/bin/activate
+nvidia-smi  # Check CUDA version
+uv pip install torch --index-url https://download.pytorch.org/whl/cu121
+uv pip install "unsloth[colab-new] @ git+https://github.com/unslothai/unsloth.git"
+uv pip install -r requirements.txt
 
-# Evaluate
-./scripts/eval_gpu.sh
-
-# Unified demo (auto-detects platform)
-python -m src.demo.demo_unified
+# Run demo
+./scripts/run_all.sh
 ```
 
-See [docs/gpu_setup.md](docs/gpu_setup.md) for detailed GPU setup instructions.
+- Framework: Unsloth + PyTorch + CUDA
+- LoRA fine-tuning on NVIDIA GPUs
+- 2-5x faster than standard HuggingFace
+- Supports 4-bit quantization for larger models
+- Status: **Ready for demo**
+
+See [unsloth-nvidia/README.md](unsloth-nvidia/README.md) for detailed setup.
 
 ## License
 

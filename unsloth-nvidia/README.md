@@ -1,8 +1,15 @@
 # Engram PoC - Unsloth / NVIDIA GPU Edition
 
-A standalone implementation of the Engram PoC for **NVIDIA GPUs** using [Unsloth](https://github.com/unslothai/unsloth) for fast LoRA fine-tuning.
+A standalone implementation of the Engram PoC for **NVIDIA GPUs** using [Unsloth](https://github.com/unslothai/unsloth) for fast LoRA fine-tuning on CUDA.
 
-This is the GPU-native version of the [main Engram PoC](../README.md), optimized for NVIDIA hardware with 2-5x faster training than standard HuggingFace.
+> **Platform Note**: This directory is for **Linux/Windows with NVIDIA GPUs**. For Apple Silicon, use the [main project](../README.md) with MLX.
+
+## What This Uses
+
+- **Unsloth** - Optimized LoRA training (2-5x faster than HuggingFace)
+- **PEFT/LoRA** - Parameter-efficient fine-tuning
+- **PyTorch + CUDA** - NVIDIA GPU acceleration
+- **Transformers** - HuggingFace model loading
 
 ## Overview
 
@@ -33,25 +40,34 @@ Engram-tuned: len(items)):
 - NVIDIA GPU with CUDA support (RTX 20xx or newer)
 - CUDA 11.8+ or 12.1+
 - Python 3.10+
+- [uv](https://github.com/astral-sh/uv) package manager
 - 4GB+ VRAM (8GB+ recommended)
 
-## Quick Start
+## Quick Start (Arch Linux / Any Linux with NVIDIA)
 
-### 1. Setup Environment
+### 1. Clone and Navigate
 
 ```bash
-cd unsloth-nvidia
+git clone https://github.com/softwarewrighter/engram-poc.git
+cd engram-poc/unsloth-nvidia
+```
 
+### 2. Setup Environment
+
+```bash
 # Create virtual environment with uv
 uv venv
 
-# Activate the virtual environment
+# Activate
 source .venv/bin/activate
+
+# Check your CUDA version
+nvidia-smi
 
 # Install PyTorch with CUDA (choose your CUDA version)
 # CUDA 11.8:
 uv pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
-# CUDA 12.1:
+# CUDA 12.1+:
 uv pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
 
 # Install Unsloth (from git for latest)
