@@ -2,6 +2,10 @@
 
 A proof-of-concept demonstrating the **Engram** concept from DeepSeek's paper ["Conditional Memory via Scalable Lookup"](https://arxiv.org/abs/2601.07372) using LoRA fine-tuning on small language models.
 
+[![Watch the demo](images/thumbnail1.png)](https://www.youtube.com/shorts/aGoQHs6S1nk)
+
+*Click the image above to watch the demo video*
+
 ## Overview
 
 Engram introduces **conditional memory as a complementary sparsity axis** for transformers, enabling O(1) lookup operations instead of recomputing common patterns through attention. This PoC approximates Engram benefits through behavioral fine-tuning:
