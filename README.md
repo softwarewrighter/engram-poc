@@ -2,9 +2,13 @@
 
 A proof-of-concept demonstrating the **Engram** concept from DeepSeek's paper ["Conditional Memory via Scalable Lookup"](https://arxiv.org/abs/2601.07372) using LoRA fine-tuning on small language models.
 
-[![Watch the demo](images/thumbnail1.png)](https://www.youtube.com/shorts/aGoQHs6S1nk)
+[![Watch Part 1 - MLX/Apple Silicon](images/thumbnail1.png)](https://www.youtube.com/shorts/aGoQHs6S1nk)
 
-*Click the image above to watch the demo video*
+*Part 1: MLX on Apple Silicon*
+
+[![Watch Part 2 - Unsloth/NVIDIA](images/thumbnail2.png)](https://www.youtube.com/shorts/uvbfu0WKa3A)
+
+*Part 2: Unsloth on NVIDIA GPU (Arch Linux)*
 
 ## Overview
 
