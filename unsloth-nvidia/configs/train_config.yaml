@@ -1,0 +1,37 @@
+# Engram PoC - Training Configuration (Unsloth/NVIDIA)
+#
+# Usage: Modify these values and pass to train.py
+# Or use environment variables / CLI arguments
+
+# Model
+model_name: "HuggingFaceTB/SmolLM-135M-Instruct"
+
+# Alternative models (uncomment to use):
+# model_name: "unsloth/Meta-Llama-3.1-8B-Instruct-bnb-4bit"
+# model_name: "unsloth/Mistral-7B-Instruct-v0.3-bnb-4bit"
+# model_name: "unsloth/Qwen2-7B-Instruct-bnb-4bit"
+
+# Paths
+output_dir: "./adapters"
+data_dir: "./data"
+
+# LoRA Configuration
+lora_rank: 8
+lora_alpha: 16
+lora_dropout: 0.0
+
+# Training Parameters
+epochs: 1
+batch_size: 4
+gradient_accumulation_steps: 1
+learning_rate: 2e-4
+warmup_steps: 5
+max_seq_length: 512
+
+# Optimization
+load_in_4bit: false
+gradient_checkpointing: false
+
+# Logging
+logging_steps: 10
+save_steps: 100
