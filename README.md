@@ -10,6 +10,10 @@ A proof-of-concept demonstrating the **Engram** concept from DeepSeek's paper ["
 
 *Part 2: Unsloth on NVIDIA GPU (Arch Linux)*
 
+[![Watch Part 3 - Explainer](images/thumbnail3.png)](https://www.youtube.com/watch?v=UgB1nZqJ3cE)
+
+*Part 3: Short Explainer Video*
+
 ## Overview
 
 Engram introduces **conditional memory as a complementary sparsity axis** for transformers, enabling O(1) lookup operations instead of recomputing common patterns through attention. This PoC approximates Engram benefits through behavioral fine-tuning:
