@@ -21,7 +21,7 @@ Engram introduces **conditional memory** for transformers - O(1) lookup operatio
 
 ## Results
 
-**Tested on:** NVIDIA GeForce RTX 3060 (12GB VRAM), CUDA 13.0, PyTorch 2.6.0+cu124
+**Tested on:** NVIDIA GeForce RTX 5060 (16GB VRAM), CUDA 13.0, PyTorch 2.6.0+cu124
 
 | Metric | Baseline | Engram-tuned | Notes |
 |--------|----------|--------------|-------|

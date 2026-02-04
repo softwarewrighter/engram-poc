@@ -6,7 +6,7 @@ Results from training and evaluating the Engram PoC on NVIDIA GPUs using Unsloth
 
 | Metric | Value |
 |--------|-------|
-| Platform | NVIDIA GeForce RTX 3060 (12GB VRAM) |
+| Platform | NVIDIA GeForce RTX 5060 (16GB VRAM) |
 | CUDA Version | 13.0 |
 | Framework | Unsloth + PyTorch 2.6.0+cu124 |
 | Model | SmolLM-135M-Instruct |
@@ -47,7 +47,7 @@ With single-epoch training, outputs between baseline and tuned models are simila
 | Accuracy Change | +33.3% relative | **+63.6% relative** |
 | Baseline Accuracy | 8.65% | 8.59% |
 | Tuned Accuracy | 11.54% | 14.06% |
-| Hardware Tested | M-series Mac | RTX 3060 |
+| Hardware Tested | M-series Mac | RTX 5060 |
 
 ### Key Observations
 

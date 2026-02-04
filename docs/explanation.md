@@ -37,7 +37,7 @@ We train on ~300 pattern->response pairs:
 | Platform | Baseline | Tuned | Improvement |
 |----------|----------|-------|-------------|
 | MLX (Mac) | 8.65% | 11.54% | +33% relative |
-| CUDA (RTX 3060) | 8.59% | 14.06% | +64% relative |
+| CUDA (RTX 5060) | 8.59% | 14.06% | +64% relative |
 
 **Translation**: The tuned model correctly completes trained patterns ~1.5x more often than baseline.
 

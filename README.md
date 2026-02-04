@@ -252,7 +252,7 @@ uv pip install -r requirements.txt
 ./scripts/run_all.sh
 ```
 
-**Tested Results (RTX 3060, CUDA 13.0):**
+**Tested Results (RTX 5060 16GB, CUDA 13.0):**
 | Metric | Value |
 |--------|-------|
 | Training Time | ~90s (10 epochs, 243 examples) |
