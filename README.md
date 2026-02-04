@@ -182,6 +182,10 @@ engram-poc/
 
 ## Documentation
 
+### Results
+- [MLX Results (Apple Silicon)](docs/results-mlx.md) - Detailed results with visualizations
+- [CUDA Results (NVIDIA GPU)](docs/results-cuda.md) - Unsloth/NVIDIA results
+
 ### Project Documentation
 - [Architecture](docs/architecture.md) - System architecture and Engram concepts
 - [PRD](docs/prd.md) - Product requirements document
