@@ -34,7 +34,7 @@ class TrainConfig:
     lora_dropout: float = 0.0
 
     # Training
-    epochs: int = 3
+    epochs: int = 10
     batch_size: int = 4
     gradient_accumulation_steps: int = 1
     learning_rate: float = 1e-5
@@ -194,7 +194,7 @@ def main():
     parser.add_argument("--model", default="HuggingFaceTB/SmolLM-135M-Instruct")
     parser.add_argument("--output-dir", default="./adapters")
     parser.add_argument("--data-dir", default="./data")
-    parser.add_argument("--epochs", type=int, default=3)
+    parser.add_argument("--epochs", type=int, default=10)
     parser.add_argument("--batch-size", type=int, default=4)
     parser.add_argument("--learning-rate", type=float, default=1e-5)
     parser.add_argument("--lora-rank", type=int, default=8)
