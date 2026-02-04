@@ -42,14 +42,16 @@ def load_test_cases(test_file: Path) -> List[TestCase]:
     return cases
 
 
-def format_prompt(prompt: str) -> str:
-    """Format prompt to match training format."""
-    return f"### Instruction:\n{prompt}\n\n### Response:\n"
+def format_prompt(prompt: str, use_template: bool = False) -> str:
+    """Format prompt, optionally using training template."""
+    if use_template:
+        return f"### Instruction:\n{prompt}\n\n### Response:\n"
+    return prompt
 
 
-def generate(model, tokenizer, prompt: str, max_tokens: int = 50, device: str = "cuda"):
+def generate(model, tokenizer, prompt: str, max_tokens: int = 50, device: str = "cuda", use_template: bool = False):
     """Generate response and return (text, latency_ms)."""
-    formatted = format_prompt(prompt)
+    formatted = format_prompt(prompt, use_template)
     inputs = tokenizer(formatted, return_tensors="pt").to(device)
 
     start = time.perf_counter()
@@ -118,7 +120,7 @@ def evaluate(
     baseline_results = []
 
     for i, case in enumerate(test_cases):
-        response, latency = generate(base_model, tokenizer, case.prompt, max_tokens, device)
+        response, latency = generate(base_model, tokenizer, case.prompt, max_tokens, device, use_template=False)
         correct = response.startswith(case.expected.strip())
         baseline_correct += int(correct)
         baseline_latency += latency
@@ -158,7 +160,7 @@ def evaluate(
         tuned_latency = 0
 
         for i, case in enumerate(test_cases):
-            response, latency = generate(tuned_model, tokenizer, case.prompt, max_tokens, device)
+            response, latency = generate(tuned_model, tokenizer, case.prompt, max_tokens, device, use_template=True)
             correct = response.startswith(case.expected.strip())
             tuned_correct += int(correct)
             tuned_latency += latency
