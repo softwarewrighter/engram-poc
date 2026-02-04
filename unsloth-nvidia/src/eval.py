@@ -131,6 +131,12 @@ def evaluate(
             "correct": correct,
             "category": case.category,
         })
+        # Debug: show first 3 examples
+        if verbose and i < 3:
+            print(f"  [DEBUG] Prompt: {case.prompt[:50]}...")
+            print(f"  [DEBUG] Expected: {case.expected[:50]}")
+            print(f"  [DEBUG] Got: {response[:50]}")
+            print()
         if verbose and (i + 1) % 10 == 0:
             print(f"  Progress: {i + 1}/{len(test_cases)}")
 
@@ -171,6 +177,12 @@ def evaluate(
                 "correct": correct,
                 "category": case.category,
             })
+            # Debug: show first 3 examples
+            if verbose and i < 3:
+                print(f"  [DEBUG] Prompt: {case.prompt[:50]}...")
+                print(f"  [DEBUG] Expected: {case.expected[:50]}")
+                print(f"  [DEBUG] Got: {response[:50]}")
+                print()
             if verbose and (i + 1) % 10 == 0:
                 print(f"  Progress: {i + 1}/{len(test_cases)}")
 
