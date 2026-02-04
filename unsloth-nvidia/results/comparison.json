@@ -1,0 +1,23 @@
+{
+  "timestamp": "2026-02-03T18:05:04.816406",
+  "model_name": "HuggingFaceTB/SmolLM-135M-Instruct",
+  "adapter_path": "./adapters",
+  "device": "cuda",
+  "test_examples": 128,
+  "baseline": {
+    "accuracy": 0.0859375,
+    "avg_latency_ms": 1334.798563249933,
+    "correct": 11,
+    "total": 128
+  },
+  "tuned": {
+    "accuracy": 0.140625,
+    "avg_latency_ms": 1448.9225378565607,
+    "correct": 18,
+    "total": 128
+  },
+  "improvement": {
+    "accuracy_absolute": 0.0546875,
+    "accuracy_relative_pct": 63.63636363636363
+  }
+}
