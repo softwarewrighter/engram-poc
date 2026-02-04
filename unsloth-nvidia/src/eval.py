@@ -166,7 +166,8 @@ def evaluate(
         tuned_latency = 0
 
         for i, case in enumerate(test_cases):
-            response, latency = generate(tuned_model, tokenizer, case.prompt, max_tokens, device, use_template=True)
+            # Use raw prompts (no template) - matches new training format
+            response, latency = generate(tuned_model, tokenizer, case.prompt, max_tokens, device, use_template=False)
             correct = response.startswith(case.expected.strip())
             tuned_correct += int(correct)
             tuned_latency += latency

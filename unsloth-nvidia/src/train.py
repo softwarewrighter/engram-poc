@@ -51,7 +51,12 @@ class TrainConfig:
 
 
 def load_training_data(data_dir: Path) -> Dataset:
-    """Load training data from JSONL."""
+    """Load training data from JSONL.
+
+    Uses simple prompt->completion format (no Alpaca template).
+    This matches how MLX trains and avoids the model learning
+    to repeat format markers.
+    """
     train_file = data_dir / "train.jsonl"
 
     examples = []
@@ -62,7 +67,8 @@ def load_training_data(data_dir: Path) -> Dataset:
             if len(messages) >= 2:
                 user_msg = messages[0]["content"]
                 assistant_msg = messages[1]["content"]
-                text = f"### Instruction:\n{user_msg}\n\n### Response:\n{assistant_msg}"
+                # Simple format: prompt + completion (no template)
+                text = f"{user_msg}{assistant_msg}"
                 examples.append({"text": text})
 
     return Dataset.from_list(examples)

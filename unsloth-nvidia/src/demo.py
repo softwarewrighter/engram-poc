@@ -125,18 +125,11 @@ class DemoRunner:
 
         print()
 
-    def format_prompt(self, prompt: str, use_template: bool = False) -> str:
-        """Format prompt, optionally using training template."""
-        if use_template:
-            return f"### Instruction:\n{prompt}\n\n### Response:\n"
-        return prompt
-
     def generate(self, prompt: str, max_tokens: int = 30, use_tuned: bool = False) -> Tuple[str, float]:
         """Generate response."""
         model = self.tuned_model if use_tuned and self.tuned_model else self.base_model
-        # Only use template for tuned model
-        formatted = self.format_prompt(prompt, use_template=use_tuned)
-        inputs = self.tokenizer(formatted, return_tensors="pt").to(self.device)
+        # Use raw prompts for both (no template needed with new training format)
+        inputs = self.tokenizer(prompt, return_tensors="pt").to(self.device)
 
         start = time.perf_counter()
         with torch.no_grad():
