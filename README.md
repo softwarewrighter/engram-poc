@@ -250,10 +250,10 @@ uv pip install -r requirements.txt
 **Tested Results (RTX 3060, CUDA 13.0):**
 | Metric | Value |
 |--------|-------|
-| Training Time | 26.1s (1 epoch, 243 examples) |
-| Final Loss | 3.19 (from 4.01) |
+| Training Time | ~90s (10 epochs, 243 examples) |
 | Baseline Accuracy | 8.59% |
-| Tuned Accuracy | 6.25% |
+| Tuned Accuracy | 14.06% |
+| **Improvement** | **+63.6% relative** |
 
 - Framework: Unsloth + PyTorch + CUDA
 - LoRA fine-tuning on NVIDIA GPUs

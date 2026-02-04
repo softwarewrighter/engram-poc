@@ -25,10 +25,10 @@ Engram introduces **conditional memory** for transformers - O(1) lookup operatio
 
 | Metric | Baseline | Engram-tuned | Notes |
 |--------|----------|--------------|-------|
-| Accuracy | 8.59% | 6.25% | 128 test examples |
-| Avg Latency | 1981ms | 1913ms | Per-inference |
-| Training Time | - | 26.1s | 1 epoch, 243 examples |
-| Final Loss | - | 3.19 | From 4.01 initial |
+| Accuracy | 8.59% | 14.06% | **+63.6% relative improvement** |
+| Avg Latency | 1335ms | 1449ms | Per-inference |
+| Training Time | - | ~90s | 10 epochs, 243 examples |
+| Test Examples | 128 | 128 | - |
 
 ### Demo Output
 ```

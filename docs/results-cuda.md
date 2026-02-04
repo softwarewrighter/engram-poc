@@ -11,28 +11,22 @@ Results from training and evaluating the Engram PoC on NVIDIA GPUs using Unsloth
 | Framework | Unsloth + PyTorch 2.6.0+cu124 |
 | Model | SmolLM-135M-Instruct |
 | Training Examples | 243 |
-| Training Epochs | 1 |
-| Training Time | 26.1 seconds |
-
-### Training Progress
-
-| Metric | Initial | Final |
-|--------|---------|-------|
-| Loss | 4.01 | 3.19 |
-| Loss Reduction | - | **20.4%** |
+| Training Epochs | 10 |
+| Training Time | ~90 seconds |
 
 ### Accuracy Comparison
 
-| Metric | Baseline | Engram-tuned | Notes |
-|--------|----------|--------------|-------|
-| Accuracy | 8.59% | 6.25% | 128 test examples |
-| Avg Latency | 1981ms | 1913ms | Per-inference |
+| Metric | Baseline | Engram-tuned | Change |
+|--------|----------|--------------|--------|
+| Accuracy | 8.59% | 14.06% | **+63.6% relative** |
+| Avg Latency | 1335ms | 1449ms | +114ms |
+| Correct | 11/128 | 18/128 | +7 |
 
 ## Accuracy Comparison
 
 ![CUDA Accuracy Comparison](../images/plots/cuda-accuracy-comparison.png)
 
-**Note**: The single-epoch training shows similar or slightly lower accuracy compared to baseline. This is expected with minimal training - the primary goal of this configuration was to validate the Unsloth pipeline on NVIDIA hardware.
+The Engram-tuned model shows a **63.6% relative improvement** over baseline, exceeding the MLX results (+33.3%).
 
 ## Demo Output
 
@@ -49,34 +43,19 @@ With single-epoch training, outputs between baseline and tuned models are simila
 
 | Feature | MLX (Apple Silicon) | CUDA (NVIDIA) |
 |---------|---------------------|---------------|
-| Training Time | ~10s (100 iter) | ~26s (1 epoch) |
-| Loss Reduction | 58.2% | 20.4% |
-| Accuracy Change | +33.3% relative | -27.2% relative |
-| Training Epochs | ~3.7 equiv | 1 |
+| Training Time | ~10s (100 iter) | ~90s (10 epochs) |
+| Accuracy Change | +33.3% relative | **+63.6% relative** |
+| Baseline Accuracy | 8.65% | 8.59% |
+| Tuned Accuracy | 11.54% | 14.06% |
 | Hardware Tested | M-series Mac | RTX 3060 |
 
-### Key Differences
+### Key Observations
 
-1. **Training Duration**: The MLX version runs 100 iterations over the dataset (~3.7 epochs), while CUDA ran only 1 epoch.
+1. **CUDA outperforms MLX**: With 10 epochs of training, the CUDA/Unsloth pipeline achieves better accuracy improvement than MLX.
 
-2. **Convergence**: More training iterations on MLX led to better loss reduction and accuracy improvement.
+2. **Training time trade-off**: CUDA takes longer (~90s vs ~10s) but produces better results.
 
-3. **Pipeline Validation**: The CUDA results validate that the Unsloth pipeline works end-to-end, even if single-epoch results are not optimal.
-
-## Recommendations
-
-For better CUDA results, consider:
-
-```bash
-# Increase epochs
-python -m src.train --epochs 3
-
-# Adjust learning rate
-python -m src.train --learning-rate 2e-5
-
-# Use larger LoRA rank
-python -m src.train --lora-rank 16
-```
+3. **Consistent baselines**: Both platforms show ~8.6% baseline accuracy, confirming consistent evaluation.
 
 ## Reproduction
 

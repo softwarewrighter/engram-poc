@@ -156,9 +156,9 @@ def generate_mlx_category_performance(output_path: Path, comparison_data: dict):
 
 def generate_cuda_accuracy_comparison(output_path: Path):
     """Generate accuracy comparison bar chart for CUDA/Unsloth."""
-    # Data from unsloth-nvidia/README.md
+    # Data from unsloth-nvidia/results/comparison.json
     labels = ['Baseline', 'Engram-tuned']
-    accuracies = [8.59, 6.25]
+    accuracies = [8.59, 14.06]
     colors = ['#94a3b8', '#16a34a']
 
     fig, ax = plt.subplots(figsize=(6, 5))
@@ -176,13 +176,14 @@ def generate_cuda_accuracy_comparison(output_path: Path):
 
     ax.set_ylabel('Accuracy (%)')
     ax.set_title('CUDA/Unsloth Accuracy: Baseline vs Engram-tuned')
-    ax.set_ylim(0, 12)
+    ax.set_ylim(0, 18)
     ax.grid(True, axis='y')
 
-    # Add note about single epoch
-    ax.text(0.5, -0.12, 'Note: Single epoch training (minimal)',
-            transform=ax.transAxes, ha='center', fontsize=9,
-            style='italic', color='#666666')
+    # Add improvement annotation
+    ax.annotate('+63.6% relative',
+                xy=(1, 14.06), xytext=(1.3, 16),
+                arrowprops=dict(arrowstyle='->', color='#16a34a'),
+                fontsize=10, color='#16a34a', fontweight='bold')
 
     plt.tight_layout()
     plt.savefig(output_path, dpi=150, bbox_inches='tight')
