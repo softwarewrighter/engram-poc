@@ -182,6 +182,9 @@ engram-poc/
 
 ## Documentation
 
+### Understanding Engram
+- [ELI5 Explanation](docs/explanation.md) - What this repo does, pros/cons, and how to implement real Engram
+
 ### Results
 - [MLX Results (Apple Silicon)](docs/results-mlx.md) - Detailed results with visualizations
 - [CUDA Results (NVIDIA GPU)](docs/results-cuda.md) - Unsloth/NVIDIA results
