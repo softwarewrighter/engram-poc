@@ -125,10 +125,15 @@ class DemoRunner:
 
         print()
 
+    def format_prompt(self, prompt: str) -> str:
+        """Format prompt to match training format."""
+        return f"### Instruction:\n{prompt}\n\n### Response:\n"
+
     def generate(self, prompt: str, max_tokens: int = 30, use_tuned: bool = False) -> Tuple[str, float]:
         """Generate response."""
         model = self.tuned_model if use_tuned and self.tuned_model else self.base_model
-        inputs = self.tokenizer(prompt, return_tensors="pt").to(self.device)
+        formatted = self.format_prompt(prompt)
+        inputs = self.tokenizer(formatted, return_tensors="pt").to(self.device)
 
         start = time.perf_counter()
         with torch.no_grad():

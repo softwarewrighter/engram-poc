@@ -42,9 +42,15 @@ def load_test_cases(test_file: Path) -> List[TestCase]:
     return cases
 
 
+def format_prompt(prompt: str) -> str:
+    """Format prompt to match training format."""
+    return f"### Instruction:\n{prompt}\n\n### Response:\n"
+
+
 def generate(model, tokenizer, prompt: str, max_tokens: int = 50, device: str = "cuda"):
     """Generate response and return (text, latency_ms)."""
-    inputs = tokenizer(prompt, return_tensors="pt").to(device)
+    formatted = format_prompt(prompt)
+    inputs = tokenizer(formatted, return_tensors="pt").to(device)
 
     start = time.perf_counter()
     with torch.no_grad():
