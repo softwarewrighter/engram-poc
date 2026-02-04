@@ -185,6 +185,7 @@ engram-poc/
 ### Understanding Engram
 - [ELI5 Explanation](docs/explanation.md) - What this repo does, pros/cons, and how to implement real Engram
 - [Comparison with weagan/Engram](docs/comparison-weagan.md) - How this PoC differs from a true Engram implementation
+- [Proposed Work](docs/proposed-work.md) - Next steps: adding gating, integration options, production path
 
 ### Results
 - [MLX Results (Apple Silicon)](docs/results-mlx.md) - Detailed results with visualizations
