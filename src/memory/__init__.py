@@ -13,12 +13,23 @@ from .engram_module import EnhancedEngramModule
 # Optional imports (require transformers)
 try:
     from .model_wrapper import inject_engram_into_model, EngramModelWrapper
+    from .conditional_engram import (
+        ConditionalEngramWrapper,
+        LookupPatternDetector,
+        create_conditional_engram,
+    )
 except ImportError:
     inject_engram_into_model = None
     EngramModelWrapper = None
+    ConditionalEngramWrapper = None
+    LookupPatternDetector = None
+    create_conditional_engram = None
 
 __all__ = [
     "EnhancedEngramModule",
     "inject_engram_into_model",
     "EngramModelWrapper",
+    "ConditionalEngramWrapper",
+    "LookupPatternDetector",
+    "create_conditional_engram",
 ]
