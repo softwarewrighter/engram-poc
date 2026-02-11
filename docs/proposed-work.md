@@ -17,13 +17,75 @@ Based on learnings from this PoC and the weagan/Engram implementation, here are 
 - `src/memory/model_wrapper.py` - HuggingFace model integration
 - `src/memory/train_engram.py` - Training with Engram + optional LoRA
 - `src/memory/demo_engram.py` - Demonstration with proof plots
+- `src/memory/eval_combined.py` - Four-way comparison evaluation
 
-**Results prove real O(1) hash-based memory:**
+**Synthetic task results (demo_engram.py) prove O(1) mechanics work:**
 - Engram reaches 100% accuracy by epoch 2 (vs Baseline 90% by epoch 4)
 - Perfect long-term recall at all distraction lengths (50-400 tokens)
 - O(1) complexity: 32x longer sequences → only 18x slower
 
 See: `docs/engram-memory-integration.md` and `images/engram_demo_results.png`
+
+---
+
+## Critical Finding: Hash-Based Memory Limitations
+
+### Combined Evaluation Results
+
+| Configuration | Accuracy | Latency | Notes |
+|--------------|----------|---------|-------|
+| **Baseline** | 7.69% | 613ms | SmolLM-135M unchanged |
+| **Engram Only** | 0.96% | 945ms | **Underperforms baseline** |
+| **LoRA Only** | TBD | TBD | Previous approach |
+| **Combined** | TBD | TBD | Engram + LoRA |
+
+**The Engram-only approach underperforms baseline on the pattern completion task.**
+
+### Bug Fixes Applied
+
+Before meaningful evaluation, several critical bugs were fixed:
+
+1. **Autoregressive Generation** (`model_wrapper.py`)
+   - During generation, HuggingFace only passes new tokens (due to KV cache)
+   - Fixed by tracking accumulated input_ids across generation steps
+
+2. **Gate Initialization** (`engram_module.py`)
+   - Gates initialized to ~0.95, trusting random memory noise
+   - Fixed: bias=-5 → sigmoid ≈ 0.007, memory ignored until trained
+
+3. **LayerNorm Distortion**
+   - Extra LayerNorm corrupted hidden state distribution
+   - Removed in favor of pure residual connection
+
+### Why Hash-Based Memory Doesn't Help Pattern Completion
+
+| Issue | Explanation |
+|-------|-------------|
+| **Sparse Gradients** | Only accessed memory rows get gradients. With 1000 slots and small batches, most rows never update. |
+| **Token Independence** | Hash lookup treats each token independently. Pattern completion needs contextual understanding. |
+| **No Similarity** | Similar inputs (e.g., `def foo(` vs `def bar(`) hash to completely different slots. No generalization. |
+| **Training Data Mismatch** | Memory was trained on full sequences, but evaluated on pattern completion prefixes. |
+
+### Tasks Where Hash-Based Memory SHOULD Excel
+
+The O(1) hash-based lookup is fundamentally suited for **exact recall** tasks:
+
+| Task Type | Example | Why It Works |
+|-----------|---------|--------------|
+| **Exact Key→Value** | "Capital of France?" → "Paris" | Same input always hashes to same slot |
+| **Entity Facts** | "Einstein born?" → "1879" | Deterministic fact lookup |
+| **Terminology** | "API_KEY_123" → "sk-..." | Exact string mapping |
+| **User Preferences** | "user_42 prefers" → "dark mode" | User ID → preference lookup |
+| **Caching** | Same prompt → cached response | Memoization pattern |
+
+### Tasks Where Hash-Based Memory Will Struggle
+
+| Task Type | Example | Why It Struggles |
+|-----------|---------|------------------|
+| **Pattern Completion** | "def foo(" → "self, x):" | Needs generalization, not exact match |
+| **Semantic Similarity** | "happy" ≈ "joyful" | Different tokens hash differently |
+| **Contextual Reasoning** | Understanding code flow | Context matters more than individual tokens |
+| **Novel Inputs** | Unseen combinations | No slots for untrained patterns |
 
 ## Key Insight: It's Not That Hard
 
@@ -303,37 +365,221 @@ Option 2 (Gating) → Option 3 (Integration) → Novel improvements
 
 ## Next Steps (Updated 2025-02-10)
 
-With Options 1 and 3 complete, the remaining work is:
-
-### Immediate Next Steps
-
-1. **Combined Evaluation** - Test all four configurations on the same task:
-   - Baseline SmolLM (no modifications)
-   - SmolLM + LoRA only (original engram-poc approach)
-   - SmolLM + Engram only (new memory module)
-   - SmolLM + Engram + LoRA (combined approach)
-
-2. **Install transformers in venv** and test HuggingFace integration:
-   ```bash
-   cd engram-poc
-   uv pip install transformers --python .venv-torch/bin/python
-   ```
-
-3. **Run Engram + LoRA training**:
-   ```bash
-   ./scripts/train_engram.sh --use-lora
-   ```
-
-### Medium-term Goals
-
-4. **Option 2: Add Gating to LoRA** - Create hybrid that adds explicit gating
-5. **Option 4: Production Package** - Create pip-installable `engram-transformers`
-6. **Domain Applications** - Test on Customer Support FAQ dataset
+With Options 1 and 3 complete and critical findings documented, the focus shifts to finding the right task for Engram.
 
 ### Completed ✅
 
 - ✅ Option 1: Quick Win - EnhancedEngramModule ported
 - ✅ Option 3: SmolLM Integration - HuggingFace wrapper created
-- ✅ Demonstration with proof plots
+- ✅ Demonstration with proof plots (synthetic task)
+- ✅ Combined evaluation framework
+- ✅ Critical bug fixes (generation, initialization, LayerNorm)
+- ✅ Finding: Hash-based memory doesn't help pattern completion
 
-The path from "proof of concept" to "production tool" is now clear with working code.
+---
+
+## Recommended Training Approaches for Hash-Based Memory
+
+### Approach 1: Exact Match Lookup Tasks
+
+**Design a task where exact input→output mapping is required:**
+
+```python
+# Training data format
+data = [
+    {"input": "CAPITAL:France", "output": "Paris"},
+    {"input": "CAPITAL:Germany", "output": "Berlin"},
+    {"input": "BIRTHYEAR:Einstein", "output": "1879"},
+    {"input": "BIRTHYEAR:Newton", "output": "1643"},
+]
+```
+
+**Why this works:**
+- Same input always produces same output (deterministic)
+- Hash collision is rare with structured keys
+- No generalization needed - pure recall
+- Easy to measure: exact match accuracy
+
+**Evaluation:**
+```python
+# Test with exact same keys
+test = [
+    {"input": "CAPITAL:France", "expected": "Paris"},
+    {"input": "BIRTHYEAR:Einstein", "expected": "1879"},
+]
+```
+
+---
+
+### Approach 2: Entity-Keyed Memory
+
+**Use entity IDs as hash keys:**
+
+```python
+# Training: associate entity IDs with facts
+data = [
+    {"entity_id": "Q937", "prompt": "Albert Einstein was born in", "completion": " 1879"},
+    {"entity_id": "Q937", "prompt": "Albert Einstein's field was", "completion": " physics"},
+    {"entity_id": "Q7186", "prompt": "Marie Curie discovered", "completion": " radium"},
+]
+
+# At inference: prepend entity ID to prompt
+input = "[Q937] Albert Einstein was born in"
+# Hash of Q937 tokens retrieves Einstein's facts
+```
+
+**Why this works:**
+- Entity IDs are consistent across mentions
+- Memory stores facts per entity
+- Model learns to use retrieved entity facts
+
+---
+
+### Approach 3: User Preference Memory
+
+**Store per-user preferences in memory:**
+
+```python
+# Training: user ID → preferences
+data = [
+    {"user_id": "user_42", "prompt": "User prefers", "completion": " dark mode, metric units"},
+    {"user_id": "user_42", "prompt": "User's timezone is", "completion": " PST"},
+    {"user_id": "user_99", "prompt": "User prefers", "completion": " light mode, imperial"},
+]
+
+# At inference
+input = "[user_42] User prefers"
+# Hash of user_42 retrieves that user's preferences
+```
+
+**Why this works:**
+- User IDs are unique, consistent
+- Personalizes responses without retraining
+- Simulates long-term memory across sessions
+
+---
+
+### Approach 4: Content-Addressed Memory (Hybrid)
+
+**Combine hash-based lookup with content addressing:**
+
+```python
+class HybridEngramModule(nn.Module):
+    def forward(self, hidden_states, input_ids):
+        # Step 1: Hash-based retrieval (O(1))
+        hash_indices = self.multi_head_hash(input_ids)
+        hash_retrieved = self.memory_table[hash_indices]
+
+        # Step 2: Content-based attention over retrieved memories
+        # Find K most similar slots to current hidden state
+        similarity = torch.matmul(hidden_states, self.memory_table.T)
+        top_k_indices = similarity.topk(k=16).indices
+        content_retrieved = self.memory_table[top_k_indices]
+
+        # Step 3: Combine hash + content retrievals
+        combined = self.combine(hash_retrieved, content_retrieved)
+
+        return hidden_states + self.gate(combined) * combined
+```
+
+**Why this works:**
+- Hash retrieval provides fast, deterministic lookup
+- Content retrieval enables semantic similarity
+- Best of both worlds
+
+---
+
+### Approach 5: Pre-populate Memory Before Training
+
+**Initialize memory from pretrained embeddings:**
+
+```python
+def initialize_memory_from_embeddings(model, tokenizer, phrases):
+    """Pre-populate memory with useful patterns."""
+    for phrase in phrases:
+        tokens = tokenizer(phrase, return_tensors="pt")
+        with torch.no_grad():
+            embeddings = model.embed_tokens(tokens.input_ids)
+            # Store embedding at hash location
+            indices = multi_head_hash(tokens.input_ids)
+            memory_table[indices] = embeddings
+```
+
+**Phrases to pre-populate:**
+```python
+phrases = [
+    "def __init__(self,",
+    "return self.",
+    "except Exception as e:",
+    "if __name__ == '__main__':",
+    # Common code patterns
+]
+```
+
+**Why this works:**
+- Memory starts with useful representations, not random noise
+- Training refines rather than builds from scratch
+- Faster convergence
+
+---
+
+## Immediate Action Items
+
+### 1. Create Exact-Match Dataset
+
+```bash
+# Generate key→value dataset
+python -m src.data_gen.generate_kv \
+    --num-examples 10000 \
+    --key-types "CAPITAL,BIRTHYEAR,ELEMENT,PORT" \
+    --output data/exact_match.jsonl
+```
+
+### 2. Train on Exact-Match Task
+
+```bash
+./scripts/train_engram.sh \
+    --train-file data/exact_match.jsonl \
+    --memory-size 5000 \
+    --epochs 20
+```
+
+### 3. Evaluate Exact-Match Performance
+
+Expected result: Engram should significantly outperform baseline on exact recall because:
+- Same key always hashes to same slot
+- Memory stores the exact answer
+- No generalization needed
+
+### 4. Compare Engram vs LoRA vs Combined on Exact-Match
+
+This will reveal whether:
+- Engram excels at exact recall (expected)
+- LoRA excels at pattern generalization (expected)
+- Combined gets best of both
+
+---
+
+## Medium-term Goals
+
+1. **Create Exact-Match Dataset Generator** - Key→value pairs for fact lookup
+2. **Entity Knowledge Task** - Wikidata entities with associated facts
+3. **User Preference Simulation** - Synthetic user profiles with preferences
+4. **Hybrid Memory Module** - Combine hash + content addressing
+5. **Option 4: Production Package** - Create pip-installable `engram-transformers`
+
+---
+
+## Key Insight
+
+**Hash-based Engram memory is a specialized tool, not a general enhancement.**
+
+| Use Case | Engram Benefit | Alternative |
+|----------|---------------|-------------|
+| Exact fact recall | ✅ High | RAG |
+| Pattern generalization | ❌ None | LoRA/Fine-tuning |
+| Semantic similarity | ❌ None | Embeddings + Search |
+| Personalization | ✅ Moderate | User embeddings |
+| Long-context | ✅ Moderate | RoPE scaling |
+
+The path forward is to find tasks where O(1) deterministic lookup provides clear value over alternatives.
