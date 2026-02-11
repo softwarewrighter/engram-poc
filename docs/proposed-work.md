@@ -523,40 +523,62 @@ phrases = [
 
 ---
 
-## Immediate Action Items
+## Exact-Match Evaluation Results ✅ COMPLETE
 
-### 1. Create Exact-Match Dataset
-
-```bash
-# Generate key→value dataset
-python -m src.data_gen.generate_kv \
-    --num-examples 10000 \
-    --key-types "CAPITAL,BIRTHYEAR,ELEMENT,PORT" \
-    --output data/exact_match.jsonl
-```
-
-### 2. Train on Exact-Match Task
+### Dataset Created
 
 ```bash
-./scripts/train_engram.sh \
-    --train-file data/exact_match.jsonl \
-    --memory-size 5000 \
-    --epochs 20
+python -m src.data_gen.generate_exact_match --num-examples 500
+# Generated: data/train_exact.jsonl (400), data/valid_exact.jsonl (50), data/test_exact.jsonl (100)
 ```
 
-### 3. Evaluate Exact-Match Performance
+**Categories:** Capitals, Element Names/Numbers, Ports, HTTP Codes, Unit Conversions, Acronyms, Synthetic K→V
 
-Expected result: Engram should significantly outperform baseline on exact recall because:
-- Same key always hashes to same slot
-- Memory stores the exact answer
-- No generalization needed
+### Training Results
 
-### 4. Compare Engram vs LoRA vs Combined on Exact-Match
+```
+Epochs: 5, Batch size: 4, Memory size: 500
+Best validation loss: 0.8459 (epoch 3)
+```
 
-This will reveal whether:
-- Engram excels at exact recall (expected)
-- LoRA excels at pattern generalization (expected)
-- Combined gets best of both
+### Evaluation Results
+
+| Configuration | Overall Accuracy | Notes |
+|--------------|------------------|-------|
+| **Baseline** | 3.0% | SmolLM-135M unchanged |
+| **Engram** | 8.0% | **+5% improvement** |
+
+### Category Breakdown
+
+| Category | Baseline | Engram | Delta | Count |
+|----------|----------|--------|-------|-------|
+| **Acronym** | 12% | **75%** | **+63%** | 8 |
+| **Element Name** | 0% | **67%** | **+67%** | 3 |
+| **Capital** | 22% | 0% | -22% | 9 |
+| **Element Number** | 0% | 0% | 0% | 4 |
+| **HTTP Code** | 0% | 0% | 0% | 1 |
+| **Port** | 0% | 0% | 0% | 2 |
+| **Synthetic** | 0% | 0% | 0% | 68 |
+| **Unit Conversion** | 0% | 0% | 0% | 5 |
+
+### Key Findings
+
+1. **Engram excels at structured lookups** - 75% on acronyms (vs 12%), 67% on elements (vs 0%)
+2. **Baseline has prior knowledge** - 22% on capitals (pre-trained world knowledge)
+3. **Random mappings fail** - Neither model learns arbitrary synthetic K→V pairs with 400 training examples
+4. **Training works** - Smooth loss convergence (1.78 → 0.77) indicates learning
+
+### Why Capitals Regress
+
+The baseline model already knows capitals from pre-training. Engram's hash lookup may be interfering with this existing knowledge. This suggests:
+- Don't use Engram for facts the base model already knows well
+- Use Engram for domain-specific or private knowledge
+
+### Next Steps
+
+1. **Increase synthetic training** - More examples to test pure memorization
+2. **Test on private knowledge** - Data the base model has never seen
+3. **Hybrid approach** - Gate that bypasses Engram when base model confidence is high
 
 ---
 

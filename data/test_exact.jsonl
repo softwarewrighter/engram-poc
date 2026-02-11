@@ -1,0 +1,100 @@
+{"messages": [{"role": "user", "content": "SYN:SYN_00255"}, {"role": "assistant", "content": " 77870"}], "category": "synthetic", "key": "SYN:SYN_00255", "value": "77870"}
+{"messages": [{"role": "user", "content": "ACRONYM:HTML"}, {"role": "assistant", "content": " HyperText Markup Language"}], "category": "acronym", "key": "ACRONYM:HTML", "value": "HyperText Markup Language"}
+{"messages": [{"role": "user", "content": "ACRONYM:GPU"}, {"role": "assistant", "content": " Graphics Processing Unit"}], "category": "acronym", "key": "ACRONYM:GPU", "value": "Graphics Processing Unit"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00017"}, {"role": "assistant", "content": " 0xEEFFE5"}], "category": "synthetic", "key": "SYN:SYN_00017", "value": "0xEEFFE5"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00272"}, {"role": "assistant", "content": " 0x6E67EF"}], "category": "synthetic", "key": "SYN:SYN_00272", "value": "0x6E67EF"}
+{"messages": [{"role": "user", "content": "ELEMENT_NAME:Be"}, {"role": "assistant", "content": " Beryllium"}], "category": "element_name", "key": "ELEMENT_NAME:Be", "value": "Beryllium"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00230"}, {"role": "assistant", "content": " 0xBCBB01"}], "category": "synthetic", "key": "SYN:SYN_00230", "value": "0xBCBB01"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00025"}, {"role": "assistant", "content": " 5871"}], "category": "synthetic", "key": "SYN:SYN_00025", "value": "5871"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00024"}, {"role": "assistant", "content": " 55988"}], "category": "synthetic", "key": "SYN:SYN_00024", "value": "55988"}
+{"messages": [{"role": "user", "content": "ELEMENT_NAME:Ne"}, {"role": "assistant", "content": " Neon"}], "category": "element_name", "key": "ELEMENT_NAME:Ne", "value": "Neon"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00287"}, {"role": "assistant", "content": " delta_413"}], "category": "synthetic", "key": "SYN:SYN_00287", "value": "delta_413"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00208"}, {"role": "assistant", "content": " 0x853DA4"}], "category": "synthetic", "key": "SYN:SYN_00208", "value": "0x853DA4"}
+{"messages": [{"role": "user", "content": "ELEMENT_NUM:Na"}, {"role": "assistant", "content": " 11"}], "category": "element_number", "key": "ELEMENT_NUM:Na", "value": "11"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00276"}, {"role": "assistant", "content": " 0x324808"}], "category": "synthetic", "key": "SYN:SYN_00276", "value": "0x324808"}
+{"messages": [{"role": "user", "content": "CONVERT:1 kilometer"}, {"role": "assistant", "content": " 1000 meters"}], "category": "unit_conversion", "key": "CONVERT:1 kilometer", "value": "1000 meters"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00237"}, {"role": "assistant", "content": " 68970"}], "category": "synthetic", "key": "SYN:SYN_00237", "value": "68970"}
+{"messages": [{"role": "user", "content": "CAPITAL:China"}, {"role": "assistant", "content": " Beijing"}], "category": "capital", "key": "CAPITAL:China", "value": "Beijing"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00303"}, {"role": "assistant", "content": " 1402"}], "category": "synthetic", "key": "SYN:SYN_00303", "value": "1402"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00077"}, {"role": "assistant", "content": " 82349"}], "category": "synthetic", "key": "SYN:SYN_00077", "value": "82349"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00273"}, {"role": "assistant", "content": " 78661"}], "category": "synthetic", "key": "SYN:SYN_00273", "value": "78661"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00065"}, {"role": "assistant", "content": " 0x32F843"}], "category": "synthetic", "key": "SYN:SYN_00065", "value": "0x32F843"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00280"}, {"role": "assistant", "content": " 0xF8633D"}], "category": "synthetic", "key": "SYN:SYN_00280", "value": "0xF8633D"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00180"}, {"role": "assistant", "content": " 13698"}], "category": "synthetic", "key": "SYN:SYN_00180", "value": "13698"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00248"}, {"role": "assistant", "content": " 0xFB4CB3"}], "category": "synthetic", "key": "SYN:SYN_00248", "value": "0xFB4CB3"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00269"}, {"role": "assistant", "content": " 2644"}], "category": "synthetic", "key": "SYN:SYN_00269", "value": "2644"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00205"}, {"role": "assistant", "content": " 0x9F6E8F"}], "category": "synthetic", "key": "SYN:SYN_00205", "value": "0x9F6E8F"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00189"}, {"role": "assistant", "content": " 0x797D2E"}], "category": "synthetic", "key": "SYN:SYN_00189", "value": "0x797D2E"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00266"}, {"role": "assistant", "content": " 0xF52224"}], "category": "synthetic", "key": "SYN:SYN_00266", "value": "0xF52224"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00009"}, {"role": "assistant", "content": " 43525"}], "category": "synthetic", "key": "SYN:SYN_00009", "value": "43525"}
+{"messages": [{"role": "user", "content": "CAPITAL:Belgium"}, {"role": "assistant", "content": " Brussels"}], "category": "capital", "key": "CAPITAL:Belgium", "value": "Brussels"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00090"}, {"role": "assistant", "content": " 55922"}], "category": "synthetic", "key": "SYN:SYN_00090", "value": "55922"}
+{"messages": [{"role": "user", "content": "ACRONYM:WAN"}, {"role": "assistant", "content": " Wide Area Network"}], "category": "acronym", "key": "ACRONYM:WAN", "value": "Wide Area Network"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00084"}, {"role": "assistant", "content": " theta_155"}], "category": "synthetic", "key": "SYN:SYN_00084", "value": "theta_155"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00201"}, {"role": "assistant", "content": " 0x4F9880"}], "category": "synthetic", "key": "SYN:SYN_00201", "value": "0x4F9880"}
+{"messages": [{"role": "user", "content": "ELEMENT_NAME:Cu"}, {"role": "assistant", "content": " Copper"}], "category": "element_name", "key": "ELEMENT_NAME:Cu", "value": "Copper"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00319"}, {"role": "assistant", "content": " 0x06DFDE"}], "category": "synthetic", "key": "SYN:SYN_00319", "value": "0x06DFDE"}
+{"messages": [{"role": "user", "content": "CAPITAL:Argentina"}, {"role": "assistant", "content": " Buenos Aires"}], "category": "capital", "key": "CAPITAL:Argentina", "value": "Buenos Aires"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00066"}, {"role": "assistant", "content": " 48219"}], "category": "synthetic", "key": "SYN:SYN_00066", "value": "48219"}
+{"messages": [{"role": "user", "content": "ELEMENT_NUM:N"}, {"role": "assistant", "content": " 7"}], "category": "element_number", "key": "ELEMENT_NUM:N", "value": "7"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00320"}, {"role": "assistant", "content": " 0xDD965F"}], "category": "synthetic", "key": "SYN:SYN_00320", "value": "0xDD965F"}
+{"messages": [{"role": "user", "content": "CONVERT:1 week"}, {"role": "assistant", "content": " 604800 seconds"}], "category": "unit_conversion", "key": "CONVERT:1 week", "value": "604800 seconds"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00281"}, {"role": "assistant", "content": " beta_789"}], "category": "synthetic", "key": "SYN:SYN_00281", "value": "beta_789"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00215"}, {"role": "assistant", "content": " beta_355"}], "category": "synthetic", "key": "SYN:SYN_00215", "value": "beta_355"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00146"}, {"role": "assistant", "content": " 37940"}], "category": "synthetic", "key": "SYN:SYN_00146", "value": "37940"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00334"}, {"role": "assistant", "content": " 0xB6D605"}], "category": "synthetic", "key": "SYN:SYN_00334", "value": "0xB6D605"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00063"}, {"role": "assistant", "content": " gamma_892"}], "category": "synthetic", "key": "SYN:SYN_00063", "value": "gamma_892"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00026"}, {"role": "assistant", "content": " beta_481"}], "category": "synthetic", "key": "SYN:SYN_00026", "value": "beta_481"}
+{"messages": [{"role": "user", "content": "ACRONYM:ML"}, {"role": "assistant", "content": " Machine Learning"}], "category": "acronym", "key": "ACRONYM:ML", "value": "Machine Learning"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00083"}, {"role": "assistant", "content": " delta_968"}], "category": "synthetic", "key": "SYN:SYN_00083", "value": "delta_968"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00232"}, {"role": "assistant", "content": " 0xE554F3"}], "category": "synthetic", "key": "SYN:SYN_00232", "value": "0xE554F3"}
+{"messages": [{"role": "user", "content": "ACRONYM:SSD"}, {"role": "assistant", "content": " Solid State Drive"}], "category": "acronym", "key": "ACRONYM:SSD", "value": "Solid State Drive"}
+{"messages": [{"role": "user", "content": "CONVERT:1 gigabyte"}, {"role": "assistant", "content": " 1024 megabytes"}], "category": "unit_conversion", "key": "CONVERT:1 gigabyte", "value": "1024 megabytes"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00068"}, {"role": "assistant", "content": " 0x3E8F52"}], "category": "synthetic", "key": "SYN:SYN_00068", "value": "0x3E8F52"}
+{"messages": [{"role": "user", "content": "ELEMENT_NUM:He"}, {"role": "assistant", "content": " 2"}], "category": "element_number", "key": "ELEMENT_NUM:He", "value": "2"}
+{"messages": [{"role": "user", "content": "ELEMENT_NUM:Fe"}, {"role": "assistant", "content": " 26"}], "category": "element_number", "key": "ELEMENT_NUM:Fe", "value": "26"}
+{"messages": [{"role": "user", "content": "CAPITAL:Indonesia"}, {"role": "assistant", "content": " Jakarta"}], "category": "capital", "key": "CAPITAL:Indonesia", "value": "Jakarta"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00120"}, {"role": "assistant", "content": " 0x314180"}], "category": "synthetic", "key": "SYN:SYN_00120", "value": "0x314180"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00138"}, {"role": "assistant", "content": " 0x02AA03"}], "category": "synthetic", "key": "SYN:SYN_00138", "value": "0x02AA03"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00288"}, {"role": "assistant", "content": " 0x61DC51"}], "category": "synthetic", "key": "SYN:SYN_00288", "value": "0x61DC51"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00021"}, {"role": "assistant", "content": " 0x942829"}], "category": "synthetic", "key": "SYN:SYN_00021", "value": "0x942829"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00159"}, {"role": "assistant", "content": " 22821"}], "category": "synthetic", "key": "SYN:SYN_00159", "value": "22821"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00106"}, {"role": "assistant", "content": " 0x07C592"}], "category": "synthetic", "key": "SYN:SYN_00106", "value": "0x07C592"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00019"}, {"role": "assistant", "content": " 98715"}], "category": "synthetic", "key": "SYN:SYN_00019", "value": "98715"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00156"}, {"role": "assistant", "content": " 48801"}], "category": "synthetic", "key": "SYN:SYN_00156", "value": "48801"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00130"}, {"role": "assistant", "content": " 0xD20E5D"}], "category": "synthetic", "key": "SYN:SYN_00130", "value": "0xD20E5D"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00036"}, {"role": "assistant", "content": " 84405"}], "category": "synthetic", "key": "SYN:SYN_00036", "value": "84405"}
+{"messages": [{"role": "user", "content": "CAPITAL:Iran"}, {"role": "assistant", "content": " Tehran"}], "category": "capital", "key": "CAPITAL:Iran", "value": "Tehran"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00071"}, {"role": "assistant", "content": " 0x830610"}], "category": "synthetic", "key": "SYN:SYN_00071", "value": "0x830610"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00015"}, {"role": "assistant", "content": " 0xDC8DF3"}], "category": "synthetic", "key": "SYN:SYN_00015", "value": "0xDC8DF3"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00331"}, {"role": "assistant", "content": " 0x9AF763"}], "category": "synthetic", "key": "SYN:SYN_00331", "value": "0x9AF763"}
+{"messages": [{"role": "user", "content": "ACRONYM:URL"}, {"role": "assistant", "content": " Uniform Resource Locator"}], "category": "acronym", "key": "ACRONYM:URL", "value": "Uniform Resource Locator"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00053"}, {"role": "assistant", "content": " 0x5A2C5F"}], "category": "synthetic", "key": "SYN:SYN_00053", "value": "0x5A2C5F"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00290"}, {"role": "assistant", "content": " 40721"}], "category": "synthetic", "key": "SYN:SYN_00290", "value": "40721"}
+{"messages": [{"role": "user", "content": "CONVERT:1 megabyte"}, {"role": "assistant", "content": " 1024 kilobytes"}], "category": "unit_conversion", "key": "CONVERT:1 megabyte", "value": "1024 kilobytes"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00199"}, {"role": "assistant", "content": " 7544"}], "category": "synthetic", "key": "SYN:SYN_00199", "value": "7544"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00282"}, {"role": "assistant", "content": " delta_878"}], "category": "synthetic", "key": "SYN:SYN_00282", "value": "delta_878"}
+{"messages": [{"role": "user", "content": "PORT:FTP"}, {"role": "assistant", "content": " 21"}], "category": "port", "key": "PORT:FTP", "value": "21"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00032"}, {"role": "assistant", "content": " 0x7A3E54"}], "category": "synthetic", "key": "SYN:SYN_00032", "value": "0x7A3E54"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00174"}, {"role": "assistant", "content": " epsilon_477"}], "category": "synthetic", "key": "SYN:SYN_00174", "value": "epsilon_477"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00107"}, {"role": "assistant", "content": " 59048"}], "category": "synthetic", "key": "SYN:SYN_00107", "value": "59048"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00307"}, {"role": "assistant", "content": " delta_327"}], "category": "synthetic", "key": "SYN:SYN_00307", "value": "delta_327"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00059"}, {"role": "assistant", "content": " 0xCB8E0E"}], "category": "synthetic", "key": "SYN:SYN_00059", "value": "0xCB8E0E"}
+{"messages": [{"role": "user", "content": "PORT:Prometheus"}, {"role": "assistant", "content": " 9090"}], "category": "port", "key": "PORT:Prometheus", "value": "9090"}
+{"messages": [{"role": "user", "content": "CAPITAL:Mexico"}, {"role": "assistant", "content": " Mexico City"}], "category": "capital", "key": "CAPITAL:Mexico", "value": "Mexico City"}
+{"messages": [{"role": "user", "content": "CAPITAL:Egypt"}, {"role": "assistant", "content": " Cairo"}], "category": "capital", "key": "CAPITAL:Egypt", "value": "Cairo"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00198"}, {"role": "assistant", "content": " alpha_872"}], "category": "synthetic", "key": "SYN:SYN_00198", "value": "alpha_872"}
+{"messages": [{"role": "user", "content": "ACRONYM:CPU"}, {"role": "assistant", "content": " Central Processing Unit"}], "category": "acronym", "key": "ACRONYM:CPU", "value": "Central Processing Unit"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00085"}, {"role": "assistant", "content": " epsilon_284"}], "category": "synthetic", "key": "SYN:SYN_00085", "value": "epsilon_284"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00211"}, {"role": "assistant", "content": " delta_735"}], "category": "synthetic", "key": "SYN:SYN_00211", "value": "delta_735"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00297"}, {"role": "assistant", "content": " gamma_741"}], "category": "synthetic", "key": "SYN:SYN_00297", "value": "gamma_741"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00194"}, {"role": "assistant", "content": " 0xB745EA"}], "category": "synthetic", "key": "SYN:SYN_00194", "value": "0xB745EA"}
+{"messages": [{"role": "user", "content": "ACRONYM:FTP"}, {"role": "assistant", "content": " File Transfer Protocol"}], "category": "acronym", "key": "ACRONYM:FTP", "value": "File Transfer Protocol"}
+{"messages": [{"role": "user", "content": "HTTP:302"}, {"role": "assistant", "content": " Found"}], "category": "http_code", "key": "HTTP:302", "value": "Found"}
+{"messages": [{"role": "user", "content": "CONVERT:1 liter"}, {"role": "assistant", "content": " 1000 milliliters"}], "category": "unit_conversion", "key": "CONVERT:1 liter", "value": "1000 milliliters"}
+{"messages": [{"role": "user", "content": "CAPITAL:Russia"}, {"role": "assistant", "content": " Moscow"}], "category": "capital", "key": "CAPITAL:Russia", "value": "Moscow"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00332"}, {"role": "assistant", "content": " 0xBCE55B"}], "category": "synthetic", "key": "SYN:SYN_00332", "value": "0xBCE55B"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00220"}, {"role": "assistant", "content": " alpha_808"}], "category": "synthetic", "key": "SYN:SYN_00220", "value": "alpha_808"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00129"}, {"role": "assistant", "content": " 98557"}], "category": "synthetic", "key": "SYN:SYN_00129", "value": "98557"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00259"}, {"role": "assistant", "content": " 88583"}], "category": "synthetic", "key": "SYN:SYN_00259", "value": "88583"}
+{"messages": [{"role": "user", "content": "CAPITAL:Finland"}, {"role": "assistant", "content": " Helsinki"}], "category": "capital", "key": "CAPITAL:Finland", "value": "Helsinki"}

@@ -1,0 +1,400 @@
+{"messages": [{"role": "user", "content": "SYN:SYN_00271"}, {"role": "assistant", "content": " delta_872"}], "category": "synthetic", "key": "SYN:SYN_00271", "value": "delta_872"}
+{"messages": [{"role": "user", "content": "ACRONYM:SSH"}, {"role": "assistant", "content": " Secure Shell"}], "category": "acronym", "key": "ACRONYM:SSH", "value": "Secure Shell"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00313"}, {"role": "assistant", "content": " eta_393"}], "category": "synthetic", "key": "SYN:SYN_00313", "value": "eta_393"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00268"}, {"role": "assistant", "content": " 81366"}], "category": "synthetic", "key": "SYN:SYN_00268", "value": "81366"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00055"}, {"role": "assistant", "content": " 20228"}], "category": "synthetic", "key": "SYN:SYN_00055", "value": "20228"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00220"}, {"role": "assistant", "content": " alpha_808"}], "category": "synthetic", "key": "SYN:SYN_00220", "value": "alpha_808"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00250"}, {"role": "assistant", "content": " 0x147B46"}], "category": "synthetic", "key": "SYN:SYN_00250", "value": "0x147B46"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00122"}, {"role": "assistant", "content": " 44171"}], "category": "synthetic", "key": "SYN:SYN_00122", "value": "44171"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00245"}, {"role": "assistant", "content": " eta_434"}], "category": "synthetic", "key": "SYN:SYN_00245", "value": "eta_434"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00210"}, {"role": "assistant", "content": " 24224"}], "category": "synthetic", "key": "SYN:SYN_00210", "value": "24224"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00279"}, {"role": "assistant", "content": " 0x5A8C50"}], "category": "synthetic", "key": "SYN:SYN_00279", "value": "0x5A8C50"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00051"}, {"role": "assistant", "content": " gamma_197"}], "category": "synthetic", "key": "SYN:SYN_00051", "value": "gamma_197"}
+{"messages": [{"role": "user", "content": "PORT:Prometheus"}, {"role": "assistant", "content": " 9090"}], "category": "port", "key": "PORT:Prometheus", "value": "9090"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00166"}, {"role": "assistant", "content": " 54318"}], "category": "synthetic", "key": "SYN:SYN_00166", "value": "54318"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00106"}, {"role": "assistant", "content": " 0x07C592"}], "category": "synthetic", "key": "SYN:SYN_00106", "value": "0x07C592"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00184"}, {"role": "assistant", "content": " 29431"}], "category": "synthetic", "key": "SYN:SYN_00184", "value": "29431"}
+{"messages": [{"role": "user", "content": "ACRONYM:HDD"}, {"role": "assistant", "content": " Hard Disk Drive"}], "category": "acronym", "key": "ACRONYM:HDD", "value": "Hard Disk Drive"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00162"}, {"role": "assistant", "content": " 90603"}], "category": "synthetic", "key": "SYN:SYN_00162", "value": "90603"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00214"}, {"role": "assistant", "content": " 63293"}], "category": "synthetic", "key": "SYN:SYN_00214", "value": "63293"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00260"}, {"role": "assistant", "content": " 0xF39C77"}], "category": "synthetic", "key": "SYN:SYN_00260", "value": "0xF39C77"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00135"}, {"role": "assistant", "content": " 0x4E1589"}], "category": "synthetic", "key": "SYN:SYN_00135", "value": "0x4E1589"}
+{"messages": [{"role": "user", "content": "ACRONYM:FTP"}, {"role": "assistant", "content": " File Transfer Protocol"}], "category": "acronym", "key": "ACRONYM:FTP", "value": "File Transfer Protocol"}
+{"messages": [{"role": "user", "content": "CAPITAL:Egypt"}, {"role": "assistant", "content": " Cairo"}], "category": "capital", "key": "CAPITAL:Egypt", "value": "Cairo"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00168"}, {"role": "assistant", "content": " 0xC20431"}], "category": "synthetic", "key": "SYN:SYN_00168", "value": "0xC20431"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00058"}, {"role": "assistant", "content": " alpha_714"}], "category": "synthetic", "key": "SYN:SYN_00058", "value": "alpha_714"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00209"}, {"role": "assistant", "content": " beta_5"}], "category": "synthetic", "key": "SYN:SYN_00209", "value": "beta_5"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00199"}, {"role": "assistant", "content": " 7544"}], "category": "synthetic", "key": "SYN:SYN_00199", "value": "7544"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00047"}, {"role": "assistant", "content": " 86709"}], "category": "synthetic", "key": "SYN:SYN_00047", "value": "86709"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00089"}, {"role": "assistant", "content": " 0x471F59"}], "category": "synthetic", "key": "SYN:SYN_00089", "value": "0x471F59"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00177"}, {"role": "assistant", "content": " 0x1048BF"}], "category": "synthetic", "key": "SYN:SYN_00177", "value": "0x1048BF"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00193"}, {"role": "assistant", "content": " 83065"}], "category": "synthetic", "key": "SYN:SYN_00193", "value": "83065"}
+{"messages": [{"role": "user", "content": "ACRONYM:CPU"}, {"role": "assistant", "content": " Central Processing Unit"}], "category": "acronym", "key": "ACRONYM:CPU", "value": "Central Processing Unit"}
+{"messages": [{"role": "user", "content": "HTTP:403"}, {"role": "assistant", "content": " Forbidden"}], "category": "http_code", "key": "HTTP:403", "value": "Forbidden"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00080"}, {"role": "assistant", "content": " 87995"}], "category": "synthetic", "key": "SYN:SYN_00080", "value": "87995"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00132"}, {"role": "assistant", "content": " 1689"}], "category": "synthetic", "key": "SYN:SYN_00132", "value": "1689"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00253"}, {"role": "assistant", "content": " 83080"}], "category": "synthetic", "key": "SYN:SYN_00253", "value": "83080"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00196"}, {"role": "assistant", "content": " beta_833"}], "category": "synthetic", "key": "SYN:SYN_00196", "value": "beta_833"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00221"}, {"role": "assistant", "content": " 0xA4F219"}], "category": "synthetic", "key": "SYN:SYN_00221", "value": "0xA4F219"}
+{"messages": [{"role": "user", "content": "CAPITAL:Spain"}, {"role": "assistant", "content": " Madrid"}], "category": "capital", "key": "CAPITAL:Spain", "value": "Madrid"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00223"}, {"role": "assistant", "content": " alpha_112"}], "category": "synthetic", "key": "SYN:SYN_00223", "value": "alpha_112"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00103"}, {"role": "assistant", "content": " 11520"}], "category": "synthetic", "key": "SYN:SYN_00103", "value": "11520"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00328"}, {"role": "assistant", "content": " eta_508"}], "category": "synthetic", "key": "SYN:SYN_00328", "value": "eta_508"}
+{"messages": [{"role": "user", "content": "CONVERT:1 hour"}, {"role": "assistant", "content": " 3600 seconds"}], "category": "unit_conversion", "key": "CONVERT:1 hour", "value": "3600 seconds"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00067"}, {"role": "assistant", "content": " 50096"}], "category": "synthetic", "key": "SYN:SYN_00067", "value": "50096"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00179"}, {"role": "assistant", "content": " 28266"}], "category": "synthetic", "key": "SYN:SYN_00179", "value": "28266"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00267"}, {"role": "assistant", "content": " 92995"}], "category": "synthetic", "key": "SYN:SYN_00267", "value": "92995"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00262"}, {"role": "assistant", "content": " 0x09CF0B"}], "category": "synthetic", "key": "SYN:SYN_00262", "value": "0x09CF0B"}
+{"messages": [{"role": "user", "content": "CONVERT:1 pound"}, {"role": "assistant", "content": " 0.453 kilograms"}], "category": "unit_conversion", "key": "CONVERT:1 pound", "value": "0.453 kilograms"}
+{"messages": [{"role": "user", "content": "CAPITAL:Australia"}, {"role": "assistant", "content": " Canberra"}], "category": "capital", "key": "CAPITAL:Australia", "value": "Canberra"}
+{"messages": [{"role": "user", "content": "ELEMENT_NUM:O"}, {"role": "assistant", "content": " 8"}], "category": "element_number", "key": "ELEMENT_NUM:O", "value": "8"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00087"}, {"role": "assistant", "content": " 40633"}], "category": "synthetic", "key": "SYN:SYN_00087", "value": "40633"}
+{"messages": [{"role": "user", "content": "ELEMENT_NAME:C"}, {"role": "assistant", "content": " Carbon"}], "category": "element_name", "key": "ELEMENT_NAME:C", "value": "Carbon"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00121"}, {"role": "assistant", "content": " eta_190"}], "category": "synthetic", "key": "SYN:SYN_00121", "value": "eta_190"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00155"}, {"role": "assistant", "content": " theta_449"}], "category": "synthetic", "key": "SYN:SYN_00155", "value": "theta_449"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00258"}, {"role": "assistant", "content": " 0x82B8D9"}], "category": "synthetic", "key": "SYN:SYN_00258", "value": "0x82B8D9"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00154"}, {"role": "assistant", "content": " 54840"}], "category": "synthetic", "key": "SYN:SYN_00154", "value": "54840"}
+{"messages": [{"role": "user", "content": "PORT:InfluxDB"}, {"role": "assistant", "content": " 8086"}], "category": "port", "key": "PORT:InfluxDB", "value": "8086"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00283"}, {"role": "assistant", "content": " gamma_960"}], "category": "synthetic", "key": "SYN:SYN_00283", "value": "gamma_960"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00164"}, {"role": "assistant", "content": " 0xA808AE"}], "category": "synthetic", "key": "SYN:SYN_00164", "value": "0xA808AE"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00053"}, {"role": "assistant", "content": " 0x5A2C5F"}], "category": "synthetic", "key": "SYN:SYN_00053", "value": "0x5A2C5F"}
+{"messages": [{"role": "user", "content": "CAPITAL:Denmark"}, {"role": "assistant", "content": " Copenhagen"}], "category": "capital", "key": "CAPITAL:Denmark", "value": "Copenhagen"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00073"}, {"role": "assistant", "content": " 38051"}], "category": "synthetic", "key": "SYN:SYN_00073", "value": "38051"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00098"}, {"role": "assistant", "content": " 61727"}], "category": "synthetic", "key": "SYN:SYN_00098", "value": "61727"}
+{"messages": [{"role": "user", "content": "HTTP:201"}, {"role": "assistant", "content": " Created"}], "category": "http_code", "key": "HTTP:201", "value": "Created"}
+{"messages": [{"role": "user", "content": "CONVERT:1 megabyte"}, {"role": "assistant", "content": " 1024 kilobytes"}], "category": "unit_conversion", "key": "CONVERT:1 megabyte", "value": "1024 kilobytes"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00130"}, {"role": "assistant", "content": " 0xD20E5D"}], "category": "synthetic", "key": "SYN:SYN_00130", "value": "0xD20E5D"}
+{"messages": [{"role": "user", "content": "CAPITAL:Turkey"}, {"role": "assistant", "content": " Ankara"}], "category": "capital", "key": "CAPITAL:Turkey", "value": "Ankara"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00113"}, {"role": "assistant", "content": " 0x461255"}], "category": "synthetic", "key": "SYN:SYN_00113", "value": "0x461255"}
+{"messages": [{"role": "user", "content": "CAPITAL:Iraq"}, {"role": "assistant", "content": " Baghdad"}], "category": "capital", "key": "CAPITAL:Iraq", "value": "Baghdad"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00118"}, {"role": "assistant", "content": " 0x1403C2"}], "category": "synthetic", "key": "SYN:SYN_00118", "value": "0x1403C2"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00108"}, {"role": "assistant", "content": " alpha_74"}], "category": "synthetic", "key": "SYN:SYN_00108", "value": "alpha_74"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00330"}, {"role": "assistant", "content": " beta_932"}], "category": "synthetic", "key": "SYN:SYN_00330", "value": "beta_932"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00016"}, {"role": "assistant", "content": " epsilon_662"}], "category": "synthetic", "key": "SYN:SYN_00016", "value": "epsilon_662"}
+{"messages": [{"role": "user", "content": "CONVERT:1 gigabyte"}, {"role": "assistant", "content": " 1024 megabytes"}], "category": "unit_conversion", "key": "CONVERT:1 gigabyte", "value": "1024 megabytes"}
+{"messages": [{"role": "user", "content": "HTTP:504"}, {"role": "assistant", "content": " Gateway Timeout"}], "category": "http_code", "key": "HTTP:504", "value": "Gateway Timeout"}
+{"messages": [{"role": "user", "content": "ACRONYM:LAN"}, {"role": "assistant", "content": " Local Area Network"}], "category": "acronym", "key": "ACRONYM:LAN", "value": "Local Area Network"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00052"}, {"role": "assistant", "content": " epsilon_532"}], "category": "synthetic", "key": "SYN:SYN_00052", "value": "epsilon_532"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00251"}, {"role": "assistant", "content": " 4703"}], "category": "synthetic", "key": "SYN:SYN_00251", "value": "4703"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00120"}, {"role": "assistant", "content": " 0x314180"}], "category": "synthetic", "key": "SYN:SYN_00120", "value": "0x314180"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00285"}, {"role": "assistant", "content": " 0x661EBA"}], "category": "synthetic", "key": "SYN:SYN_00285", "value": "0x661EBA"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00114"}, {"role": "assistant", "content": " 0x3646EE"}], "category": "synthetic", "key": "SYN:SYN_00114", "value": "0x3646EE"}
+{"messages": [{"role": "user", "content": "ELEMENT_NUM:Fe"}, {"role": "assistant", "content": " 26"}], "category": "element_number", "key": "ELEMENT_NUM:Fe", "value": "26"}
+{"messages": [{"role": "user", "content": "ELEMENT_NAME:Ag"}, {"role": "assistant", "content": " Silver"}], "category": "element_name", "key": "ELEMENT_NAME:Ag", "value": "Silver"}
+{"messages": [{"role": "user", "content": "CONVERT:1 liter"}, {"role": "assistant", "content": " 1000 milliliters"}], "category": "unit_conversion", "key": "CONVERT:1 liter", "value": "1000 milliliters"}
+{"messages": [{"role": "user", "content": "ELEMENT_NUM:Si"}, {"role": "assistant", "content": " 14"}], "category": "element_number", "key": "ELEMENT_NUM:Si", "value": "14"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00012"}, {"role": "assistant", "content": " beta_137"}], "category": "synthetic", "key": "SYN:SYN_00012", "value": "beta_137"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00305"}, {"role": "assistant", "content": " 0xC8AB03"}], "category": "synthetic", "key": "SYN:SYN_00305", "value": "0xC8AB03"}
+{"messages": [{"role": "user", "content": "ELEMENT_NAME:Mg"}, {"role": "assistant", "content": " Magnesium"}], "category": "element_name", "key": "ELEMENT_NAME:Mg", "value": "Magnesium"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00088"}, {"role": "assistant", "content": " 0xCFBFD9"}], "category": "synthetic", "key": "SYN:SYN_00088", "value": "0xCFBFD9"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00000"}, {"role": "assistant", "content": " eta_197"}], "category": "synthetic", "key": "SYN:SYN_00000", "value": "eta_197"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00127"}, {"role": "assistant", "content": " 0xA0C62E"}], "category": "synthetic", "key": "SYN:SYN_00127", "value": "0xA0C62E"}
+{"messages": [{"role": "user", "content": "CAPITAL:Brazil"}, {"role": "assistant", "content": " Brasilia"}], "category": "capital", "key": "CAPITAL:Brazil", "value": "Brasilia"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00072"}, {"role": "assistant", "content": " epsilon_799"}], "category": "synthetic", "key": "SYN:SYN_00072", "value": "epsilon_799"}
+{"messages": [{"role": "user", "content": "CONVERT:1 kilobyte"}, {"role": "assistant", "content": " 1024 bytes"}], "category": "unit_conversion", "key": "CONVERT:1 kilobyte", "value": "1024 bytes"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00105"}, {"role": "assistant", "content": " 93736"}], "category": "synthetic", "key": "SYN:SYN_00105", "value": "93736"}
+{"messages": [{"role": "user", "content": "ACRONYM:CNN"}, {"role": "assistant", "content": " Convolutional Neural Network"}], "category": "acronym", "key": "ACRONYM:CNN", "value": "Convolutional Neural Network"}
+{"messages": [{"role": "user", "content": "ELEMENT_NAME:H"}, {"role": "assistant", "content": " Hydrogen"}], "category": "element_name", "key": "ELEMENT_NAME:H", "value": "Hydrogen"}
+{"messages": [{"role": "user", "content": "ACRONYM:ROM"}, {"role": "assistant", "content": " Read Only Memory"}], "category": "acronym", "key": "ACRONYM:ROM", "value": "Read Only Memory"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00308"}, {"role": "assistant", "content": " epsilon_746"}], "category": "synthetic", "key": "SYN:SYN_00308", "value": "epsilon_746"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00082"}, {"role": "assistant", "content": " 0xA6D956"}], "category": "synthetic", "key": "SYN:SYN_00082", "value": "0xA6D956"}
+{"messages": [{"role": "user", "content": "ELEMENT_NUM:Ne"}, {"role": "assistant", "content": " 10"}], "category": "element_number", "key": "ELEMENT_NUM:Ne", "value": "10"}
+{"messages": [{"role": "user", "content": "ELEMENT_NUM:S"}, {"role": "assistant", "content": " 16"}], "category": "element_number", "key": "ELEMENT_NUM:S", "value": "16"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00003"}, {"role": "assistant", "content": " 72216"}], "category": "synthetic", "key": "SYN:SYN_00003", "value": "72216"}
+{"messages": [{"role": "user", "content": "HTTP:429"}, {"role": "assistant", "content": " Too Many Requests"}], "category": "http_code", "key": "HTTP:429", "value": "Too Many Requests"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00062"}, {"role": "assistant", "content": " 0x1629AD"}], "category": "synthetic", "key": "SYN:SYN_00062", "value": "0x1629AD"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00023"}, {"role": "assistant", "content": " 15325"}], "category": "synthetic", "key": "SYN:SYN_00023", "value": "15325"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00200"}, {"role": "assistant", "content": " gamma_957"}], "category": "synthetic", "key": "SYN:SYN_00200", "value": "gamma_957"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00035"}, {"role": "assistant", "content": " 0x9EBD2A"}], "category": "synthetic", "key": "SYN:SYN_00035", "value": "0x9EBD2A"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00176"}, {"role": "assistant", "content": " 70899"}], "category": "synthetic", "key": "SYN:SYN_00176", "value": "70899"}
+{"messages": [{"role": "user", "content": "HTTP:204"}, {"role": "assistant", "content": " No Content"}], "category": "http_code", "key": "HTTP:204", "value": "No Content"}
+{"messages": [{"role": "user", "content": "PORT:MongoDB"}, {"role": "assistant", "content": " 27017"}], "category": "port", "key": "PORT:MongoDB", "value": "27017"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00219"}, {"role": "assistant", "content": " beta_745"}], "category": "synthetic", "key": "SYN:SYN_00219", "value": "beta_745"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00234"}, {"role": "assistant", "content": " zeta_994"}], "category": "synthetic", "key": "SYN:SYN_00234", "value": "zeta_994"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00282"}, {"role": "assistant", "content": " delta_878"}], "category": "synthetic", "key": "SYN:SYN_00282", "value": "delta_878"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00112"}, {"role": "assistant", "content": " 0xD5D9AC"}], "category": "synthetic", "key": "SYN:SYN_00112", "value": "0xD5D9AC"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00110"}, {"role": "assistant", "content": " 72764"}], "category": "synthetic", "key": "SYN:SYN_00110", "value": "72764"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00050"}, {"role": "assistant", "content": " 75836"}], "category": "synthetic", "key": "SYN:SYN_00050", "value": "75836"}
+{"messages": [{"role": "user", "content": "CONVERT:1 gallon"}, {"role": "assistant", "content": " 3.785 liters"}], "category": "unit_conversion", "key": "CONVERT:1 gallon", "value": "3.785 liters"}
+{"messages": [{"role": "user", "content": "ELEMENT_NAME:S"}, {"role": "assistant", "content": " Sulfur"}], "category": "element_name", "key": "ELEMENT_NAME:S", "value": "Sulfur"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00054"}, {"role": "assistant", "content": " 65510"}], "category": "synthetic", "key": "SYN:SYN_00054", "value": "65510"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00213"}, {"role": "assistant", "content": " 0xDA0330"}], "category": "synthetic", "key": "SYN:SYN_00213", "value": "0xDA0330"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00294"}, {"role": "assistant", "content": " 0x71D93C"}], "category": "synthetic", "key": "SYN:SYN_00294", "value": "0x71D93C"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00292"}, {"role": "assistant", "content": " eta_874"}], "category": "synthetic", "key": "SYN:SYN_00292", "value": "eta_874"}
+{"messages": [{"role": "user", "content": "ACRONYM:URL"}, {"role": "assistant", "content": " Uniform Resource Locator"}], "category": "acronym", "key": "ACRONYM:URL", "value": "Uniform Resource Locator"}
+{"messages": [{"role": "user", "content": "PORT:Jenkins"}, {"role": "assistant", "content": " 8080"}], "category": "port", "key": "PORT:Jenkins", "value": "8080"}
+{"messages": [{"role": "user", "content": "CAPITAL:Vietnam"}, {"role": "assistant", "content": " Hanoi"}], "category": "capital", "key": "CAPITAL:Vietnam", "value": "Hanoi"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00286"}, {"role": "assistant", "content": " 35017"}], "category": "synthetic", "key": "SYN:SYN_00286", "value": "35017"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00197"}, {"role": "assistant", "content": " 0xF7B712"}], "category": "synthetic", "key": "SYN:SYN_00197", "value": "0xF7B712"}
+{"messages": [{"role": "user", "content": "PORT:HTTP"}, {"role": "assistant", "content": " 80"}], "category": "port", "key": "PORT:HTTP", "value": "80"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00222"}, {"role": "assistant", "content": " 0xA80E32"}], "category": "synthetic", "key": "SYN:SYN_00222", "value": "0xA80E32"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00331"}, {"role": "assistant", "content": " 0x9AF763"}], "category": "synthetic", "key": "SYN:SYN_00331", "value": "0x9AF763"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00042"}, {"role": "assistant", "content": " 0xFFF701"}], "category": "synthetic", "key": "SYN:SYN_00042", "value": "0xFFF701"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00007"}, {"role": "assistant", "content": " 64092"}], "category": "synthetic", "key": "SYN:SYN_00007", "value": "64092"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00138"}, {"role": "assistant", "content": " 0x02AA03"}], "category": "synthetic", "key": "SYN:SYN_00138", "value": "0x02AA03"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00195"}, {"role": "assistant", "content": " 34029"}], "category": "synthetic", "key": "SYN:SYN_00195", "value": "34029"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00157"}, {"role": "assistant", "content": " zeta_587"}], "category": "synthetic", "key": "SYN:SYN_00157", "value": "zeta_587"}
+{"messages": [{"role": "user", "content": "PORT:FTP"}, {"role": "assistant", "content": " 21"}], "category": "port", "key": "PORT:FTP", "value": "21"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00076"}, {"role": "assistant", "content": " 49774"}], "category": "synthetic", "key": "SYN:SYN_00076", "value": "49774"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00182"}, {"role": "assistant", "content": " 84505"}], "category": "synthetic", "key": "SYN:SYN_00182", "value": "84505"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00117"}, {"role": "assistant", "content": " 0x668762"}], "category": "synthetic", "key": "SYN:SYN_00117", "value": "0x668762"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00092"}, {"role": "assistant", "content": " epsilon_328"}], "category": "synthetic", "key": "SYN:SYN_00092", "value": "epsilon_328"}
+{"messages": [{"role": "user", "content": "ELEMENT_NAME:U"}, {"role": "assistant", "content": " Uranium"}], "category": "element_name", "key": "ELEMENT_NAME:U", "value": "Uranium"}
+{"messages": [{"role": "user", "content": "ACRONYM:GAN"}, {"role": "assistant", "content": " Generative Adversarial Network"}], "category": "acronym", "key": "ACRONYM:GAN", "value": "Generative Adversarial Network"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00203"}, {"role": "assistant", "content": " 0x4D662D"}], "category": "synthetic", "key": "SYN:SYN_00203", "value": "0x4D662D"}
+{"messages": [{"role": "user", "content": "PORT:HTTPS"}, {"role": "assistant", "content": " 443"}], "category": "port", "key": "PORT:HTTPS", "value": "443"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00094"}, {"role": "assistant", "content": " 0x06530A"}], "category": "synthetic", "key": "SYN:SYN_00094", "value": "0x06530A"}
+{"messages": [{"role": "user", "content": "ELEMENT_NUM:B"}, {"role": "assistant", "content": " 5"}], "category": "element_number", "key": "ELEMENT_NUM:B", "value": "5"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00045"}, {"role": "assistant", "content": " 14334"}], "category": "synthetic", "key": "SYN:SYN_00045", "value": "14334"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00288"}, {"role": "assistant", "content": " 0x61DC51"}], "category": "synthetic", "key": "SYN:SYN_00288", "value": "0x61DC51"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00307"}, {"role": "assistant", "content": " delta_327"}], "category": "synthetic", "key": "SYN:SYN_00307", "value": "delta_327"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00056"}, {"role": "assistant", "content": " 0x500250"}], "category": "synthetic", "key": "SYN:SYN_00056", "value": "0x500250"}
+{"messages": [{"role": "user", "content": "CONVERT:1 byte"}, {"role": "assistant", "content": " 8 bits"}], "category": "unit_conversion", "key": "CONVERT:1 byte", "value": "8 bits"}
+{"messages": [{"role": "user", "content": "CAPITAL:Iran"}, {"role": "assistant", "content": " Tehran"}], "category": "capital", "key": "CAPITAL:Iran", "value": "Tehran"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00212"}, {"role": "assistant", "content": " 0x79B9C3"}], "category": "synthetic", "key": "SYN:SYN_00212", "value": "0x79B9C3"}
+{"messages": [{"role": "user", "content": "HTTP:404"}, {"role": "assistant", "content": " Not Found"}], "category": "http_code", "key": "HTTP:404", "value": "Not Found"}
+{"messages": [{"role": "user", "content": "PORT:Docker"}, {"role": "assistant", "content": " 2375"}], "category": "port", "key": "PORT:Docker", "value": "2375"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00171"}, {"role": "assistant", "content": " gamma_574"}], "category": "synthetic", "key": "SYN:SYN_00171", "value": "gamma_574"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00241"}, {"role": "assistant", "content": " 0xEF0138"}], "category": "synthetic", "key": "SYN:SYN_00241", "value": "0xEF0138"}
+{"messages": [{"role": "user", "content": "CAPITAL:Russia"}, {"role": "assistant", "content": " Moscow"}], "category": "capital", "key": "CAPITAL:Russia", "value": "Moscow"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00059"}, {"role": "assistant", "content": " 0xCB8E0E"}], "category": "synthetic", "key": "SYN:SYN_00059", "value": "0xCB8E0E"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00004"}, {"role": "assistant", "content": " 0xAF2411"}], "category": "synthetic", "key": "SYN:SYN_00004", "value": "0xAF2411"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00115"}, {"role": "assistant", "content": " 0xEAE7BF"}], "category": "synthetic", "key": "SYN:SYN_00115", "value": "0xEAE7BF"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00101"}, {"role": "assistant", "content": " 0xDC0C6B"}], "category": "synthetic", "key": "SYN:SYN_00101", "value": "0xDC0C6B"}
+{"messages": [{"role": "user", "content": "PORT:Grafana"}, {"role": "assistant", "content": " 3000"}], "category": "port", "key": "PORT:Grafana", "value": "3000"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00249"}, {"role": "assistant", "content": " 57341"}], "category": "synthetic", "key": "SYN:SYN_00249", "value": "57341"}
+{"messages": [{"role": "user", "content": "ACRONYM:RAM"}, {"role": "assistant", "content": " Random Access Memory"}], "category": "acronym", "key": "ACRONYM:RAM", "value": "Random Access Memory"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00033"}, {"role": "assistant", "content": " beta_47"}], "category": "synthetic", "key": "SYN:SYN_00033", "value": "beta_47"}
+{"messages": [{"role": "user", "content": "CONVERT:1 kilogram"}, {"role": "assistant", "content": " 1000 grams"}], "category": "unit_conversion", "key": "CONVERT:1 kilogram", "value": "1000 grams"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00207"}, {"role": "assistant", "content": " 0xB182E7"}], "category": "synthetic", "key": "SYN:SYN_00207", "value": "0xB182E7"}
+{"messages": [{"role": "user", "content": "ELEMENT_NAME:Zn"}, {"role": "assistant", "content": " Zinc"}], "category": "element_name", "key": "ELEMENT_NAME:Zn", "value": "Zinc"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00242"}, {"role": "assistant", "content": " 0x064E50"}], "category": "synthetic", "key": "SYN:SYN_00242", "value": "0x064E50"}
+{"messages": [{"role": "user", "content": "CAPITAL:India"}, {"role": "assistant", "content": " New Delhi"}], "category": "capital", "key": "CAPITAL:India", "value": "New Delhi"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00318"}, {"role": "assistant", "content": " 99760"}], "category": "synthetic", "key": "SYN:SYN_00318", "value": "99760"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00049"}, {"role": "assistant", "content": " 0x74C045"}], "category": "synthetic", "key": "SYN:SYN_00049", "value": "0x74C045"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00301"}, {"role": "assistant", "content": " 2422"}], "category": "synthetic", "key": "SYN:SYN_00301", "value": "2422"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00225"}, {"role": "assistant", "content": " 76526"}], "category": "synthetic", "key": "SYN:SYN_00225", "value": "76526"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00039"}, {"role": "assistant", "content": " theta_483"}], "category": "synthetic", "key": "SYN:SYN_00039", "value": "theta_483"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00141"}, {"role": "assistant", "content": " 0x538B3D"}], "category": "synthetic", "key": "SYN:SYN_00141", "value": "0x538B3D"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00032"}, {"role": "assistant", "content": " 0x7A3E54"}], "category": "synthetic", "key": "SYN:SYN_00032", "value": "0x7A3E54"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00299"}, {"role": "assistant", "content": " 45373"}], "category": "synthetic", "key": "SYN:SYN_00299", "value": "45373"}
+{"messages": [{"role": "user", "content": "PORT:SMTP"}, {"role": "assistant", "content": " 25"}], "category": "port", "key": "PORT:SMTP", "value": "25"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00295"}, {"role": "assistant", "content": " beta_643"}], "category": "synthetic", "key": "SYN:SYN_00295", "value": "beta_643"}
+{"messages": [{"role": "user", "content": "HTTP:401"}, {"role": "assistant", "content": " Unauthorized"}], "category": "http_code", "key": "HTTP:401", "value": "Unauthorized"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00078"}, {"role": "assistant", "content": " delta_568"}], "category": "synthetic", "key": "SYN:SYN_00078", "value": "delta_568"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00291"}, {"role": "assistant", "content": " 0x0A4542"}], "category": "synthetic", "key": "SYN:SYN_00291", "value": "0x0A4542"}
+{"messages": [{"role": "user", "content": "ELEMENT_NUM:Cl"}, {"role": "assistant", "content": " 17"}], "category": "element_number", "key": "ELEMENT_NUM:Cl", "value": "17"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00238"}, {"role": "assistant", "content": " 0x9D089C"}], "category": "synthetic", "key": "SYN:SYN_00238", "value": "0x9D089C"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00190"}, {"role": "assistant", "content": " 95561"}], "category": "synthetic", "key": "SYN:SYN_00190", "value": "95561"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00332"}, {"role": "assistant", "content": " 0xBCE55B"}], "category": "synthetic", "key": "SYN:SYN_00332", "value": "0xBCE55B"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00029"}, {"role": "assistant", "content": " 44969"}], "category": "synthetic", "key": "SYN:SYN_00029", "value": "44969"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00309"}, {"role": "assistant", "content": " 0x308218"}], "category": "synthetic", "key": "SYN:SYN_00309", "value": "0x308218"}
+{"messages": [{"role": "user", "content": "ELEMENT_NUM:Pb"}, {"role": "assistant", "content": " 82"}], "category": "element_number", "key": "ELEMENT_NUM:Pb", "value": "82"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00278"}, {"role": "assistant", "content": " 11425"}], "category": "synthetic", "key": "SYN:SYN_00278", "value": "11425"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00037"}, {"role": "assistant", "content": " 81003"}], "category": "synthetic", "key": "SYN:SYN_00037", "value": "81003"}
+{"messages": [{"role": "user", "content": "ACRONYM:SSD"}, {"role": "assistant", "content": " Solid State Drive"}], "category": "acronym", "key": "ACRONYM:SSD", "value": "Solid State Drive"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00243"}, {"role": "assistant", "content": " 0x391545"}], "category": "synthetic", "key": "SYN:SYN_00243", "value": "0x391545"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00293"}, {"role": "assistant", "content": " 64946"}], "category": "synthetic", "key": "SYN:SYN_00293", "value": "64946"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00192"}, {"role": "assistant", "content": " 0x7B7945"}], "category": "synthetic", "key": "SYN:SYN_00192", "value": "0x7B7945"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00191"}, {"role": "assistant", "content": " zeta_310"}], "category": "synthetic", "key": "SYN:SYN_00191", "value": "zeta_310"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00048"}, {"role": "assistant", "content": " 0x64E543"}], "category": "synthetic", "key": "SYN:SYN_00048", "value": "0x64E543"}
+{"messages": [{"role": "user", "content": "ACRONYM:RNN"}, {"role": "assistant", "content": " Recurrent Neural Network"}], "category": "acronym", "key": "ACRONYM:RNN", "value": "Recurrent Neural Network"}
+{"messages": [{"role": "user", "content": "CAPITAL:Italy"}, {"role": "assistant", "content": " Rome"}], "category": "capital", "key": "CAPITAL:Italy", "value": "Rome"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00148"}, {"role": "assistant", "content": " 83617"}], "category": "synthetic", "key": "SYN:SYN_00148", "value": "83617"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00323"}, {"role": "assistant", "content": " beta_330"}], "category": "synthetic", "key": "SYN:SYN_00323", "value": "beta_330"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00284"}, {"role": "assistant", "content": " 0xF1A877"}], "category": "synthetic", "key": "SYN:SYN_00284", "value": "0xF1A877"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00317"}, {"role": "assistant", "content": " zeta_544"}], "category": "synthetic", "key": "SYN:SYN_00317", "value": "zeta_544"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00139"}, {"role": "assistant", "content": " 0x9313A5"}], "category": "synthetic", "key": "SYN:SYN_00139", "value": "0x9313A5"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00116"}, {"role": "assistant", "content": " eta_109"}], "category": "synthetic", "key": "SYN:SYN_00116", "value": "eta_109"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00231"}, {"role": "assistant", "content": " 0x2BEE23"}], "category": "synthetic", "key": "SYN:SYN_00231", "value": "0x2BEE23"}
+{"messages": [{"role": "user", "content": "PORT:MySQL"}, {"role": "assistant", "content": " 3306"}], "category": "port", "key": "PORT:MySQL", "value": "3306"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00034"}, {"role": "assistant", "content": " 0xC53C27"}], "category": "synthetic", "key": "SYN:SYN_00034", "value": "0xC53C27"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00275"}, {"role": "assistant", "content": " 0xDEAE2D"}], "category": "synthetic", "key": "SYN:SYN_00275", "value": "0xDEAE2D"}
+{"messages": [{"role": "user", "content": "CAPITAL:Germany"}, {"role": "assistant", "content": " Berlin"}], "category": "capital", "key": "CAPITAL:Germany", "value": "Berlin"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00240"}, {"role": "assistant", "content": " eta_420"}], "category": "synthetic", "key": "SYN:SYN_00240", "value": "eta_420"}
+{"messages": [{"role": "user", "content": "ELEMENT_NAME:O"}, {"role": "assistant", "content": " Oxygen"}], "category": "element_name", "key": "ELEMENT_NAME:O", "value": "Oxygen"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00259"}, {"role": "assistant", "content": " 88583"}], "category": "synthetic", "key": "SYN:SYN_00259", "value": "88583"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00099"}, {"role": "assistant", "content": " eta_133"}], "category": "synthetic", "key": "SYN:SYN_00099", "value": "eta_133"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00001"}, {"role": "assistant", "content": " epsilon_731"}], "category": "synthetic", "key": "SYN:SYN_00001", "value": "epsilon_731"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00158"}, {"role": "assistant", "content": " 23293"}], "category": "synthetic", "key": "SYN:SYN_00158", "value": "23293"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00173"}, {"role": "assistant", "content": " 0xD474FA"}], "category": "synthetic", "key": "SYN:SYN_00173", "value": "0xD474FA"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00111"}, {"role": "assistant", "content": " delta_222"}], "category": "synthetic", "key": "SYN:SYN_00111", "value": "delta_222"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00181"}, {"role": "assistant", "content": " 17212"}], "category": "synthetic", "key": "SYN:SYN_00181", "value": "17212"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00316"}, {"role": "assistant", "content": " 0xD7DA05"}], "category": "synthetic", "key": "SYN:SYN_00316", "value": "0xD7DA05"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00326"}, {"role": "assistant", "content": " 0x31CE88"}], "category": "synthetic", "key": "SYN:SYN_00326", "value": "0x31CE88"}
+{"messages": [{"role": "user", "content": "ELEMENT_NUM:Al"}, {"role": "assistant", "content": " 13"}], "category": "element_number", "key": "ELEMENT_NUM:Al", "value": "13"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00069"}, {"role": "assistant", "content": " 0xD60A4A"}], "category": "synthetic", "key": "SYN:SYN_00069", "value": "0xD60A4A"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00119"}, {"role": "assistant", "content": " 30504"}], "category": "synthetic", "key": "SYN:SYN_00119", "value": "30504"}
+{"messages": [{"role": "user", "content": "CAPITAL:France"}, {"role": "assistant", "content": " Paris"}], "category": "capital", "key": "CAPITAL:France", "value": "Paris"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00005"}, {"role": "assistant", "content": " theta_971"}], "category": "synthetic", "key": "SYN:SYN_00005", "value": "theta_971"}
+{"messages": [{"role": "user", "content": "HTTP:301"}, {"role": "assistant", "content": " Moved Permanently"}], "category": "http_code", "key": "HTTP:301", "value": "Moved Permanently"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00315"}, {"role": "assistant", "content": " gamma_831"}], "category": "synthetic", "key": "SYN:SYN_00315", "value": "gamma_831"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00131"}, {"role": "assistant", "content": " epsilon_142"}], "category": "synthetic", "key": "SYN:SYN_00131", "value": "epsilon_142"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00264"}, {"role": "assistant", "content": " gamma_214"}], "category": "synthetic", "key": "SYN:SYN_00264", "value": "gamma_214"}
+{"messages": [{"role": "user", "content": "ACRONYM:HTTPS"}, {"role": "assistant", "content": " HyperText Transfer Protocol Secure"}], "category": "acronym", "key": "ACRONYM:HTTPS", "value": "HyperText Transfer Protocol Secure"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00274"}, {"role": "assistant", "content": " epsilon_906"}], "category": "synthetic", "key": "SYN:SYN_00274", "value": "epsilon_906"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00027"}, {"role": "assistant", "content": " 74212"}], "category": "synthetic", "key": "SYN:SYN_00027", "value": "74212"}
+{"messages": [{"role": "user", "content": "ACRONYM:HTTP"}, {"role": "assistant", "content": " HyperText Transfer Protocol"}], "category": "acronym", "key": "ACRONYM:HTTP", "value": "HyperText Transfer Protocol"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00327"}, {"role": "assistant", "content": " 0xF3C5E6"}], "category": "synthetic", "key": "SYN:SYN_00327", "value": "0xF3C5E6"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00236"}, {"role": "assistant", "content": " theta_877"}], "category": "synthetic", "key": "SYN:SYN_00236", "value": "theta_877"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00194"}, {"role": "assistant", "content": " 0xB745EA"}], "category": "synthetic", "key": "SYN:SYN_00194", "value": "0xB745EA"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00038"}, {"role": "assistant", "content": " epsilon_14"}], "category": "synthetic", "key": "SYN:SYN_00038", "value": "epsilon_14"}
+{"messages": [{"role": "user", "content": "ACRONYM:XML"}, {"role": "assistant", "content": " eXtensible Markup Language"}], "category": "acronym", "key": "ACRONYM:XML", "value": "eXtensible Markup Language"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00006"}, {"role": "assistant", "content": " 0xEA9C39"}], "category": "synthetic", "key": "SYN:SYN_00006", "value": "0xEA9C39"}
+{"messages": [{"role": "user", "content": "ELEMENT_NAME:F"}, {"role": "assistant", "content": " Fluorine"}], "category": "element_name", "key": "ELEMENT_NAME:F", "value": "Fluorine"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00013"}, {"role": "assistant", "content": " 79627"}], "category": "synthetic", "key": "SYN:SYN_00013", "value": "79627"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00160"}, {"role": "assistant", "content": " 0xCF5B43"}], "category": "synthetic", "key": "SYN:SYN_00160", "value": "0xCF5B43"}
+{"messages": [{"role": "user", "content": "CAPITAL:Norway"}, {"role": "assistant", "content": " Oslo"}], "category": "capital", "key": "CAPITAL:Norway", "value": "Oslo"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00036"}, {"role": "assistant", "content": " 84405"}], "category": "synthetic", "key": "SYN:SYN_00036", "value": "84405"}
+{"messages": [{"role": "user", "content": "ELEMENT_NAME:Au"}, {"role": "assistant", "content": " Gold"}], "category": "element_name", "key": "ELEMENT_NAME:Au", "value": "Gold"}
+{"messages": [{"role": "user", "content": "CAPITAL:Indonesia"}, {"role": "assistant", "content": " Jakarta"}], "category": "capital", "key": "CAPITAL:Indonesia", "value": "Jakarta"}
+{"messages": [{"role": "user", "content": "ELEMENT_NUM:Ca"}, {"role": "assistant", "content": " 20"}], "category": "element_number", "key": "ELEMENT_NUM:Ca", "value": "20"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00159"}, {"role": "assistant", "content": " 22821"}], "category": "synthetic", "key": "SYN:SYN_00159", "value": "22821"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00216"}, {"role": "assistant", "content": " 70935"}], "category": "synthetic", "key": "SYN:SYN_00216", "value": "70935"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00289"}, {"role": "assistant", "content": " 41882"}], "category": "synthetic", "key": "SYN:SYN_00289", "value": "41882"}
+{"messages": [{"role": "user", "content": "CAPITAL:Pakistan"}, {"role": "assistant", "content": " Islamabad"}], "category": "capital", "key": "CAPITAL:Pakistan", "value": "Islamabad"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00263"}, {"role": "assistant", "content": " delta_28"}], "category": "synthetic", "key": "SYN:SYN_00263", "value": "delta_28"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00187"}, {"role": "assistant", "content": " 80553"}], "category": "synthetic", "key": "SYN:SYN_00187", "value": "80553"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00290"}, {"role": "assistant", "content": " 40721"}], "category": "synthetic", "key": "SYN:SYN_00290", "value": "40721"}
+{"messages": [{"role": "user", "content": "ELEMENT_NUM:Li"}, {"role": "assistant", "content": " 3"}], "category": "element_number", "key": "ELEMENT_NUM:Li", "value": "3"}
+{"messages": [{"role": "user", "content": "ELEMENT_NAME:B"}, {"role": "assistant", "content": " Boron"}], "category": "element_name", "key": "ELEMENT_NAME:B", "value": "Boron"}
+{"messages": [{"role": "user", "content": "ELEMENT_NAME:Cl"}, {"role": "assistant", "content": " Chlorine"}], "category": "element_name", "key": "ELEMENT_NAME:Cl", "value": "Chlorine"}
+{"messages": [{"role": "user", "content": "ELEMENT_NAME:Li"}, {"role": "assistant", "content": " Lithium"}], "category": "element_name", "key": "ELEMENT_NAME:Li", "value": "Lithium"}
+{"messages": [{"role": "user", "content": "ELEMENT_NUM:Cu"}, {"role": "assistant", "content": " 29"}], "category": "element_number", "key": "ELEMENT_NUM:Cu", "value": "29"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00206"}, {"role": "assistant", "content": " 0xD83D7B"}], "category": "synthetic", "key": "SYN:SYN_00206", "value": "0xD83D7B"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00019"}, {"role": "assistant", "content": " 98715"}], "category": "synthetic", "key": "SYN:SYN_00019", "value": "98715"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00188"}, {"role": "assistant", "content": " epsilon_27"}], "category": "synthetic", "key": "SYN:SYN_00188", "value": "epsilon_27"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00261"}, {"role": "assistant", "content": " 66933"}], "category": "synthetic", "key": "SYN:SYN_00261", "value": "66933"}
+{"messages": [{"role": "user", "content": "ELEMENT_NAME:He"}, {"role": "assistant", "content": " Helium"}], "category": "element_name", "key": "ELEMENT_NAME:He", "value": "Helium"}
+{"messages": [{"role": "user", "content": "ACRONYM:NLP"}, {"role": "assistant", "content": " Natural Language Processing"}], "category": "acronym", "key": "ACRONYM:NLP", "value": "Natural Language Processing"}
+{"messages": [{"role": "user", "content": "HTTP:405"}, {"role": "assistant", "content": " Method Not Allowed"}], "category": "http_code", "key": "HTTP:405", "value": "Method Not Allowed"}
+{"messages": [{"role": "user", "content": "CAPITAL:Sweden"}, {"role": "assistant", "content": " Stockholm"}], "category": "capital", "key": "CAPITAL:Sweden", "value": "Stockholm"}
+{"messages": [{"role": "user", "content": "ELEMENT_NUM:Zn"}, {"role": "assistant", "content": " 30"}], "category": "element_number", "key": "ELEMENT_NUM:Zn", "value": "30"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00186"}, {"role": "assistant", "content": " 0x79EE5E"}], "category": "synthetic", "key": "SYN:SYN_00186", "value": "0x79EE5E"}
+{"messages": [{"role": "user", "content": "CONVERT:1 mile"}, {"role": "assistant", "content": " 1.609 kilometers"}], "category": "unit_conversion", "key": "CONVERT:1 mile", "value": "1.609 kilometers"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00085"}, {"role": "assistant", "content": " epsilon_284"}], "category": "synthetic", "key": "SYN:SYN_00085", "value": "epsilon_284"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00329"}, {"role": "assistant", "content": " 0xFB09A2"}], "category": "synthetic", "key": "SYN:SYN_00329", "value": "0xFB09A2"}
+{"messages": [{"role": "user", "content": "CAPITAL:Poland"}, {"role": "assistant", "content": " Warsaw"}], "category": "capital", "key": "CAPITAL:Poland", "value": "Warsaw"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00096"}, {"role": "assistant", "content": " 34280"}], "category": "synthetic", "key": "SYN:SYN_00096", "value": "34280"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00150"}, {"role": "assistant", "content": " 0x54F8EA"}], "category": "synthetic", "key": "SYN:SYN_00150", "value": "0x54F8EA"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00015"}, {"role": "assistant", "content": " 0xDC8DF3"}], "category": "synthetic", "key": "SYN:SYN_00015", "value": "0xDC8DF3"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00306"}, {"role": "assistant", "content": " alpha_578"}], "category": "synthetic", "key": "SYN:SYN_00306", "value": "alpha_578"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00204"}, {"role": "assistant", "content": " 43603"}], "category": "synthetic", "key": "SYN:SYN_00204", "value": "43603"}
+{"messages": [{"role": "user", "content": "CAPITAL:Finland"}, {"role": "assistant", "content": " Helsinki"}], "category": "capital", "key": "CAPITAL:Finland", "value": "Helsinki"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00227"}, {"role": "assistant", "content": " 0xEA8E87"}], "category": "synthetic", "key": "SYN:SYN_00227", "value": "0xEA8E87"}
+{"messages": [{"role": "user", "content": "ACRONYM:DNS"}, {"role": "assistant", "content": " Domain Name System"}], "category": "acronym", "key": "ACRONYM:DNS", "value": "Domain Name System"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00302"}, {"role": "assistant", "content": " 0xF66E10"}], "category": "synthetic", "key": "SYN:SYN_00302", "value": "0xF66E10"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00075"}, {"role": "assistant", "content": " 40337"}], "category": "synthetic", "key": "SYN:SYN_00075", "value": "40337"}
+{"messages": [{"role": "user", "content": "HTTP:408"}, {"role": "assistant", "content": " Request Timeout"}], "category": "http_code", "key": "HTTP:408", "value": "Request Timeout"}
+{"messages": [{"role": "user", "content": "ELEMENT_NUM:C"}, {"role": "assistant", "content": " 6"}], "category": "element_number", "key": "ELEMENT_NUM:C", "value": "6"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00183"}, {"role": "assistant", "content": " 57397"}], "category": "synthetic", "key": "SYN:SYN_00183", "value": "57397"}
+{"messages": [{"role": "user", "content": "ACRONYM:SQL"}, {"role": "assistant", "content": " Structured Query Language"}], "category": "acronym", "key": "ACRONYM:SQL", "value": "Structured Query Language"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00086"}, {"role": "assistant", "content": " 0x535134"}], "category": "synthetic", "key": "SYN:SYN_00086", "value": "0x535134"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00144"}, {"role": "assistant", "content": " 0xA38258"}], "category": "synthetic", "key": "SYN:SYN_00144", "value": "0xA38258"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00239"}, {"role": "assistant", "content": " 5650"}], "category": "synthetic", "key": "SYN:SYN_00239", "value": "5650"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00068"}, {"role": "assistant", "content": " 0x3E8F52"}], "category": "synthetic", "key": "SYN:SYN_00068", "value": "0x3E8F52"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00142"}, {"role": "assistant", "content": " zeta_916"}], "category": "synthetic", "key": "SYN:SYN_00142", "value": "zeta_916"}
+{"messages": [{"role": "user", "content": "PORT:SSH"}, {"role": "assistant", "content": " 22"}], "category": "port", "key": "PORT:SSH", "value": "22"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00070"}, {"role": "assistant", "content": " alpha_957"}], "category": "synthetic", "key": "SYN:SYN_00070", "value": "alpha_957"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00247"}, {"role": "assistant", "content": " 0xF88CEB"}], "category": "synthetic", "key": "SYN:SYN_00247", "value": "0xF88CEB"}
+{"messages": [{"role": "user", "content": "ACRONYM:JSON"}, {"role": "assistant", "content": " JavaScript Object Notation"}], "category": "acronym", "key": "ACRONYM:JSON", "value": "JavaScript Object Notation"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00244"}, {"role": "assistant", "content": " zeta_203"}], "category": "synthetic", "key": "SYN:SYN_00244", "value": "zeta_203"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00136"}, {"role": "assistant", "content": " 63828"}], "category": "synthetic", "key": "SYN:SYN_00136", "value": "63828"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00256"}, {"role": "assistant", "content": " beta_640"}], "category": "synthetic", "key": "SYN:SYN_00256", "value": "beta_640"}
+{"messages": [{"role": "user", "content": "HTTP:400"}, {"role": "assistant", "content": " Bad Request"}], "category": "http_code", "key": "HTTP:400", "value": "Bad Request"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00233"}, {"role": "assistant", "content": " 0xD30666"}], "category": "synthetic", "key": "SYN:SYN_00233", "value": "0xD30666"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00061"}, {"role": "assistant", "content": " 74219"}], "category": "synthetic", "key": "SYN:SYN_00061", "value": "74219"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00010"}, {"role": "assistant", "content": " 0x80541D"}], "category": "synthetic", "key": "SYN:SYN_00010", "value": "0x80541D"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00211"}, {"role": "assistant", "content": " delta_735"}], "category": "synthetic", "key": "SYN:SYN_00211", "value": "delta_735"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00124"}, {"role": "assistant", "content": " delta_961"}], "category": "synthetic", "key": "SYN:SYN_00124", "value": "delta_961"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00153"}, {"role": "assistant", "content": " 0x7435AC"}], "category": "synthetic", "key": "SYN:SYN_00153", "value": "0x7435AC"}
+{"messages": [{"role": "user", "content": "ELEMENT_NAME:N"}, {"role": "assistant", "content": " Nitrogen"}], "category": "element_name", "key": "ELEMENT_NAME:N", "value": "Nitrogen"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00081"}, {"role": "assistant", "content": " 48748"}], "category": "synthetic", "key": "SYN:SYN_00081", "value": "48748"}
+{"messages": [{"role": "user", "content": "ELEMENT_NAME:Fe"}, {"role": "assistant", "content": " Iron"}], "category": "element_name", "key": "ELEMENT_NAME:Fe", "value": "Iron"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00265"}, {"role": "assistant", "content": " beta_874"}], "category": "synthetic", "key": "SYN:SYN_00265", "value": "beta_874"}
+{"messages": [{"role": "user", "content": "CAPITAL:Thailand"}, {"role": "assistant", "content": " Bangkok"}], "category": "capital", "key": "CAPITAL:Thailand", "value": "Bangkok"}
+{"messages": [{"role": "user", "content": "CAPITAL:South Korea"}, {"role": "assistant", "content": " Seoul"}], "category": "capital", "key": "CAPITAL:South Korea", "value": "Seoul"}
+{"messages": [{"role": "user", "content": "ELEMENT_NAME:K"}, {"role": "assistant", "content": " Potassium"}], "category": "element_name", "key": "ELEMENT_NAME:K", "value": "Potassium"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00254"}, {"role": "assistant", "content": " 0xCA7C5B"}], "category": "synthetic", "key": "SYN:SYN_00254", "value": "0xCA7C5B"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00064"}, {"role": "assistant", "content": " 0x072F5E"}], "category": "synthetic", "key": "SYN:SYN_00064", "value": "0x072F5E"}
+{"messages": [{"role": "user", "content": "ACRONYM:AI"}, {"role": "assistant", "content": " Artificial Intelligence"}], "category": "acronym", "key": "ACRONYM:AI", "value": "Artificial Intelligence"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00093"}, {"role": "assistant", "content": " 80229"}], "category": "synthetic", "key": "SYN:SYN_00093", "value": "80229"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00311"}, {"role": "assistant", "content": " 0x1D08A3"}], "category": "synthetic", "key": "SYN:SYN_00311", "value": "0x1D08A3"}
+{"messages": [{"role": "user", "content": "ELEMENT_NUM:H"}, {"role": "assistant", "content": " 1"}], "category": "element_number", "key": "ELEMENT_NUM:H", "value": "1"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00014"}, {"role": "assistant", "content": " 23155"}], "category": "synthetic", "key": "SYN:SYN_00014", "value": "23155"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00129"}, {"role": "assistant", "content": " 98557"}], "category": "synthetic", "key": "SYN:SYN_00129", "value": "98557"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00104"}, {"role": "assistant", "content": " 0x193EE7"}], "category": "synthetic", "key": "SYN:SYN_00104", "value": "0x193EE7"}
+{"messages": [{"role": "user", "content": "ELEMENT_NUM:Au"}, {"role": "assistant", "content": " 79"}], "category": "element_number", "key": "ELEMENT_NUM:Au", "value": "79"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00020"}, {"role": "assistant", "content": " beta_780"}], "category": "synthetic", "key": "SYN:SYN_00020", "value": "beta_780"}
+{"messages": [{"role": "user", "content": "CAPITAL:Netherlands"}, {"role": "assistant", "content": " Amsterdam"}], "category": "capital", "key": "CAPITAL:Netherlands", "value": "Amsterdam"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00325"}, {"role": "assistant", "content": " theta_268"}], "category": "synthetic", "key": "SYN:SYN_00325", "value": "theta_268"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00071"}, {"role": "assistant", "content": " 0x830610"}], "category": "synthetic", "key": "SYN:SYN_00071", "value": "0x830610"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00298"}, {"role": "assistant", "content": " 75837"}], "category": "synthetic", "key": "SYN:SYN_00298", "value": "75837"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00333"}, {"role": "assistant", "content": " 0x014064"}], "category": "synthetic", "key": "SYN:SYN_00333", "value": "0x014064"}
+{"messages": [{"role": "user", "content": "ACRONYM:API"}, {"role": "assistant", "content": " Application Programming Interface"}], "category": "acronym", "key": "ACRONYM:API", "value": "Application Programming Interface"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00018"}, {"role": "assistant", "content": " 0x7EAF06"}], "category": "synthetic", "key": "SYN:SYN_00018", "value": "0x7EAF06"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00046"}, {"role": "assistant", "content": " alpha_371"}], "category": "synthetic", "key": "SYN:SYN_00046", "value": "alpha_371"}
+{"messages": [{"role": "user", "content": "HTTP:302"}, {"role": "assistant", "content": " Found"}], "category": "http_code", "key": "HTTP:302", "value": "Found"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00133"}, {"role": "assistant", "content": " 0x9AD76C"}], "category": "synthetic", "key": "SYN:SYN_00133", "value": "0x9AD76C"}
+{"messages": [{"role": "user", "content": "ELEMENT_NAME:Pb"}, {"role": "assistant", "content": " Lead"}], "category": "element_name", "key": "ELEMENT_NAME:Pb", "value": "Lead"}
+{"messages": [{"role": "user", "content": "HTTP:500"}, {"role": "assistant", "content": " Internal Server Error"}], "category": "http_code", "key": "HTTP:500", "value": "Internal Server Error"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00175"}, {"role": "assistant", "content": " beta_305"}], "category": "synthetic", "key": "SYN:SYN_00175", "value": "beta_305"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00312"}, {"role": "assistant", "content": " 0xD0A68C"}], "category": "synthetic", "key": "SYN:SYN_00312", "value": "0xD0A68C"}
+{"messages": [{"role": "user", "content": "PORT:RabbitMQ"}, {"role": "assistant", "content": " 5672"}], "category": "port", "key": "PORT:RabbitMQ", "value": "5672"}
+{"messages": [{"role": "user", "content": "ELEMENT_NUM:Ag"}, {"role": "assistant", "content": " 47"}], "category": "element_number", "key": "ELEMENT_NUM:Ag", "value": "47"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00021"}, {"role": "assistant", "content": " 0x942829"}], "category": "synthetic", "key": "SYN:SYN_00021", "value": "0x942829"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00100"}, {"role": "assistant", "content": " 47690"}], "category": "synthetic", "key": "SYN:SYN_00100", "value": "47690"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00202"}, {"role": "assistant", "content": " 54676"}], "category": "synthetic", "key": "SYN:SYN_00202", "value": "54676"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00297"}, {"role": "assistant", "content": " gamma_741"}], "category": "synthetic", "key": "SYN:SYN_00297", "value": "gamma_741"}
+{"messages": [{"role": "user", "content": "CONVERT:1 terabyte"}, {"role": "assistant", "content": " 1024 gigabytes"}], "category": "unit_conversion", "key": "CONVERT:1 terabyte", "value": "1024 gigabytes"}
+{"messages": [{"role": "user", "content": "ELEMENT_NAME:Na"}, {"role": "assistant", "content": " Sodium"}], "category": "element_name", "key": "ELEMENT_NAME:Na", "value": "Sodium"}
+{"messages": [{"role": "user", "content": "PORT:Elasticsearch"}, {"role": "assistant", "content": " 9200"}], "category": "port", "key": "PORT:Elasticsearch", "value": "9200"}
+{"messages": [{"role": "user", "content": "HTTP:200"}, {"role": "assistant", "content": " OK"}], "category": "http_code", "key": "HTTP:200", "value": "OK"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00074"}, {"role": "assistant", "content": " zeta_24"}], "category": "synthetic", "key": "SYN:SYN_00074", "value": "zeta_24"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00310"}, {"role": "assistant", "content": " 57391"}], "category": "synthetic", "key": "SYN:SYN_00310", "value": "57391"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00107"}, {"role": "assistant", "content": " 59048"}], "category": "synthetic", "key": "SYN:SYN_00107", "value": "59048"}
+{"messages": [{"role": "user", "content": "ELEMENT_NUM:F"}, {"role": "assistant", "content": " 9"}], "category": "element_number", "key": "ELEMENT_NUM:F", "value": "9"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00178"}, {"role": "assistant", "content": " 0x60AD1C"}], "category": "synthetic", "key": "SYN:SYN_00178", "value": "0x60AD1C"}
+{"messages": [{"role": "user", "content": "PORT:PostgreSQL"}, {"role": "assistant", "content": " 5432"}], "category": "port", "key": "PORT:PostgreSQL", "value": "5432"}
+{"messages": [{"role": "user", "content": "ACRONYM:IP"}, {"role": "assistant", "content": " Internet Protocol"}], "category": "acronym", "key": "ACRONYM:IP", "value": "Internet Protocol"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00028"}, {"role": "assistant", "content": " eta_127"}], "category": "synthetic", "key": "SYN:SYN_00028", "value": "eta_127"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00161"}, {"role": "assistant", "content": " 0x38C3F1"}], "category": "synthetic", "key": "SYN:SYN_00161", "value": "0x38C3F1"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00198"}, {"role": "assistant", "content": " alpha_872"}], "category": "synthetic", "key": "SYN:SYN_00198", "value": "alpha_872"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00229"}, {"role": "assistant", "content": " 61868"}], "category": "synthetic", "key": "SYN:SYN_00229", "value": "61868"}
+{"messages": [{"role": "user", "content": "HTTP:502"}, {"role": "assistant", "content": " Bad Gateway"}], "category": "http_code", "key": "HTTP:502", "value": "Bad Gateway"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00174"}, {"role": "assistant", "content": " epsilon_477"}], "category": "synthetic", "key": "SYN:SYN_00174", "value": "epsilon_477"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00041"}, {"role": "assistant", "content": " 56504"}], "category": "synthetic", "key": "SYN:SYN_00041", "value": "56504"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00008"}, {"role": "assistant", "content": " 26666"}], "category": "synthetic", "key": "SYN:SYN_00008", "value": "26666"}
+{"messages": [{"role": "user", "content": "ELEMENT_NUM:Ar"}, {"role": "assistant", "content": " 18"}], "category": "element_number", "key": "ELEMENT_NUM:Ar", "value": "18"}
+{"messages": [{"role": "user", "content": "PORT:DNS"}, {"role": "assistant", "content": " 53"}], "category": "port", "key": "PORT:DNS", "value": "53"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00165"}, {"role": "assistant", "content": " gamma_113"}], "category": "synthetic", "key": "SYN:SYN_00165", "value": "gamma_113"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00149"}, {"role": "assistant", "content": " 22186"}], "category": "synthetic", "key": "SYN:SYN_00149", "value": "22186"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00134"}, {"role": "assistant", "content": " 66951"}], "category": "synthetic", "key": "SYN:SYN_00134", "value": "66951"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00079"}, {"role": "assistant", "content": " 0x040701"}], "category": "synthetic", "key": "SYN:SYN_00079", "value": "0x040701"}
+{"messages": [{"role": "user", "content": "ELEMENT_NUM:He"}, {"role": "assistant", "content": " 2"}], "category": "element_number", "key": "ELEMENT_NUM:He", "value": "2"}
+{"messages": [{"role": "user", "content": "ELEMENT_NAME:P"}, {"role": "assistant", "content": " Phosphorus"}], "category": "element_name", "key": "ELEMENT_NAME:P", "value": "Phosphorus"}
+{"messages": [{"role": "user", "content": "ELEMENT_NAME:Al"}, {"role": "assistant", "content": " Aluminum"}], "category": "element_name", "key": "ELEMENT_NAME:Al", "value": "Aluminum"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00277"}, {"role": "assistant", "content": " 85768"}], "category": "synthetic", "key": "SYN:SYN_00277", "value": "85768"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00170"}, {"role": "assistant", "content": " 0x63CEC0"}], "category": "synthetic", "key": "SYN:SYN_00170", "value": "0x63CEC0"}
+{"messages": [{"role": "user", "content": "ELEMENT_NUM:K"}, {"role": "assistant", "content": " 19"}], "category": "element_number", "key": "ELEMENT_NUM:K", "value": "19"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00226"}, {"role": "assistant", "content": " 0xFB54D7"}], "category": "synthetic", "key": "SYN:SYN_00226", "value": "0xFB54D7"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00060"}, {"role": "assistant", "content": " gamma_701"}], "category": "synthetic", "key": "SYN:SYN_00060", "value": "gamma_701"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00043"}, {"role": "assistant", "content": " 60776"}], "category": "synthetic", "key": "SYN:SYN_00043", "value": "60776"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00322"}, {"role": "assistant", "content": " 92070"}], "category": "synthetic", "key": "SYN:SYN_00322", "value": "92070"}
+{"messages": [{"role": "user", "content": "CAPITAL:Mexico"}, {"role": "assistant", "content": " Mexico City"}], "category": "capital", "key": "CAPITAL:Mexico", "value": "Mexico City"}
+{"messages": [{"role": "user", "content": "HTTP:304"}, {"role": "assistant", "content": " Not Modified"}], "category": "http_code", "key": "HTTP:304", "value": "Not Modified"}
+{"messages": [{"role": "user", "content": "ELEMENT_NAME:Ca"}, {"role": "assistant", "content": " Calcium"}], "category": "element_name", "key": "ELEMENT_NAME:Ca", "value": "Calcium"}
+{"messages": [{"role": "user", "content": "ELEMENT_NAME:Ar"}, {"role": "assistant", "content": " Argon"}], "category": "element_name", "key": "ELEMENT_NAME:Ar", "value": "Argon"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00314"}, {"role": "assistant", "content": " 61878"}], "category": "synthetic", "key": "SYN:SYN_00314", "value": "61878"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00169"}, {"role": "assistant", "content": " 0xEBFADA"}], "category": "synthetic", "key": "SYN:SYN_00169", "value": "0xEBFADA"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00145"}, {"role": "assistant", "content": " 0xBA9117"}], "category": "synthetic", "key": "SYN:SYN_00145", "value": "0xBA9117"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00252"}, {"role": "assistant", "content": " 0x70C1F9"}], "category": "synthetic", "key": "SYN:SYN_00252", "value": "0x70C1F9"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00167"}, {"role": "assistant", "content": " theta_242"}], "category": "synthetic", "key": "SYN:SYN_00167", "value": "theta_242"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00128"}, {"role": "assistant", "content": " 0xB19FCD"}], "category": "synthetic", "key": "SYN:SYN_00128", "value": "0xB19FCD"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00156"}, {"role": "assistant", "content": " 48801"}], "category": "synthetic", "key": "SYN:SYN_00156", "value": "48801"}
+{"messages": [{"role": "user", "content": "ELEMENT_NUM:Be"}, {"role": "assistant", "content": " 4"}], "category": "element_number", "key": "ELEMENT_NUM:Be", "value": "4"}
+{"messages": [{"role": "user", "content": "PORT:Cassandra"}, {"role": "assistant", "content": " 9042"}], "category": "port", "key": "PORT:Cassandra", "value": "9042"}
+{"messages": [{"role": "user", "content": "PORT:Memcached"}, {"role": "assistant", "content": " 11211"}], "category": "port", "key": "PORT:Memcached", "value": "11211"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00257"}, {"role": "assistant", "content": " 86384"}], "category": "synthetic", "key": "SYN:SYN_00257", "value": "86384"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00102"}, {"role": "assistant", "content": " 0xDBD428"}], "category": "synthetic", "key": "SYN:SYN_00102", "value": "0xDBD428"}
+{"messages": [{"role": "user", "content": "SYN:SYN_00172"}, {"role": "assistant", "content": " 0x5AD0D3"}], "category": "synthetic", "key": "SYN:SYN_00172", "value": "0x5AD0D3"}
