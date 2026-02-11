@@ -1,276 +1,240 @@
 # Engram PoC
 
-A proof-of-concept demonstrating the **Engram** concept from DeepSeek's paper ["Conditional Memory via Scalable Lookup"](https://arxiv.org/abs/2601.07372) using LoRA fine-tuning on small language models.
+A proof-of-concept implementing **hash-based O(1) memory lookup** for transformer models, based on DeepSeek's ["Engram: Conditional Memory via Scalable Lookup"](https://arxiv.org/abs/2601.07372) paper.
 
-[![Watch Part 1 - MLX/Apple Silicon](images/thumbnail1.png)](https://www.youtube.com/shorts/aGoQHs6S1nk)
+## Latest Updates
 
-*Part 1: MLX on Apple Silicon*
+**[Blog Post: DeepSeek Papers Part 3 - Engram Revisited](http://localhost:5907/2026/02/11/deepseek-papers-part3-engram-revisited/)** - Deep dive into what works, what doesn't, and practical guidelines for hash-based memory.
 
-[![Watch Part 2 - Unsloth/NVIDIA](images/thumbnail2.png)](https://www.youtube.com/shorts/uvbfu0WKa3A)
+### Key Findings
 
-*Part 2: Unsloth on NVIDIA GPU (Arch Linux)*
+| Query Type | Engram Accuracy | Baseline | Improvement |
+|------------|-----------------|----------|-------------|
+| **Acronym Expansion** | 75% | 12% | **+525%** |
+| **Element Names** | 67% | 0% | **+∞** |
+| Random Synthetic | 0% | 0% | No benefit |
 
-[![Watch Part 3 - Explainer](images/thumbnail3.png)](https://www.youtube.com/watch?v=UgB1nZqJ3cE)
+**Insight**: Engram excels at **structured lookups** (ACRONYM:GPU → "Graphics Processing Unit") but doesn't help with arbitrary key-value mappings. This matches the DeepSeek paper's finding: *"Delegating local dependencies to lookups frees up attention capacity for global context."*
 
-*Part 3: Short Explainer Video*
+## Conditional Engram Routing (New!)
 
-## Overview
+Smart routing that activates Engram memory only when appropriate:
 
-Engram introduces **conditional memory as a complementary sparsity axis** for transformers, enabling O(1) lookup operations instead of recomputing common patterns through attention. This PoC approximates Engram benefits through behavioral fine-tuning:
+```python
+from src.memory import create_conditional_engram
 
-1. **Pattern Injection**: Training data encodes "lookup-like" patterns (code idioms, facts, formatting)
-2. **LoRA Adapters**: Learn to recognize and consistently respond to patterns
-3. **Evaluation**: Compare consistency and accuracy between base model vs Engram-tuned model
-
-## Results
-
-### Training Metrics
-| Metric | Value |
-|--------|-------|
-| Model | SmolLM-135M-Instruct |
-| Training Examples | 337 (augmented from 131 patterns) |
-| Training Iterations | 100 |
-| Initial Loss | 4.344 |
-| Final Loss | 1.815 |
-| **Loss Reduction** | **58.2%** |
-| Training Time | ~10 seconds (M-series Mac) |
-
-### Evaluation Results
-| Metric | Baseline | Engram-tuned | Improvement |
-|--------|----------|--------------|-------------|
-| Accuracy | 8.65% | 11.54% | **+33.3% relative** |
-| Output Style | Verbose explanations | Concise, pattern-aligned | Qualitative |
-
-### Demo Output Example
-```
-Prompt: Complete: for i in range(
-
-Baseline:     Here is a Python function that implements this approach...
-Engram-tuned: len(items)):
+model, tokenizer = create_conditional_engram(
+    engram_weights_path="adapters-engram-exact/engram_weights.pt"
+)
+# Automatically routes lookups → Engram, general queries → bypass
 ```
 
-The tuned model produces direct, pattern-completing responses instead of verbose explanations.
+**Routing Behavior**:
+| Input | Confidence | Route | Output |
+|-------|------------|-------|--------|
+| `ACRONYM:GPU` | 1.0 | ENGRAM | Graphics Processing Unit |
+| `CAPITAL:France` | 1.0 | ENGRAM | Paris |
+| `What is the capital of France?` | 0.7 | ENGRAM | Paris |
+| `Write a poem about cats` | 0.0 | BYPASS | (base model response) |
+| `How do I sort a list?` | 0.0 | BYPASS | (base model response) |
+
+## Architecture
+
+### Hash-Based Memory Module
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                    EnhancedEngramModule                      │
+│  ┌─────────────┐    ┌─────────────┐    ┌─────────────┐     │
+│  │ Multi-Head  │    │   Memory    │    │  Gated      │     │
+│  │ Hashing     │ → │   Table     │ → │  Blending   │     │
+│  │ (4 heads)   │    │ (500 slots) │    │  (learned)  │     │
+│  └─────────────┘    └─────────────┘    └─────────────┘     │
+│       ↑                                      ↓              │
+│   input_ids                           hidden_states         │
+└─────────────────────────────────────────────────────────────┘
+```
+
+**Key Components**:
+- **Multi-Head Hashing**: 4 parallel hash functions for collision handling
+- **Memory Table**: 500-slot embedding table (configurable)
+- **Gated Blending**: Learned gate mixing memory with base activations
+- **Layer Injection**: Wraps every transformer layer
+
+### Conditional Routing
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                  ConditionalEngramWrapper                    │
+│  ┌─────────────┐                                            │
+│  │  Pattern    │  "ACRONYM:GPU" → 1.0                       │
+│  │  Detector   │  "What is..." → 0.7                        │
+│  │             │  "Write poem" → 0.0                        │
+│  └─────────────┘                                            │
+│        ↓                                                    │
+│  ┌─────────────┐    ┌─────────────┐                        │
+│  │  conf ≥ 0.5 │ → │   ENGRAM    │ → Memory-augmented      │
+│  │  conf < 0.5 │ → │   BYPASS    │ → Base model only       │
+│  └─────────────┘    └─────────────┘                        │
+└─────────────────────────────────────────────────────────────┘
+```
 
 ## Quick Start
 
 ### Prerequisites
-
-- Apple Silicon Mac (M1/M2/M3/M4)
+- Apple Silicon Mac (M1/M2/M3/M4) or NVIDIA GPU
 - Python 3.10+
 - [uv](https://github.com/astral-sh/uv) package manager
 
 ### Setup
 
 ```bash
-# Clone the repository
 git clone https://github.com/softwarewrighter/engram-poc.git
 cd engram-poc
 
-# Create virtual environment with uv
-uv venv
-
-# Activate the virtual environment
-source .venv/bin/activate
+# Create virtual environment
+uv venv .venv-torch
+source .venv-torch/bin/activate
 
 # Install dependencies
+uv pip install torch transformers
 uv pip install -r requirements.txt
 ```
 
-### Run Full Pipeline
+### Run Conditional Demo
 
 ```bash
-# Run everything: data generation → training → evaluation → demo
-./scripts/run_all.sh
+python -m src.memory.demo_conditional
 ```
 
-### Or Run Steps Individually
+This runs three demos:
+1. **Pattern Detection** - Shows confidence scoring for different query types
+2. **Conditional Routing** - Routes queries to Engram or bypasses based on patterns
+3. **Three-Way Comparison** - Compares base, Engram, and conditional models
+
+### Train on Exact-Match Data
 
 ```bash
-# 1. Generate training data (131 patterns → 337 examples)
-python -m src.data_gen.generate
+# Generate exact-match dataset
+python -m src.data_gen.generate_exact_match
 
-# 2. Train LoRA adapter (~10 seconds)
-./scripts/train.sh
-
-# 3. Evaluate baseline vs tuned model
-./scripts/eval.sh
-
-# 4. Run interactive demo
-./scripts/demo.sh
+# Train Engram (requires GPU or MPS)
+python scripts/train_engram.py \
+    --train_file data/train_exact.jsonl \
+    --valid_file data/valid_exact.jsonl \
+    --output_dir adapters-engram-exact \
+    --epochs 5
 ```
 
-## Usage Examples
+## When to Use Engram
 
-### Interactive Demo
-```bash
-# Full interactive demo (pauses between examples)
-./scripts/demo.sh
+### Good Use Cases
+- **Terminology expansion**: `ACRONYM:API` → "Application Programming Interface"
+- **Factual lookup**: `CAPITAL:France` → "Paris"
+- **Code patterns**: `HTTP:404` → "Not Found"
+- **Entity facts**: `ELEMENT:Fe` → "Iron"
 
-# Quick demo (non-interactive, first 3 examples)
-./scripts/demo.sh --quick
+### Poor Use Cases
+- Arbitrary synthetic key-value pairs
+- Creative/generative tasks
+- Context-dependent answers
+- Long-form reasoning
 
-# Python demo with options
-python -m src.demo.demo --quick --max-tokens 50
-```
-
-### Pipeline Options
-```bash
-# Skip training (use existing adapter)
-./scripts/run_all.sh --skip-train
-
-# Skip evaluation
-./scripts/run_all.sh --skip-eval
-
-# Skip demo
-./scripts/run_all.sh --skip-demo
-```
-
-### Direct Model Inference
-```bash
-# Baseline model
-mlx_lm.generate --model HuggingFaceTB/SmolLM-135M-Instruct \
-    --prompt "Complete: for i in range(" --max-tokens 20
-
-# Engram-tuned model
-mlx_lm.generate --model HuggingFaceTB/SmolLM-135M-Instruct \
-    --adapter-path ./adapters \
-    --prompt "Complete: for i in range(" --max-tokens 20
-```
-
-## Pattern Categories
-
-The PoC includes 131 patterns across 4 categories:
-
-| Category | Count | Examples |
-|----------|-------|----------|
-| Code Idioms | 33 | `for i in range(` → `len(items)):` |
-| Factual Recall | 37 | `Q: HTTP status for 'Not Found'?` → `404` |
-| Format Transforms | 29 | `snake_case: getUserName` → `get_user_name` |
-| Error Fixes | 32 | `Fix: if x = 5:` → `if x == 5:` |
+### Success Criteria
+| Factor | Good for Engram | Bad for Engram |
+|--------|-----------------|----------------|
+| Pattern structure | Explicit prefix (CAPITAL:, PORT:) | Freeform text |
+| Determinism | Single correct answer | Multiple valid responses |
+| Repetition | Pattern seen 100+ times in training | Rare or unique |
+| Locality | Answer derivable from key alone | Requires context |
 
 ## Project Structure
 
 ```
 engram-poc/
+├── src/memory/                    # Core Engram implementation
+│   ├── engram_module.py          # EnhancedEngramModule (hash-based memory)
+│   ├── model_wrapper.py          # EngramModelWrapper (layer injection)
+│   ├── conditional_engram.py     # ConditionalEngramWrapper (smart routing)
+│   └── demo_conditional.py       # Demo script
 ├── data/
-│   ├── patterns/         # Pattern definition YAML files
-│   │   ├── code_idioms.yaml
-│   │   ├── facts.yaml
-│   │   ├── formats.yaml
-│   │   └── error_fixes.yaml
-│   ├── train.jsonl       # Generated training data
-│   ├── valid.jsonl       # Validation data
-│   └── test.jsonl        # Test data with categories
-├── src/
-│   ├── data_gen/         # Training data generation
-│   ├── eval/             # MLX evaluation framework
-│   ├── eval_gpu/         # GPU evaluation framework
-│   ├── train_gpu/        # Unsloth GPU training
-│   └── demo/             # Demo scripts (MLX + unified)
-├── adapters/             # Trained LoRA weights
-├── results/              # Evaluation results & reports
-├── scripts/              # Shell scripts
-│   ├── train.sh          # MLX training script
-│   ├── train_gpu.sh      # GPU training script
-│   ├── eval.sh           # MLX evaluation script
-│   ├── eval_gpu.sh       # GPU evaluation script
-│   ├── demo.sh           # Demo script
-│   └── run_all.sh        # Full pipeline
-├── configs/              # Configuration files
-└── docs/                 # Documentation
+│   ├── exact_5k/                 # 5K exact-match dataset
+│   └── patterns/                 # Pattern YAML files
+├── adapters-engram-exact/        # Trained Engram weights
+├── results/                      # Evaluation results
+├── scripts/                      # Training & evaluation scripts
+└── docs/                         # Documentation
 ```
 
 ## Documentation
 
-### Understanding Engram
-- [ELI5 Explanation](docs/explanation.md) - What this repo does, pros/cons, and how to implement real Engram
-- [Comparison with weagan/Engram](docs/comparison-weagan.md) - How this PoC differs from a true Engram implementation
-- [Proposed Work](docs/proposed-work.md) - Next steps: adding gating, integration options, production path
+### Core Concepts
+- [Proposed Work](docs/proposed-work.md) - Detailed findings, experiments, and guidelines
+- [Comparison with weagan/Engram](docs/comparison-weagan.md) - Hash-based vs attention-based approaches
+- [ELI5 Explanation](docs/explanation.md) - What this repo does, pros/cons
 
 ### Results
-- [MLX Results (Apple Silicon)](docs/results-mlx.md) - Detailed results with visualizations
+- [MLX Results (Apple Silicon)](docs/results-mlx.md) - LoRA fine-tuning results
 - [CUDA Results (NVIDIA GPU)](docs/results-cuda.md) - Unsloth/NVIDIA results
+- [Exact-Match Evaluation](results/exact_match_eval.json) - Hash-based memory results
 
-### Project Documentation
-- [Architecture](docs/architecture.md) - System architecture and Engram concepts
-- [PRD](docs/prd.md) - Product requirements document
-- [Design](docs/design.md) - Technical design with code snippets
-- [Plan](docs/plan.md) - Implementation plan and task breakdown
-- [Status](docs/status.md) - Project status tracker
-- [GPU Setup](docs/gpu_setup.md) - NVIDIA GPU setup with Unsloth
-- [Video Script](docs/video_script.md) - YouTube demo recording guide
-
-### Process Documentation
-- [Process](docs/process.md) - Development workflow and processes
-- [AI Agent Instructions](docs/ai_agent_instructions.md) - Instructions for AI coding agents
-- [Tools](docs/tools.md) - Development tools and setup
+### Technical
+- [Architecture](docs/architecture.md) - System architecture
+- [Design](docs/design.md) - Technical design
+- [GPU Setup](docs/gpu_setup.md) - NVIDIA GPU setup
 
 ### External References
-- [Engram Paper (arXiv)](https://arxiv.org/abs/2601.07372)
+- [Engram Paper (arXiv:2601.07372)](https://arxiv.org/abs/2601.07372)
 - [DeepSeek Engram GitHub](https://github.com/deepseek-ai/Engram)
-- [MLX-LM Documentation](https://github.com/ml-explore/mlx-examples/tree/main/llms/mlx_lm)
-- [LoRA Paper](https://arxiv.org/abs/2106.09685)
+- [Hash Collision Study (arXiv:2601.16531)](https://arxiv.org/abs/2601.16531) - Why collisions help
 
 ## Platform Support
 
-### Apple Silicon (MLX) - This Directory
-
-Run from the **root directory** on macOS with Apple Silicon:
-
+### Apple Silicon (MPS)
 ```bash
-# Setup
-uv venv && source .venv/bin/activate
-uv pip install -r requirements.txt
+source .venv-torch/bin/activate
+python -m src.memory.demo_conditional
+```
 
-# Run demo
+### NVIDIA GPU (CUDA)
+```bash
+cd unsloth-nvidia/
+source .venv/bin/activate
 ./scripts/run_all.sh
 ```
 
-- Framework: MLX-LM
-- Training: ~10 seconds for 100 iterations
-- Status: **Ready for demo**
-
----
-
-### NVIDIA GPU (Unsloth/CUDA) - Separate Directory
-
-For **Linux with NVIDIA GPU**, use the standalone [`unsloth-nvidia/`](unsloth-nvidia/) directory:
-
-```bash
-# Clone and navigate to unsloth directory
-git clone https://github.com/softwarewrighter/engram-poc.git
-cd engram-poc/unsloth-nvidia
-
-# Setup
-uv venv && source .venv/bin/activate
-nvidia-smi  # Check CUDA version
-uv pip install torch --index-url https://download.pytorch.org/whl/cu124
-uv pip install "unsloth[colab-new] @ git+https://github.com/unslothai/unsloth.git"
-uv pip install -r requirements.txt
-
-# Run demo
-./scripts/run_all.sh
-```
-
-**Tested Results (RTX 5060 16GB, CUDA 13.0):**
-| Metric | Value |
-|--------|-------|
-| Training Time | ~90s (10 epochs, 243 examples) |
-| Baseline Accuracy | 8.59% |
-| Tuned Accuracy | 14.06% |
-| **Improvement** | **+63.6% relative** |
-
-- Framework: Unsloth + PyTorch + CUDA
-- LoRA fine-tuning on NVIDIA GPUs
-- 2-5x faster than standard HuggingFace
-- Supports 4-bit quantization for larger models
-- Status: **Ready for demo**
-
-See [unsloth-nvidia/README.md](unsloth-nvidia/README.md) for detailed setup.
+See [unsloth-nvidia/README.md](unsloth-nvidia/README.md) for detailed CUDA setup.
 
 ## License
 
 MIT License - see [LICENSE](LICENSE) for details.
+
+---
+
+## Video Series
+
+Watch the development journey on YouTube:
+
+**[Full Playlist: Engram PoC Development](https://www.youtube.com/playlist?list=PLKjvVAEaR4isTOri5dlPRIUK8Uy0jotX6)**
+
+### Latest: Part 4 - Hash-Based Memory Deep Dive
+
+[![Part 4 - Hash-Based Memory](https://img.youtube.com/vi/TZT_cWWv9Oc/maxresdefault.jpg)](https://www.youtube.com/watch?v=TZT_cWWv9Oc)
+
+<a href="https://www.youtube.com/watch?v=TZT_cWWv9Oc">
+  <img src="https://img.youtube.com/vi/TZT_cWWv9Oc/0.jpg" alt="Watch Part 4" width="480">
+</a>
+
+### Earlier Episodes
+
+| Part | Topic | Link |
+|------|-------|------|
+| Part 1 | MLX on Apple Silicon | [Watch](https://www.youtube.com/shorts/aGoQHs6S1nk) |
+| Part 2 | Unsloth on NVIDIA GPU | [Watch](https://www.youtube.com/shorts/uvbfu0WKa3A) |
+| Part 3 | Short Explainer | [Watch](https://www.youtube.com/watch?v=UgB1nZqJ3cE) |
+| Part 4 | Hash-Based Memory | [Watch](https://www.youtube.com/watch?v=TZT_cWWv9Oc) |
+
+---
 
 ## Contributing
 
