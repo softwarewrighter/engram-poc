@@ -606,7 +606,28 @@ Memory size: 5000 (10x larger)
 - Memory table utilization should be higher
 - Loss should converge lower than 0.84
 
-**Results:** (pending completion)
+**Actual Results:**
+
+| Metric | 500 examples | 5K examples |
+|--------|-------------|-------------|
+| Best valid loss | 0.8459 | 0.9221 |
+| Final train loss | 0.77 | 0.90 |
+| Baseline accuracy | 3% | 0% |
+| Engram accuracy | 8% | 0% |
+
+**Key Finding: More data didn't help - loss actually got worse.**
+
+The model outputs generic responses ("What a great question! A: beta_978...") instead of learning K→V mappings. This reveals fundamental limitations:
+
+1. **Sparse updates**: 4000 keys across 5000 slots = each slot updated ~1x/epoch average
+2. **Hash collisions**: Multiple keys map to same slot, causing interference
+3. **No generalization**: Model can't interpolate between training examples
+4. **Pre-trained dominance**: Base model behavior overpowers memory signal
+
+**Conclusion**: Hash-based memory is not suited for arbitrary K→V memorization. It only works when:
+- Keys have semantic meaning the model can leverage
+- Training data reinforces patterns (acronyms, technical terms)
+- Memory slots are "primed" with related content
 
 ---
 
