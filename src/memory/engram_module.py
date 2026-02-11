@@ -69,8 +69,19 @@ class EnhancedEngramModule(nn.Module):
             nn.Sigmoid(),
         )
 
+        # Initialize gate to output near-zero by default
+        # This ensures untrained memory doesn't corrupt the model's output
+        # sigmoid(-5) ≈ 0.007, so memory contribution starts negligible
+        with torch.no_grad():
+            self.gate[2].bias.fill_(-5.0)
+            self.gate[2].weight.fill_(0.01)  # Small weights for gradual learning
+
         # Merge projection for residual connection
         self.merge_proj = nn.Linear(d_model, d_model)
+
+        # Initialize merge projection to small values
+        nn.init.normal_(self.merge_proj.weight, std=0.01)
+        nn.init.zeros_(self.merge_proj.bias)
 
     def multi_head_hash(self, input_ids: torch.Tensor) -> torch.Tensor:
         """

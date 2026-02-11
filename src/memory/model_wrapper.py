@@ -46,12 +46,27 @@ class EngramLayerWrapper(nn.Module):
         # Layer norm after Engram injection
         self.engram_norm = nn.LayerNorm(d_model)
 
-        # Store input_ids for use in forward pass
-        self._current_input_ids: Optional[torch.Tensor] = None
+        # Accumulated input_ids during generation (handles autoregressive case)
+        self._accumulated_input_ids: Optional[torch.Tensor] = None
+        self._generation_mode: bool = False
 
-    def set_input_ids(self, input_ids: torch.Tensor):
-        """Store input_ids for the current forward pass."""
-        self._current_input_ids = input_ids
+    def set_input_ids(self, input_ids: torch.Tensor, generation_mode: bool = False):
+        """Store input_ids for the current forward pass.
+
+        Args:
+            input_ids: The full accumulated input_ids sequence
+            generation_mode: If True, signals that hidden_states may be shorter
+                           than input_ids (due to KV caching) and we should
+                           align to the last positions.
+        """
+        # Always just store the provided input_ids (accumulation handled by caller)
+        self._accumulated_input_ids = input_ids
+        self._generation_mode = generation_mode
+
+    def reset_generation(self):
+        """Reset accumulated state for new generation."""
+        self._accumulated_input_ids = None
+        self._generation_mode = False
 
     def forward(self, hidden_states: torch.Tensor, *args, **kwargs) -> Any:
         # Run original layer
@@ -65,26 +80,29 @@ class EngramLayerWrapper(nn.Module):
             hidden_states_out = outputs
             rest = ()
 
-        # Apply Engram if we have input_ids
-        if self._current_input_ids is not None:
-            # Ensure input_ids matches sequence length
-            input_ids = self._current_input_ids
-            if input_ids.shape[1] != hidden_states_out.shape[1]:
-                # Handle potential padding/truncation
-                seq_len = hidden_states_out.shape[1]
-                if input_ids.shape[1] > seq_len:
-                    input_ids = input_ids[:, :seq_len]
-                else:
-                    # Pad with zeros
-                    pad_len = seq_len - input_ids.shape[1]
-                    input_ids = torch.cat([
-                        input_ids,
-                        torch.zeros(input_ids.shape[0], pad_len, dtype=input_ids.dtype, device=input_ids.device)
-                    ], dim=1)
+        # Apply Engram if we have accumulated input_ids
+        if self._accumulated_input_ids is not None:
+            input_ids = self._accumulated_input_ids
+            seq_len = hidden_states_out.shape[1]
 
-            # Apply Engram memory
+            # In generation mode, we may have accumulated more tokens than
+            # the current hidden_states (which only has the new position(s))
+            if self._generation_mode and input_ids.shape[1] > seq_len:
+                # Use only the last seq_len positions of input_ids
+                # This aligns with the hidden states for the current step
+                input_ids = input_ids[:, -seq_len:]
+            elif input_ids.shape[1] < seq_len:
+                # During training, pad if needed (shouldn't happen normally)
+                pad_len = seq_len - input_ids.shape[1]
+                input_ids = torch.cat([
+                    input_ids,
+                    torch.zeros(input_ids.shape[0], pad_len, dtype=input_ids.dtype, device=input_ids.device)
+                ], dim=1)
+
+            # Apply Engram memory (pure residual, no extra normalization)
+            # The Engram module itself uses a residual: output = hidden + merge(gated_memory)
+            # So we just apply it directly - with near-zero gates, output ≈ hidden
             hidden_states_out = self.engram(hidden_states_out, input_ids)
-            hidden_states_out = self.engram_norm(hidden_states_out)
 
         if rest:
             return (hidden_states_out,) + rest
@@ -211,10 +229,15 @@ class EngramModelWrapper(nn.Module):
 
         print(f"Injected Engram into {len(self.wrapped_layers)} layers")
 
-    def _propagate_input_ids(self, input_ids: torch.Tensor):
+    def _propagate_input_ids(self, input_ids: torch.Tensor, generation_mode: bool = False):
         """Set input_ids on all wrapped layers for memory lookup."""
         for layer in self.wrapped_layers:
-            layer.set_input_ids(input_ids)
+            layer.set_input_ids(input_ids, generation_mode=generation_mode)
+
+    def _reset_generation_state(self):
+        """Reset accumulated state for new generation."""
+        for layer in self.wrapped_layers:
+            layer.reset_generation()
 
     def forward(
         self,
@@ -224,8 +247,8 @@ class EngramModelWrapper(nn.Module):
         **kwargs,
     ):
         """Forward pass with Engram memory."""
-        # Propagate input_ids to all wrapped layers
-        self._propagate_input_ids(input_ids)
+        # Propagate input_ids to all wrapped layers (training mode)
+        self._propagate_input_ids(input_ids, generation_mode=False)
 
         # Run the wrapped model
         return self.model(
@@ -236,9 +259,50 @@ class EngramModelWrapper(nn.Module):
         )
 
     def generate(self, input_ids: torch.Tensor, **kwargs):
-        """Generation with Engram memory."""
-        self._propagate_input_ids(input_ids)
-        return self.model.generate(input_ids=input_ids, **kwargs)
+        """Generation with Engram memory.
+
+        Properly handles autoregressive generation by tracking accumulated
+        input_ids across generation steps.
+        """
+        # Reset any previous generation state
+        self._reset_generation_state()
+
+        # Store the full input sequence - we'll track it through generation
+        self._full_input_ids = input_ids.clone()
+
+        # Hook into the model's forward to intercept each step
+        original_forward = self.model.forward
+
+        def hooked_forward(*args, **fwd_kwargs):
+            # Extract input_ids from either args or kwargs
+            input_ids_step = fwd_kwargs.get('input_ids', args[0] if args else None)
+
+            if input_ids_step is not None:
+                if input_ids_step.shape[1] == 1:
+                    # Single new token - append to our tracking
+                    self._full_input_ids = torch.cat([
+                        self._full_input_ids, input_ids_step
+                    ], dim=1)
+                else:
+                    # Full sequence (first step) - update our tracking
+                    self._full_input_ids = input_ids_step.clone()
+
+                # Propagate full sequence to all Engram layers (generation_mode=True for proper truncation)
+                self._propagate_input_ids(self._full_input_ids, generation_mode=True)
+
+            return original_forward(*args, **fwd_kwargs)
+
+        self.model.forward = hooked_forward
+
+        try:
+            result = self.model.generate(input_ids=input_ids, **kwargs)
+        finally:
+            # Restore original method
+            self.model.forward = original_forward
+            # Clean up
+            self._full_input_ids = None
+
+        return result
 
     def engram_parameters(self) -> List[nn.Parameter]:
         """Get only the Engram-related parameters for training."""
