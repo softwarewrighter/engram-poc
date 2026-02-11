@@ -5,14 +5,16 @@ Supports:
 1. Training Engram memory tables alone
 2. Training Engram + LoRA together (combined approach)
 3. Differentiated learning rates for memory vs other parameters
+4. Auto-detection of CUDA/MPS/CPU with platform-specific optimizations
 """
 
 import argparse
 import json
 import os
+import sys
 from pathlib import Path
 from dataclasses import dataclass, field
-from typing import Optional, List
+from typing import Optional, List, Tuple
 
 import torch
 import torch.nn as nn
@@ -20,6 +22,86 @@ from torch.utils.data import DataLoader, Dataset
 from tqdm import tqdm
 
 from .model_wrapper import inject_engram_into_model, EngramModelWrapper
+
+
+def get_device_info() -> Tuple[torch.device, str, dict]:
+    """
+    Detect best available device and return platform-specific settings.
+
+    Returns:
+        Tuple of (device, platform_name, recommended_settings)
+    """
+    if torch.cuda.is_available():
+        device = torch.device("cuda")
+        gpu_name = torch.cuda.get_device_name(0)
+        gpu_memory = torch.cuda.get_device_properties(0).total_memory / 1e9
+
+        # Recommend settings based on GPU memory
+        if gpu_memory >= 16:
+            settings = {
+                "batch_size": 8,
+                "memory_size": 50000,
+                "num_workers": 4,
+                "pin_memory": True,
+                "mixed_precision": True,
+            }
+        elif gpu_memory >= 8:
+            settings = {
+                "batch_size": 4,
+                "memory_size": 30000,
+                "num_workers": 2,
+                "pin_memory": True,
+                "mixed_precision": True,
+            }
+        else:
+            settings = {
+                "batch_size": 2,
+                "memory_size": 10000,
+                "num_workers": 2,
+                "pin_memory": True,
+                "mixed_precision": False,
+            }
+
+        platform = f"CUDA ({gpu_name}, {gpu_memory:.1f}GB)"
+
+    elif torch.backends.mps.is_available():
+        device = torch.device("mps")
+        platform = "MPS (Apple Silicon)"
+        settings = {
+            "batch_size": 4,
+            "memory_size": 30000,
+            "num_workers": 0,  # MPS doesn't benefit from workers
+            "pin_memory": False,
+            "mixed_precision": False,  # MPS has limited mixed precision support
+        }
+
+    else:
+        device = torch.device("cpu")
+        platform = "CPU"
+        settings = {
+            "batch_size": 2,
+            "memory_size": 10000,
+            "num_workers": 0,
+            "pin_memory": False,
+            "mixed_precision": False,
+        }
+
+    return device, platform, settings
+
+
+def print_device_info():
+    """Print detected device information."""
+    device, platform, settings = get_device_info()
+    print(f"\n{'='*60}")
+    print("Device Detection")
+    print(f"{'='*60}")
+    print(f"Platform: {platform}")
+    print(f"Device: {device}")
+    print(f"Recommended settings:")
+    for k, v in settings.items():
+        print(f"  {k}: {v}")
+    print(f"{'='*60}\n")
+    return device, platform, settings
 
 
 @dataclass
@@ -117,14 +199,29 @@ class EngramDataset(Dataset):
 
 
 def train_engram(config: EngramTrainConfig):
-    """Main training function."""
+    """Main training function with auto device detection."""
+
+    # Detect device and get platform-specific settings
+    device, platform, recommended = get_device_info()
+
     print("=" * 60)
     print("Engram Training")
     print("=" * 60)
+    print(f"Platform: {platform}")
     print(f"Model: {config.model_name}")
     print(f"Memory size: {config.memory_size:,}")
+    print(f"Batch size: {config.batch_size}")
     print(f"Use LoRA: {config.use_lora}")
     print("=" * 60)
+
+    # Warn if settings differ from recommended
+    if config.batch_size > recommended["batch_size"]:
+        print(f"\nWarning: batch_size={config.batch_size} may be too large for {platform}")
+        print(f"  Recommended: {recommended['batch_size']}")
+
+    if config.memory_size > recommended["memory_size"] * 2:
+        print(f"\nWarning: memory_size={config.memory_size:,} may be too large for {platform}")
+        print(f"  Recommended: {recommended['memory_size']:,}")
 
     # Load model with Engram
     model, tokenizer = inject_engram_into_model(
@@ -172,24 +269,38 @@ def train_engram(config: EngramTrainConfig):
             config.use_lora = False
 
     # Move to device
-    device = torch.device(
-        "cuda" if torch.cuda.is_available() else
-        "mps" if torch.backends.mps.is_available() else
-        "cpu"
-    )
     model = model.to(device)
     print(f"\nUsing device: {device}")
+
+    # CUDA-specific optimizations
+    use_amp = False
+    scaler = None
+    if device.type == "cuda" and recommended.get("mixed_precision", False):
+        try:
+            scaler = torch.amp.GradScaler("cuda")
+            use_amp = True
+            print("Mixed precision (AMP) enabled")
+        except Exception:
+            pass
 
     # Load data
     train_dataset = EngramDataset(config.train_file, tokenizer, config.max_seq_length)
     valid_dataset = EngramDataset(config.valid_file, tokenizer, config.max_seq_length)
 
-    train_loader = DataLoader(train_dataset, batch_size=config.batch_size, shuffle=True)
-    valid_loader = DataLoader(valid_dataset, batch_size=config.batch_size)
+    # Platform-specific DataLoader settings
+    loader_kwargs = {
+        "batch_size": config.batch_size,
+        "num_workers": recommended.get("num_workers", 0),
+        "pin_memory": recommended.get("pin_memory", False),
+    }
+
+    train_loader = DataLoader(train_dataset, shuffle=True, **loader_kwargs)
+    valid_loader = DataLoader(valid_dataset, shuffle=False, **loader_kwargs)
 
     print(f"\nDataset sizes:")
     print(f"  Train: {len(train_dataset)}")
     print(f"  Valid: {len(valid_dataset)}")
+    print(f"  DataLoader workers: {loader_kwargs['num_workers']}")
 
     # Setup optimizer with differentiated learning rates
     engram_params = model.engram_parameters()
@@ -223,19 +334,31 @@ def train_engram(config: EngramTrainConfig):
 
             optimizer.zero_grad()
 
-            outputs = model(
-                input_ids=input_ids,
-                attention_mask=attention_mask,
-                labels=labels,
-            )
+            # Use AMP if available (CUDA only)
+            if use_amp and scaler is not None:
+                with torch.amp.autocast("cuda"):
+                    outputs = model(
+                        input_ids=input_ids,
+                        attention_mask=attention_mask,
+                        labels=labels,
+                    )
+                    loss = outputs.loss
 
-            loss = outputs.loss
-            loss.backward()
-
-            # Gradient clipping
-            torch.nn.utils.clip_grad_norm_(engram_params, config.gradient_clip)
-
-            optimizer.step()
+                scaler.scale(loss).backward()
+                scaler.unscale_(optimizer)
+                torch.nn.utils.clip_grad_norm_(engram_params, config.gradient_clip)
+                scaler.step(optimizer)
+                scaler.update()
+            else:
+                outputs = model(
+                    input_ids=input_ids,
+                    attention_mask=attention_mask,
+                    labels=labels,
+                )
+                loss = outputs.loss
+                loss.backward()
+                torch.nn.utils.clip_grad_norm_(engram_params, config.gradient_clip)
+                optimizer.step()
 
             total_loss += loss.item()
             num_batches += 1
@@ -294,24 +417,90 @@ def train_engram(config: EngramTrainConfig):
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Train Engram-enhanced model")
-    parser.add_argument("--model", default="HuggingFaceTB/SmolLM-135M-Instruct")
-    parser.add_argument("--memory-size", type=int, default=50000)
+    parser = argparse.ArgumentParser(
+        description="Train Engram-enhanced model",
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        epilog="""
+Examples:
+  # Auto-detect device and use recommended settings
+  python -m src.memory.train_engram --auto
+
+  # Train with Engram + LoRA on CUDA
+  python -m src.memory.train_engram --use-lora --epochs 5
+
+  # Quick test run
+  python -m src.memory.train_engram --epochs 1 --batch-size 2 --memory-size 10000
+
+  # Check device info only
+  python -m src.memory.train_engram --device-info
+        """
+    )
+
+    # Device options
+    parser.add_argument("--device-info", action="store_true",
+                        help="Print device info and exit")
+    parser.add_argument("--auto", action="store_true",
+                        help="Use recommended settings for detected device")
+
+    # Model options
+    parser.add_argument("--model", default="HuggingFaceTB/SmolLM-135M-Instruct",
+                        help="HuggingFace model name or path")
+    parser.add_argument("--memory-size", type=int, default=None,
+                        help="Memory table size per layer (default: auto)")
+    parser.add_argument("--inject-layers", type=str, default=None,
+                        help="Comma-separated layer indices to inject (default: all)")
+
+    # Training options
     parser.add_argument("--epochs", type=int, default=3)
-    parser.add_argument("--batch-size", type=int, default=4)
-    parser.add_argument("--lr", type=float, default=1e-4)
-    parser.add_argument("--memory-lr", type=float, default=1e-3)
+    parser.add_argument("--batch-size", type=int, default=None,
+                        help="Batch size (default: auto based on device)")
+    parser.add_argument("--lr", type=float, default=1e-4,
+                        help="Learning rate for LoRA/other params")
+    parser.add_argument("--memory-lr", type=float, default=1e-3,
+                        help="Learning rate for memory tables (10x higher)")
+
+    # Data options
     parser.add_argument("--train-file", default="data/train.jsonl")
     parser.add_argument("--valid-file", default="data/valid.jsonl")
     parser.add_argument("--output-dir", default="adapters-engram")
-    parser.add_argument("--use-lora", action="store_true")
+
+    # LoRA options
+    parser.add_argument("--use-lora", action="store_true",
+                        help="Enable LoRA adapters (combined approach)")
     parser.add_argument("--lora-rank", type=int, default=8)
+    parser.add_argument("--lora-alpha", type=int, default=16)
 
     args = parser.parse_args()
+
+    # Device info only
+    if args.device_info:
+        print_device_info()
+        return
+
+    # Get device recommendations
+    device, platform, recommended = get_device_info()
+
+    # Auto mode: use recommended settings
+    if args.auto:
+        print(f"\nAuto mode: Using recommended settings for {platform}")
+        args.batch_size = recommended["batch_size"]
+        args.memory_size = recommended["memory_size"]
+
+    # Apply defaults from recommendations if not specified
+    if args.batch_size is None:
+        args.batch_size = recommended["batch_size"]
+    if args.memory_size is None:
+        args.memory_size = recommended["memory_size"]
+
+    # Parse inject_layers
+    inject_layers = None
+    if args.inject_layers:
+        inject_layers = [int(x.strip()) for x in args.inject_layers.split(",")]
 
     config = EngramTrainConfig(
         model_name=args.model,
         memory_size=args.memory_size,
+        inject_layers=inject_layers,
         epochs=args.epochs,
         batch_size=args.batch_size,
         learning_rate=args.lr,
@@ -321,6 +510,7 @@ def main():
         output_dir=args.output_dir,
         use_lora=args.use_lora,
         lora_rank=args.lora_rank,
+        lora_alpha=args.lora_alpha,
     )
 
     train_engram(config)

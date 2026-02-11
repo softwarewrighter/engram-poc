@@ -147,9 +147,17 @@ class EngramModelWrapper(nn.Module):
             for param in self.model.parameters():
                 param.requires_grad = False
 
+        # Get model dtype
+        self.dtype = next(self.model.parameters()).dtype
+
         # Find and wrap layers
         self.wrapped_layers: List[EngramLayerWrapper] = []
         self._inject_engram_layers(inject_layers)
+
+        # Convert Engram modules to model's dtype
+        for layer in self.wrapped_layers:
+            layer.engram = layer.engram.to(self.dtype)
+            layer.engram_norm = layer.engram_norm.to(self.dtype)
 
     def _get_layers(self) -> Tuple[nn.Module, nn.ModuleList]:
         """Get the transformer layers from the model."""
