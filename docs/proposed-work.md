@@ -582,6 +582,34 @@ The baseline model already knows capitals from pre-training. Engram's hash looku
 
 ---
 
+## Experiment: 5K Synthetic Training (In Progress)
+
+**Hypothesis:** With 10x more training data (4000 vs 400), the model should learn to memorize synthetic K→V pairs.
+
+**Dataset:**
+```
+Train: 4000 examples (3871 synthetic, 129 real-world)
+Valid: 500 examples
+Test:  1000 examples (includes 500 seen examples for recall test)
+Memory size: 5000 slots (1:1 ratio with unique keys)
+```
+
+**Training config:**
+```
+Epochs: 10 (vs 5 previously)
+Batch size: 4
+Memory size: 5000 (10x larger)
+```
+
+**Expected outcomes:**
+- Synthetic accuracy should improve from 0% → measurable %
+- Memory table utilization should be higher
+- Loss should converge lower than 0.84
+
+**Results:** (pending completion)
+
+---
+
 ## Medium-term Goals
 
 1. **Create Exact-Match Dataset Generator** - Key→value pairs for fact lookup
