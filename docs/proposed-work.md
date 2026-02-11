@@ -631,6 +631,207 @@ The model outputs generic responses ("What a great question! A: beta_978...") in
 
 ---
 
+## DeepSeek Engram Paper Recommendations
+
+From [arXiv:2601.07372](https://arxiv.org/abs/2601.07372) and the [DeepSeek Engram GitHub](https://github.com/deepseek-ai/Engram):
+
+### What Engram Actually Does Well
+
+| Task | Improvement | Why It Works |
+|------|-------------|--------------|
+| **Knowledge recall** (MMLU) | +3.4 | Factual N-grams stored in memory |
+| **Reasoning** (BBH) | +5.0 | Frees attention for global context |
+| **Long-context** (NIAH) | +12.8 | O(1) lookup vs O(n²) attention |
+| **Code** (HumanEval) | +3.0 | Common patterns (imports, syntax) |
+| **Math** (MATH) | +2.4 | Formulas and notation |
+
+### Key Insight: "Delegating Local Dependencies to Lookups"
+
+Engram's primary benefit is **not** arbitrary K→V storage. Instead:
+
+> "Delegating local dependencies to lookups frees up attention capacity for global context."
+
+This means Engram is best for:
+1. **Common patterns** that repeat frequently (boilerplate, syntax)
+2. **Static knowledge** that doesn't change with context
+3. **N-gram completions** (e.g., "import numpy as" → "np")
+
+### What Engram Does NOT Do Well
+
+Based on our experiments:
+
+| Task | Result | Why It Fails |
+|------|--------|--------------|
+| Arbitrary K→V | 0% accuracy | No semantic signal, hash collisions |
+| Random synthetic data | Worse with more data | Sparse updates, no pattern to learn |
+| Novel knowledge | Doesn't generalize | Hash-based = exact match only |
+
+### Practical Recommendations from DeepSeek
+
+1. **Scale matters**: 27B parameter Engram with ~20% of MoE replaced by memory
+2. **Tokenizer compression**: NFKC normalization reduces vocab by 23%
+3. **Multi-head hashing**: Collisions may actually help (regularization effect)
+4. **Pre-training required**: Engram trained alongside base model, not bolted on
+
+---
+
+## Proposed Demo Suite
+
+### Demo 1: "What Works" - Terminology Lookup
+**Shows Engram excelling at technical terminology expansion**
+
+```python
+# Input: "ACRONYM:GPU" → Output: "Graphics Processing Unit"
+# Input: "PORT:SSH" → Output: "22"
+# Input: "HTTP:404" → Output: "Not Found"
+
+# Expected: Engram 75%+ vs Baseline 10-15%
+```
+
+### Demo 2: "What Doesn't Work" - Random Mappings
+**Shows Engram failing on arbitrary synthetic data**
+
+```python
+# Input: "SYN_00123" → Expected: "beta_456"
+# Input: "KEY_99999" → Expected: "0xABCDEF"
+
+# Expected: Both models ~0% (no semantic signal)
+```
+
+### Demo 3: "Conditional Gating" - Adaptive Memory
+**Shows intelligent routing between base model and Engram**
+
+```python
+class ConditionalEngramWrapper:
+    def forward(self, input_ids, hidden_states):
+        # Detect if input is a lookup pattern
+        is_lookup = self.detect_lookup_pattern(input_ids)
+
+        if is_lookup:
+            # Use Engram memory
+            return self.engram(hidden_states, input_ids)
+        else:
+            # Bypass memory, use base model only
+            return hidden_states
+
+    def detect_lookup_pattern(self, input_ids):
+        # Check for structured key patterns
+        # e.g., "CAPITAL:", "PORT:", "ACRONYM:"
+        text = self.tokenizer.decode(input_ids[0])
+        return any(p in text for p in self.lookup_prefixes)
+```
+
+### Demo 4: "Long-Context Recall"
+**Shows Engram maintaining O(1) lookup in long sequences**
+
+```python
+# Store: "The secret code is ALPHA-7"
+# ... 1000 tokens of distraction ...
+# Query: "What is the secret code?"
+
+# Baseline: Degrades with context length (attention limits)
+# Engram: Constant performance (hash-based lookup)
+```
+
+### Demo 5: "Pre-populated Memory"
+**Shows value of semantic initialization**
+
+```python
+# Initialize memory with common code patterns:
+patterns = [
+    "def __init__(self,",
+    "import numpy as np",
+    "if __name__ == '__main__':",
+    "try:\n    ",
+]
+
+# Engram with pre-populated memory vs random init
+# Expected: Faster convergence, better code completion
+```
+
+---
+
+## Implementation Plan: Conditional Engram
+
+### Phase 1: Pattern Detection Module
+```python
+class LookupPatternDetector:
+    """Detect when input matches structured lookup patterns."""
+
+    LOOKUP_PREFIXES = [
+        "CAPITAL:", "PORT:", "HTTP:", "ELEMENT:",
+        "ACRONYM:", "CONVERT:", "[Q",  # Wikidata entities
+    ]
+
+    def __call__(self, text: str) -> float:
+        """Return confidence (0-1) that this is a lookup query."""
+        for prefix in self.LOOKUP_PREFIXES:
+            if prefix in text:
+                return 1.0
+
+        # Check for question patterns about facts
+        if any(p in text.lower() for p in ["what is", "capital of", "port for"]):
+            return 0.7
+
+        return 0.0
+```
+
+### Phase 2: Confidence-Based Gating
+```python
+class ConfidenceGatedEngram(nn.Module):
+    """Use Engram only when confident it will help."""
+
+    def forward(self, hidden_states, input_ids):
+        # Get base model output
+        base_output = self.base_forward(hidden_states)
+
+        # Get Engram memory contribution
+        memory_output = self.engram(hidden_states, input_ids)
+
+        # Compute confidence that memory is useful
+        confidence = self.confidence_net(hidden_states)
+
+        # Blend: low confidence = use base, high = use memory
+        return (1 - confidence) * base_output + confidence * memory_output
+```
+
+### Phase 3: Training Strategy
+1. **Pre-train Engram** on lookup-style data (acronyms, ports, elements)
+2. **Freeze Engram**, train confidence gating on mixed data
+3. **End-to-end fine-tune** on target domain
+
+---
+
+## Practical Guidelines for Effective Engram Usage
+
+### When TO Use Engram
+
+| Use Case | Why It Works |
+|----------|--------------|
+| **FAQ responses** | Same question → same answer (deterministic) |
+| **Terminology expansion** | Acronym → full form (exact match) |
+| **Entity facts** | Entity ID → static attributes |
+| **Code boilerplate** | Common patterns repeat exactly |
+| **Long documents** | O(1) retrieval beats attention at scale |
+
+### When NOT to Use Engram
+
+| Use Case | Why It Fails |
+|----------|--------------|
+| **Arbitrary data** | No semantic signal for hash lookup |
+| **Creative tasks** | Needs generalization, not recall |
+| **Context-dependent answers** | Same input may need different outputs |
+| **Novel combinations** | Hash of unseen input = random slot |
+
+### Key Metrics for Success
+
+1. **Pattern repetition**: Does the same input appear multiple times?
+2. **Determinism**: Does the same input always need the same output?
+3. **Structure**: Are keys structured (prefixes, IDs, patterns)?
+4. **Training scale**: Engram needs many examples per memory slot
+
+---
+
 ## Medium-term Goals
 
 1. **Create Exact-Match Dataset Generator** - Key→value pairs for fact lookup
