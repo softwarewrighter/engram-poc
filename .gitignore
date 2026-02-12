@@ -71,3 +71,4 @@ Thumbs.db
 # Secrets
 .env
 .env.local
+adapters-engram-exact/
