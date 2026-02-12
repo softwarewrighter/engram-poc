@@ -363,9 +363,9 @@ Option 2 (Gating) → Option 3 (Integration) → Novel improvements
 
 ---
 
-## Next Steps (Updated 2025-02-10)
+## Next Steps (Updated 2025-02-11)
 
-With Options 1 and 3 complete and critical findings documented, the focus shifts to finding the right task for Engram.
+With core implementation complete and extensive experimentation done, the focus shifts to real-world applications.
 
 ### Completed ✅
 
@@ -375,6 +375,19 @@ With Options 1 and 3 complete and critical findings documented, the focus shifts
 - ✅ Combined evaluation framework
 - ✅ Critical bug fixes (generation, initialization, LayerNorm)
 - ✅ Finding: Hash-based memory doesn't help pattern completion
+- ✅ Exact-match evaluation (75% on acronyms, 67% on elements)
+- ✅ 5K synthetic training experiment (confirmed limitations)
+- ✅ Conditional Engram routing (pattern detection + gating)
+- ✅ Pre-populated memory experiment (confirmed training is required)
+
+### Remaining Work
+
+| Priority | Task | Effort | Status |
+|----------|------|--------|--------|
+| 1 | Real-world lookup dataset | Medium | TODO |
+| 2 | Learned gating training | Medium | Scaffolded |
+| 3 | Larger model testing (7B+) | High | TODO |
+| 4 | Production package | High | Future |
 
 ---
 
@@ -751,54 +764,89 @@ patterns = [
 
 ---
 
-## Implementation Plan: Conditional Engram
+## Conditional Engram Implementation ✅ COMPLETE
 
-### Phase 1: Pattern Detection Module
+### Files Created
+
+- `src/memory/conditional_engram.py` - Core routing logic
+- `src/memory/demo_conditional.py` - Three-part demo suite
+
+### Usage
+
 ```python
-class LookupPatternDetector:
-    """Detect when input matches structured lookup patterns."""
+from src.memory import create_conditional_engram, LookupPatternDetector
 
-    LOOKUP_PREFIXES = [
-        "CAPITAL:", "PORT:", "HTTP:", "ELEMENT:",
-        "ACRONYM:", "CONVERT:", "[Q",  # Wikidata entities
-    ]
+# Create conditional model
+model, tokenizer = create_conditional_engram(
+    engram_weights_path="adapters-engram-exact/engram_weights.pt"
+)
 
-    def __call__(self, text: str) -> float:
-        """Return confidence (0-1) that this is a lookup query."""
-        for prefix in self.LOOKUP_PREFIXES:
-            if prefix in text:
-                return 1.0
-
-        # Check for question patterns about facts
-        if any(p in text.lower() for p in ["what is", "capital of", "port for"]):
-            return 0.7
-
-        return 0.0
+# Pattern detection
+detector = LookupPatternDetector()
+detector("ACRONYM:GPU")  # → 1.0 (ENGRAM)
+detector("Write a poem")  # → 0.0 (BYPASS)
 ```
 
-### Phase 2: Confidence-Based Gating
+### Routing Behavior (Tested)
+
+| Input | Confidence | Route | Output |
+|-------|------------|-------|--------|
+| `ACRONYM:GPU` | 1.0 | ENGRAM | Graphics Processing Unit ✓ |
+| `ACRONYM:API` | 1.0 | ENGRAM | Application Programming Interface ✓ |
+| `What is 2+2?` | 0.0 | BYPASS | Mathematical explanation |
+| `Write hello` | 0.0 | BYPASS | Hello! How can I help? |
+
+### Components
+
+**LookupPatternDetector** - Rule-based confidence scoring
 ```python
-class ConfidenceGatedEngram(nn.Module):
-    """Use Engram only when confident it will help."""
+LOOKUP_PREFIXES = [
+    "CAPITAL:", "PORT:", "HTTP:", "ELEMENT:", "ELEMENT_NAME:", "ELEMENT_NUM:",
+    "ACRONYM:", "CONVERT:", "CODE:", "DEFINE:", "LOOKUP:", "[Q",
+]
 
-    def forward(self, hidden_states, input_ids):
-        # Get base model output
-        base_output = self.base_forward(hidden_states)
-
-        # Get Engram memory contribution
-        memory_output = self.engram(hidden_states, input_ids)
-
-        # Compute confidence that memory is useful
-        confidence = self.confidence_net(hidden_states)
-
-        # Blend: low confidence = use base, high = use memory
-        return (1 - confidence) * base_output + confidence * memory_output
+FACTUAL_PATTERNS = [
+    "what is the capital of", "what port does", "what does",
+    "define ", "expand ", "the meaning of", "stands for",
+]
 ```
 
-### Phase 3: Training Strategy
-1. **Pre-train Engram** on lookup-style data (acronyms, ports, elements)
-2. **Freeze Engram**, train confidence gating on mixed data
-3. **End-to-end fine-tune** on target domain
+**ConditionalEngramLayer** - Gated memory injection
+```python
+def forward(self, hidden_states, input_ids):
+    # Skip memory if pattern detection says not a lookup
+    if self._pattern_confidence == 0.0:
+        return hidden_states
+
+    # Get memory contribution and blend
+    memory_output = self.engram_layer(hidden_states, input_ids)
+    return (1 - gate) * hidden_states + gate * memory_output
+```
+
+**ConditionalEngramWrapper** - Full model wrapper
+- Detects patterns on input
+- Propagates confidence to all layers
+- Unified interface for forward and generate
+
+### Next: Learned Gating (TODO)
+
+The current implementation uses rule-based pattern detection. Phase 2 would train a neural gate:
+
+```python
+# Already scaffolded in ConditionalEngramLayer
+self.confidence_net = nn.Sequential(
+    nn.Linear(d_model, d_model // 4),
+    nn.ReLU(),
+    nn.Linear(d_model // 4, 1),
+    nn.Sigmoid(),
+)
+# Initialized with bias=-2.0 (conservative, don't use memory by default)
+```
+
+Training strategy:
+1. **Collect routing labels** - Tag examples as lookup vs general
+2. **Train confidence net** - Predict when Engram helps
+3. **End-to-end fine-tune** - Let gate adapt to specific domain
 
 ---
 
@@ -832,6 +880,98 @@ class ConfidenceGatedEngram(nn.Module):
 
 ---
 
+## Pre-Populated Memory Experiment ✅ COMPLETE
+
+**Hypothesis:** Can we skip training by directly populating the memory table with known facts?
+
+### Approaches Tested
+
+#### Approach A: Embedding Injection (Failed)
+```python
+# Attempted: Store value embeddings at key hash positions
+embed_weights = model.embed_tokens.weight.data
+for key, value in facts.items():
+    hash_idx = multi_head_hash(tokenize(key))
+    value_embed = embed_weights[tokenize(value)].mean(dim=0)
+    memory_table[hash_idx] = value_embed
+```
+
+**Result:** Complete failure - outputs gibberish.
+
+**Why it failed:**
+- Input embeddings ≠ hidden state representations
+- Memory contents get blended with hidden states at layer N
+- Without projection training, the model can't interpret the raw embeddings
+- Different representation spaces cannot be directly mixed
+
+#### Approach B: Hidden State Caching (Failed)
+```python
+# Attempted: Store hidden states from forward pass with value
+for key, value in facts.items():
+    outputs = model(tokenize(f"The answer is: {value}"), output_hidden_states=True)
+    hidden = outputs.hidden_states[layer_idx][0, -1, :]  # Last token hidden state
+    memory_table[multi_head_hash(tokenize(key))] = hidden
+```
+
+**Result:** Still produces corrupted outputs.
+
+**Why it failed:**
+- Hidden states are context-dependent, not reusable
+- The "answer" hidden state was computed in isolation, not in query context
+- Model architecture expects specific hidden state distributions
+
+#### Approach C: Retrieval-Augmented Generation (Baseline)
+```python
+# Add fact to prompt context
+def rag_generate(query, facts):
+    if query in facts:
+        prompt = f"Knowledge: {query} = {facts[query]}\n\nQuery: {query}\n\nAnswer:"
+    return model.generate(prompt)
+```
+
+**Result:** 10% accuracy (same as baseline).
+
+**Why it didn't help:**
+- SmolLM-135M too small for effective in-context learning
+- Model ignores the "Knowledge:" prefix
+- Larger models (7B+) would likely benefit more from RAG
+
+### Results Summary
+
+| Approach | Accuracy | Notes |
+|----------|----------|-------|
+| **Baseline** | 10% (2/20) | Model echoes input |
+| **Embedding injection** | 0% | Corrupted outputs |
+| **Hidden state caching** | 0% | Corrupted outputs |
+| **RAG** | 10% (2/20) | No improvement |
+| **Trained Engram** | 30% (6/20) | **3x better** |
+
+### Key Finding
+
+**Hash-based memory REQUIRES training to work.**
+
+The projection layers, gates, and output projections must learn to:
+1. Interpret memory contents in the context of hidden states
+2. Blend memory output appropriately with base model activations
+3. Route information through the memory→hidden state pathway
+
+Pre-population cannot work because:
+- Input embeddings live in a different vector space than hidden states
+- The model needs learned transformations to bridge these spaces
+- Raw embeddings/hidden states injected without training corrupt outputs
+
+### Implications for Implementation
+
+| Strategy | Viable? | When to Use |
+|----------|---------|-------------|
+| Pre-populated memory | ❌ No | Never - doesn't work |
+| RAG (small models) | ❌ Poor | Use larger models or fine-tune |
+| RAG (large models) | ✅ Maybe | When facts change frequently |
+| Trained Engram | ✅ Yes | When facts are static, need speed |
+| Trained + RAG hybrid | ✅ Best | Combine for comprehensive coverage |
+
+---
+
 ## Medium-term Goals
 
 1. **Create Exact-Match Dataset Generator** - Key→value pairs for fact lookup
@@ -842,16 +982,53 @@ class ConfidenceGatedEngram(nn.Module):
 
 ---
 
-## Key Insight
+## Key Insights
 
 **Hash-based Engram memory is a specialized tool, not a general enhancement.**
 
-| Use Case | Engram Benefit | Alternative |
-|----------|---------------|-------------|
-| Exact fact recall | ✅ High | RAG |
-| Pattern generalization | ❌ None | LoRA/Fine-tuning |
-| Semantic similarity | ❌ None | Embeddings + Search |
-| Personalization | ✅ Moderate | User embeddings |
-| Long-context | ✅ Moderate | RoPE scaling |
+### What We Learned
 
-The path forward is to find tasks where O(1) deterministic lookup provides clear value over alternatives.
+| Finding | Evidence | Implication |
+|---------|----------|-------------|
+| **Structured lookups work** | 75% on acronyms, 67% on elements | Use for terminology, codes, facts |
+| **Arbitrary K→V fails** | 0% on synthetic data | Don't use for random mappings |
+| **Training is required** | Pre-population produces garbage | Can't shortcut with cached embeddings |
+| **Small model RAG fails** | 10% with context injection | Need 7B+ for effective in-context learning |
+| **Conditional routing helps** | Correct routing on 100% of test cases | Avoid memory interference on general queries |
+
+### Engram Decision Matrix
+
+| Use Case | Engram Benefit | Alternative | Recommendation |
+|----------|---------------|-------------|----------------|
+| Terminology expansion | ✅ High (75%) | RAG | **Use Engram** |
+| Technical facts | ✅ High (67%) | RAG | **Use Engram** |
+| Arbitrary mappings | ❌ None (0%) | Database | Don't use Engram |
+| Creative tasks | ❌ Harmful | Base model | Bypass memory |
+| Context-dependent | ❌ None | Attention | Don't use Engram |
+| General Q&A | ⚠️ Variable | RAG (7B+) | Conditional routing |
+
+### Implementation Guidance
+
+```
+For structured lookups (ACRONYM:, PORT:, CAPITAL:):
+  → Use trained Engram with conditional routing
+  → Expected accuracy: 60-75%
+
+For arbitrary data:
+  → Don't use Engram
+  → Use traditional database/cache instead
+
+For mixed workloads:
+  → Use ConditionalEngramWrapper
+  → Routes lookups to memory, bypasses for general queries
+```
+
+### The Bottom Line
+
+Engram provides O(1) lookup for **structured, repetitive patterns** that the model sees during training. It is not a general-purpose memory or knowledge store. The value proposition is:
+
+1. **Speed**: O(1) vs O(n²) attention for known patterns
+2. **Consistency**: Same input → same output (deterministic)
+3. **Efficiency**: Memory overhead constant regardless of model size
+
+The path forward is to identify domains with clear lookup patterns and train Engram specifically for those use cases.
